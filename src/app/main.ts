@@ -85,13 +85,18 @@ async function initViewer(id: string): Promise<void> {
   });
 }
 
-loadPrefs();
-registerServiceWorker();
-initInstallPrompt();
-initHeader();
-initClassroom();
-initSidebar();
-const algoId = document.body.dataset.algo;
-if (algoId && $maybe('stage')) void initViewer(algoId);
-else if ($maybe('viewHome')) initHome();
-else refreshTracks();
+function start(): void {
+  loadPrefs();
+  registerServiceWorker();
+  initInstallPrompt();
+  initHeader();
+  initClassroom();
+  initSidebar();
+  const algoId = document.body.dataset.algo;
+  if (algoId && $maybe('stage')) void initViewer(algoId);
+  else if ($maybe('viewHome')) initHome();
+  else refreshTracks();
+}
+
+// Only in a browser: Astro also evaluates this module when it renders pages at build time.
+if (typeof document !== 'undefined') start();
