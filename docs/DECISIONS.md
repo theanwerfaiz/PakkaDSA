@@ -46,3 +46,7 @@ The prototype's grid search stored the caller's input grid in every step by refe
 
 `tests/golden/render-hashes.json` holds a SHA-1 of every SVG the reference renderers drew for 7 inputs per algorithm (the default plus 6 seeded random inputs) at widths 860 and 420: 18,842 drawings. It was generated once from the prototype, like the golden steps, and the TypeScript renderers must match it exactly.
 Two views are taller on some steps than others in the prototype: the heap during min-heap insert (it grows as items arrive) and trees deeper than four levels. Changing the renderers would break parity, so instead `stageHeight()` returns the tallest drawing of a run and the app reserves that height for the stage. Nothing below the stage moves between steps.
+
+## D12. One page per algorithm, with full page loads between them
+
+The prototype switched algorithms inside one page with hash routing. The site has a real, pre-rendered URL per algorithm and language (`/algorithms/<slug>/`, `/hi/algorithms/<slug>/`) so each page carries its own indexable text. Choosing an algorithm (sidebar, learning path, "Up next") is an ordinary link to that page; settings, progress and the last position persist through `localStorage`. Client-side routing would leave each page's static text out of date, and the pages are small and cached, so a full load stays fast. The language button links to the mirror page and carries the hash (step and input) across.

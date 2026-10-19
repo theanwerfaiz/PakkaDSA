@@ -10,7 +10,7 @@ import { goTo, next, prev, stop, togglePlay } from './playback';
 export function initKeyboard(): void {
   document.addEventListener('keydown', (e) => {
     if (e.ctrlKey || e.metaKey || e.altKey) return;
-    const target = e.target as Element;
+    const target = e.target instanceof Element ? e.target : document.body;
     if (target.closest('input,textarea,select,[contenteditable]') || menuIsOpen()) return;
     if ($('quiz').classList.contains('open') || $('side').classList.contains('open')) return;
     if (!S.steps.length) return;

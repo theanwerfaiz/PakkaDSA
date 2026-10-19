@@ -49,7 +49,8 @@ export const menuIsOpen = () => !$('moreMenu').hidden;
 export function initMenu(): void {
   $('moreBtn').addEventListener('click', () => menuOpen(!menuIsOpen()));
   document.addEventListener('click', (e) => {
-    if (menuIsOpen() && !(e.target as Element).closest('.menu-wrap')) menuOpen(false);
+    const target = e.target instanceof Element ? e.target : null;
+    if (menuIsOpen() && !target?.closest('.menu-wrap')) menuOpen(false);
   });
   $('moreMenu').addEventListener('keydown', (e) => {
     const list = items();
