@@ -7,6 +7,7 @@ import { S, type CodeLang } from './state';
 import { store } from './storage';
 import { initMenu, isDark, menuOpen, refreshToggles, setTheme } from './views/menu';
 import { initCodePanel } from './views/codepanel';
+import { initInputPanel } from './views/inputpanel';
 import { initSidebar } from './views/sidebar';
 import { initViewerStatic, regen, render, renderStatic } from './views/viewer';
 
@@ -54,6 +55,7 @@ async function initViewer(id: string): Promise<void> {
   renderStatic();
   initCodePanel();
   await regen();
+  initInputPanel();
   render(false);
   let rz: ReturnType<typeof setTimeout> | undefined;
   window.addEventListener('resize', () => {
