@@ -1,5 +1,12 @@
 import type { Generator, Input } from '../types';
 import { bubble } from './bubble';
+import { bstbuild } from './bstbuild';
+import { bstsearch } from './bstsearch';
+import { inorder } from './inorder';
+import { preorder } from './preorder';
+import { postorder } from './postorder';
+import { levelorder } from './levelorder';
+import { heapinsert } from './heapinsert';
 import { parens } from './parens';
 import { nextgreater } from './nextgreater';
 import { reverselist } from './reverselist';
@@ -39,6 +46,13 @@ export const GENERATORS: Record<string, Generator<never>> = {
   reverselist,
   middlelist,
   cyclelist,
+  bstbuild,
+  bstsearch,
+  inorder,
+  preorder,
+  postorder,
+  levelorder,
+  heapinsert,
 };
 
 export type AnyGenerator = (input: Input) => ReturnType<Generator>;
