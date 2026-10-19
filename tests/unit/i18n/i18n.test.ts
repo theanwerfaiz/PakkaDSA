@@ -63,7 +63,7 @@ describe('no hard-coded user-visible text', () => {
     for (const f of walk('src/app').filter((x) => x.endsWith('.ts'))) {
       const src = readFileSync(f, 'utf8');
       for (const m of src.matchAll(/(textContent|placeholder|title)\s*=\s*(['"])([^'"]*)\2/g))
-        expect(/[A-Za-z\u0900-\u097F]{3,}/.test(m[3]), `${f}: ${m[0]}`).toBe(false);
+        expect(/[A-Za-z]{3,}|\p{Script=Devanagari}{2,}/u.test(m[3]), `${f}: ${m[0]}`).toBe(false);
     }
   });
 });
