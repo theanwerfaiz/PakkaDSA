@@ -2,6 +2,7 @@
 import type { Lang } from '../content/catalog';
 import { $, $maybe } from './dom';
 import { initClassroom } from './features/classroom';
+import { initHome } from './features/hero';
 import { initKeyboard } from './features/keyboard';
 import { initNarration } from './features/narration';
 import { initSaveImage } from './features/saveimage';
@@ -89,3 +90,4 @@ initClassroom();
 initSidebar();
 const algoId = document.body.dataset.algo;
 if (algoId && $maybe('stage')) void initViewer(algoId);
+else if ($maybe('viewHome')) initHome();

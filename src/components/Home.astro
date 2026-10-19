@@ -1,0 +1,67 @@
+---
+import { algoPath, byId, TRACKS, type Algorithm, type Lang } from '../content/catalog';
+import { t } from '../app/i18n';
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const bubble = byId('bubble') as Algorithm;
+---
+
+<div class="home" id="viewHome">
+  <section class="hero">
+    <div>
+      <h1>{t(lang, 'heroH')}</h1>
+      <p>{t(lang, 'heroP')}</p>
+      <div class="row">
+        <a class="btn pri big" id="hStart" href={algoPath(lang, bubble)}>
+          {t(lang, 'startB')}
+        </a>
+        <a class="btn big" id="hCont" href="#" hidden data-template={t(lang, 'cont')}></a>
+      </div>
+    </div>
+    <div class="stage hero-stage" id="heroStage" aria-hidden="true"></div>
+  </section>
+  <section class="path" aria-labelledby="pathH">
+    <h2 id="pathH">{t(lang, 'pathH')}</h2>
+    <p class="sub">{t(lang, 'pathP')}</p>
+    <div class="tracks">
+      {TRACKS.map((tr, ti) => (
+        <article class="track" data-track={tr.id}>
+          <header>
+            <span class="tno" aria-hidden="true">
+              {ti + 1}
+            </span>
+            <div>
+              <h3>{tr.name[lang]}</h3>
+              <p>{tr.description[lang]}</p>
+            </div>
+          </header>
+          <ul class="pills">
+            {tr.algorithms.map((id) => {
+              const a = byId(id) as Algorithm;
+              return (
+                <li>
+                  <a class="pill" href={algoPath(lang, a)} data-id={id}>
+                    {a.name}
+                    <span class="tick" aria-label={t(lang, 'learnedMark')} hidden>
+                      ✓
+                    </span>
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+          <footer>
+            <span class="count" data-total={tr.algorithms.length}>
+              0 / {tr.algorithms.length} {t(lang, 'learned')}
+            </span>
+            <div class="bar">
+              <i style="width:0%" />
+            </div>
+          </footer>
+        </article>
+      ))}
+    </div>
+  </section>
+</div>

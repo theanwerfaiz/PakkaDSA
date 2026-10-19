@@ -130,3 +130,19 @@
   height: 100%;
   background: var(--done-line);
 }
+a.btn {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+a.btn.pri {
+  color: var(--paper);
+}
+a.pill {
+  text-decoration: none;
+  color: var(--ink);
+}
+.pill.done {
+  color: var(--done-ink);
+}
