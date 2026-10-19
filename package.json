@@ -1,0 +1,47 @@
+{
+  "name": "pakkadsa",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Free, open-source algorithm visualizer. 38 algorithms step by step, code in Python, Java, C++ and JavaScript, Hindi explanations. No signup, no tracking.",
+  "license": "MIT",
+  "author": "Faiz Anwer",
+  "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "lint": "eslint . && prettier --check .",
+    "format": "prettier --write .",
+    "typecheck": "astro check && tsc --noEmit -p tsconfig.json",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:e2e": "playwright test",
+    "check:golden": "vitest run tests/golden",
+    "check:snippets": "sh tests/snippets/run_all.sh",
+    "check:all": "npm run lint && npm run typecheck && npm test && npm run check:golden && npm run check:snippets && npm run build && npm run test:e2e"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.10",
+    "@eslint/js": "10.0.1",
+    "@fontsource/instrument-sans": "5.3.0",
+    "@fontsource/jetbrains-mono": "5.3.0",
+    "@fontsource/kalam": "5.3.0",
+    "@fontsource/noto-sans-devanagari": "5.3.0",
+    "@playwright/test": "1.56.1",
+    "@types/node": "22.19.21",
+    "@vitest/coverage-v8": "5.0.3",
+    "astro": "7.3.5",
+    "astro-eslint-parser": "3.2.0",
+    "eslint": "10.12.0",
+    "eslint-plugin-astro": "3.2.1",
+    "globals": "17.13.0",
+    "prettier": "3.9.9",
+    "prettier-plugin-astro": "1.1.0",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.71.0",
+    "vitest": "5.0.3"
+  }
+}

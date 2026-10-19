@@ -1,0 +1,10 @@
+dist/
+.astro/
+coverage/
+docs/spec/
+tests/snippets/
+tests/golden/
+public/fonts/
+package-lock.json
+CLAUDE.md
+.claude/
