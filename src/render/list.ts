@@ -15,7 +15,7 @@ export function rList(st: ListState, hl: Highlights, W: number): string {
     if (has(hl.found, i)) k = 'done';
     o += `<g data-k="n${i}"><rect x="${r2(X(i))}" y="${y}" width="${r2(w)}" height="${h}" rx="8" ${fillOf(k)} stroke-width="1.5"/><text x="${r2(X(i) + w / 2)}" y="${y + h / 2}" text-anchor="middle" dominant-baseline="central" font-size="${w < 36 ? 14 : 17}" font-weight="600" ${inkOf(k)}>${esc(v)}</text></g>`;
     const nx = st.next[i];
-    let ar = '';
+    let ar: string;
     if (nx === -1)
       ar = `<text x="${r2(X(i) + w / 2)}" y="${y + h + 18}" text-anchor="middle" font-size="12" fill="var(--muted)">↓ null</text>`;
     else if (nx === i + 1)
