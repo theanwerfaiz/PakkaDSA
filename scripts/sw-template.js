@@ -2,7 +2,7 @@
    Pages: network first, falling back to the cache. Everything else: cache first. */
 const CACHE = 'pakkadsa-__VERSION__';
 // The build replaces the placeholder below with the list of files.
-const PRECACHE = /* global __PRECACHE__ */ __PRECACHE__;
+const PRECACHE = [/* PRECACHE */];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(

@@ -10,11 +10,13 @@ interface InstallPrompt extends Event {
 /** Registers the offline service worker (production builds only). */
 export function registerServiceWorker(): void {
   if (!import.meta.env.PROD || !('serviceWorker' in navigator)) return;
-  window.addEventListener('load', () => {
+  const register = () =>
     navigator.serviceWorker.register('/sw.js').catch(() => {
       /* offline support is optional; the site works without it */
     });
-  });
+  // Register after the page has loaded so caching never competes with the first view.
+  if (document.readyState === 'complete') void register();
+  else window.addEventListener('load', () => void register(), { once: true });
 }
 
 /** A polite, one-time offer to install the app, where the browser supports it. */
