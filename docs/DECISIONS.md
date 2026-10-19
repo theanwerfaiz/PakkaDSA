@@ -41,3 +41,7 @@ The project uses TypeScript `strict` plus Astro's "strictest" preset, except `no
 ## D10. Grid steps share a private copy of the grid
 
 The prototype's grid search stored the caller's input grid in every step by reference (`runAlgo` always cloned the input first, so the app was never affected). The "no mutation leak" invariant tests generators directly, so `gridSearch` now copies the grid once and shares that copy across its steps. Every step's content is unchanged and the golden hashes still match.
+
+## D11. Render parity is checked byte for byte; the stage reserves the tallest step
+`tests/golden/render-hashes.json` holds a SHA-1 of every SVG the reference renderers drew for 7 inputs per algorithm (the default plus 6 seeded random inputs) at widths 860 and 420: 18,842 drawings. It was generated once from the prototype, like the golden steps, and the TypeScript renderers must match it exactly.
+Two views are taller on some steps than others in the prototype: the heap during min-heap insert (it grows as items arrive) and trees deeper than four levels. Changing the renderers would break parity, so instead `stageHeight()` returns the tallest drawing of a run and the app reserves that height for the stage. Nothing below the stage moves between steps.

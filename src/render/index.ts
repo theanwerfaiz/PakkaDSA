@@ -38,3 +38,15 @@ export const RENDERERS: Record<ViewType, Renderer> = {
 /** Draws one step of an algorithm as an SVG string, at drawing width W (860 or 420). */
 export const render = (view: ViewType, st: unknown, hl: Highlights, W: number): string =>
   RENDERERS[view](st, hl, W);
+
+const heightOf = (svg: string) => Number(/viewBox="0 0 [\d.]+ ([\d.]+)"/.exec(svg)?.[1] ?? 0);
+
+/**
+ * The tallest drawing among all steps of a run. The app reserves this height for the stage, so
+ * nothing below it moves between steps even when a view grows (a heap filling up, a deep tree).
+ */
+export const stageHeight = (
+  view: ViewType,
+  steps: { st: unknown; hl: Highlights }[],
+  W: number,
+): number => Math.max(...steps.map((s) => heightOf(render(view, s.st, s.hl, W))));
