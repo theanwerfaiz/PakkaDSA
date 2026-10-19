@@ -103,7 +103,38 @@ const { lang, algo } = Astro.props;
         <div class="code" id="code"></div>
       </div>
       <div class="tabp" id="pInput" role="tabpanel" aria-labelledby="tInput" hidden></div>
-      <div class="tabp about" id="pAbout" role="tabpanel" aria-labelledby="tAbout" hidden></div>
+      <div class="tabp about" id="pAbout" role="tabpanel" aria-labelledby="tAbout" hidden>
+        <p>{algo.description[lang]}</p>
+        <div class="cx">
+          <div>
+            <small>{t(lang, 'best')}</small>
+            <b>{algo.complexity.best}</b>
+          </div>
+          <div>
+            <small>{t(lang, 'avg')}</small>
+            <b>{algo.complexity.average}</b>
+          </div>
+          <div>
+            <small>{t(lang, 'worst')}</small>
+            <b>{algo.complexity.worst}</b>
+          </div>
+          <div>
+            <small>{t(lang, 'space')}</small>
+            <b>{algo.complexity.space}</b>
+          </div>
+        </div>
+        <p class="tip">
+          <b>{t(lang, 'tipH')}:</b> {algo.interviewTip[lang]}
+        </p>
+        <p class="keys">
+          {t(lang, 'keys')}: <kbd>Space</kbd>
+          {t(lang, 'keyPlay')}, <kbd>←</kbd> <kbd>→</kbd>
+          {t(lang, 'keyStep')}, <kbd>Home</kbd> <kbd>End</kbd>
+          {t(lang, 'keyJump')}, <kbd>Q</kbd>
+          {t(lang, 'keyQuiz')}, <kbd>C</kbd>
+          {t(lang, 'keyClass')}
+        </p>
+      </div>
     </div>
     <button class="learn" id="learnBtn" aria-pressed="false">
       {t(lang, 'markL')}
