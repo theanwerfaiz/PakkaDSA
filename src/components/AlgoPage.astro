@@ -22,6 +22,7 @@ const url = (p: string) => new URL(p, site).href;
   title={algoTitle(lang, algo)}
   description={algoDescription(lang, algo)}
   og={`/og/${algo.slug}.png`}
+  preload={lang === 'en' ? ['kalam-latin-400-normal.woff2'] : []}
   jsonld={[
     learningResource(url(algoPath(lang, algo)), lang, algo),
     faqPage(lang, algo),
