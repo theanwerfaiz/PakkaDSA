@@ -1,5 +1,10 @@
 import type { Generator, Input } from '../types';
 import { bubble } from './bubble';
+import { parens } from './parens';
+import { nextgreater } from './nextgreater';
+import { reverselist } from './reverselist';
+import { middlelist } from './middlelist';
+import { cyclelist } from './cyclelist';
 import { linear } from './linear';
 import { binary } from './binary';
 import { pairsum } from './pairsum';
@@ -29,6 +34,11 @@ export const GENERATORS: Record<string, Generator<never>> = {
   maxsumk,
   longestuniq,
   kadane,
+  parens,
+  nextgreater,
+  reverselist,
+  middlelist,
+  cyclelist,
 };
 
 export type AnyGenerator = (input: Input) => ReturnType<Generator>;
