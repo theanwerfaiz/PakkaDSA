@@ -31,7 +31,7 @@ jobs:
       - run: npm run check:licences
       - run: npm run lint
       - run: npm run typecheck
-      - run: npm test
+      - run: npm run test:coverage
       - run: npm run check:golden
       - run: npm run check:snippets
       - run: npm run build

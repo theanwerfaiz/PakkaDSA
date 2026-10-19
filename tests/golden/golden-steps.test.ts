@@ -13,8 +13,12 @@ const golden = JSON.parse(readFileSync(new URL('./golden-steps.json', import.met
 const run = (id: string): Step[] => GENERATORS[id](defaultInput(id));
 
 describe('golden steps', () => {
+  it('has a generator for every algorithm in the golden file', () => {
+    expect(Object.keys(GENERATORS).sort()).toEqual(Object.keys(golden.algorithms).sort());
+  });
+
   for (const [id, g] of Object.entries(golden.algorithms)) {
-    it.runIf(id in GENERATORS)(`${id} reproduces the reference exactly`, () => {
+    it(`${id} reproduces the reference exactly`, () => {
       const steps = run(id);
       const got = steps.map((s): GoldenStep => [s.ln, s.m.en, s.m.hi, !!s.ask, stepHash(s.st, s.hl)]);
       expect(got.length).toBe(g.steps.length);

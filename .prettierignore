@@ -8,3 +8,4 @@ public/fonts/
 package-lock.json
 CLAUDE.md
 .claude/
+src/content/algorithms.json
