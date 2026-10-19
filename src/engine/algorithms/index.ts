@@ -1,5 +1,12 @@
 import type { Generator, Input } from '../types';
 import { bubble } from './bubble';
+import { linear } from './linear';
+import { binary } from './binary';
+import { pairsum } from './pairsum';
+import { water } from './water';
+import { maxsumk } from './maxsumk';
+import { longestuniq } from './longestuniq';
+import { kadane } from './kadane';
 import { heapsort } from './heapsort';
 import { insertion } from './insertion';
 import { merge } from './merge';
@@ -15,6 +22,13 @@ export const GENERATORS: Record<string, Generator<never>> = {
   merge,
   quick,
   heapsort,
+  linear,
+  binary,
+  pairsum,
+  water,
+  maxsumk,
+  longestuniq,
+  kadane,
 };
 
 export type AnyGenerator = (input: Input) => ReturnType<Generator>;
