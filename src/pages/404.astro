@@ -1,0 +1,33 @@
+---
+/* One 404 page for both languages (static hosts serve a single 404.html). */
+import Base from '../layouts/Base.astro';
+import { t } from '../app/i18n';
+import { ALGORITHMS, algoPath } from '../content/catalog';
+---
+
+<Base
+  lang="en"
+  view="page"
+  path="/404/"
+  title={`${t('en', 'nf.title')} | PakkaDSA`}
+  description={t('en', 'nf.text')}
+  noindex
+>
+  <div class="article page">
+    <h1>{t('en', 'nf.title')}</h1>
+    <p>{t('en', 'nf.text')}</p>
+    <p lang="hi">
+      {t('hi', 'nf.title')}। {t('hi', 'nf.text')}
+    </p>
+    <ul class="algo-list cols">
+      {ALGORITHMS.map((a) => (
+        <li>
+          <a href={algoPath('en', a)}>{a.name}</a> ·{' '}
+          <a href={algoPath('hi', a)} lang="hi">
+            हिन्दी
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</Base>

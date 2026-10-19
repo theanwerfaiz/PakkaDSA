@@ -1,0 +1,49 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { t } from '../../../app/i18n';
+import { ALGORITHMS, algoPath, CATEGORIES, langPrefix, type Lang } from '../../../content/catalog';
+import { langPaths } from '../../../content/routes';
+import { breadcrumbs, itemList } from '../../../content/seo';
+
+export const getStaticPaths = langPaths;
+const { lang } = Astro.props as { lang: Lang };
+const site = Astro.site as URL;
+const url = (p: string) => new URL(p, site).href;
+/** The first sentence of a description, as a one-line summary. */
+const firstSentence = (s: string) => (/^.*?[.।!?](\s|$)/.exec(s)?.[0] ?? s).trim();
+---
+
+<Base
+  lang={lang}
+  view="page"
+  path="/algorithms/"
+  title={`${t(lang, 'idx.title')} | PakkaDSA`}
+  description={t(lang, 'idx.desc')}
+  jsonld={[
+    itemList(ALGORITHMS.map((a) => ({ name: a.name, url: url(algoPath(lang, a)) }))),
+    breadcrumbs([
+      { name: t(lang, 'nav.home'), url: url(`${langPrefix(lang)}/`) },
+      { name: t(lang, 'nav.algorithms'), url: url(`${langPrefix(lang)}/algorithms/`) },
+    ]),
+  ]}
+>
+  <div class="article page">
+    <h1>{t(lang, 'idx.title')}</h1>
+    <p>{t(lang, 'idx.desc')}</p>
+    {CATEGORIES.map((c) => (
+      <section>
+        <h2>{c.name[lang]}</h2>
+        <ul class="algo-list">
+          {ALGORITHMS.filter((a) => a.category === c.id).map((a) => (
+            <li>
+              <a href={algoPath(lang, a)}>{a.name}</a>{' '}
+              <span class="chip">{a.complexity.average}</span>
+              <br />
+              <span class="sum">{firstSentence(a.description[lang])}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
+  </div>
+</Base>

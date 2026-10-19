@@ -451,3 +451,99 @@
   text-align: center;
   color: var(--muted);
 }
+.article {
+  padding: 8px 20px 40px;
+  max-width: 900px;
+}
+.article h2 {
+  font-size: 20px;
+  margin: 28px 0 10px;
+  letter-spacing: -0.01em;
+}
+.article p,
+.article dd {
+  max-width: 75ch;
+}
+.cxt {
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.cxt th,
+.cxt td {
+  text-align: left;
+  padding: 6px 14px 6px 0;
+  border-bottom: 1px solid var(--line);
+}
+.listing {
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.6;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 12px 14px;
+  overflow-x: auto;
+  margin: 0 0 8px;
+}
+.listing-box summary {
+  cursor: pointer;
+  font-weight: 600;
+  padding: 6px 0;
+}
+.faq dt {
+  font-weight: 600;
+  margin-top: 12px;
+}
+.faq dd {
+  margin: 4px 0 0;
+}
+.related {
+  padding-left: 18px;
+}
+.related li {
+  margin: 4px 0;
+}
+.article a {
+  color: var(--ptr);
+}
+@media (max-width: 900px) {
+  .article {
+    padding: 8px 14px 40px;
+  }
+}
+.page h1 {
+  font-size: 30px;
+  letter-spacing: -0.02em;
+  margin: 18px 0 8px;
+}
+.algo-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+ol.algo-list {
+  list-style: decimal;
+  padding-left: 24px;
+}
+.algo-list .sum {
+  display: block;
+  color: var(--muted);
+  font-size: 14px;
+  margin-top: 2px;
+}
+.algo-list.cols {
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+.crumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  margin: 18px 0 0;
+}
+.page.track footer {
+  font-size: 13px;
+  color: var(--muted);
+  max-width: 320px;
+}

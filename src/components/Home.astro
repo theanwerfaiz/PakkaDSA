@@ -1,5 +1,5 @@
 ---
-import { algoPath, byId, TRACKS, type Algorithm, type Lang } from '../content/catalog';
+import { algoPath, byId, trackPath, TRACKS, type Algorithm, type Lang } from '../content/catalog';
 import { t } from '../app/i18n';
 interface Props {
   lang: Lang;
@@ -33,7 +33,9 @@ const bubble = byId('bubble') as Algorithm;
               {ti + 1}
             </span>
             <div>
-              <h3>{tr.name[lang]}</h3>
+              <h3>
+                <a href={trackPath(lang, tr)}>{tr.name[lang]}</a>
+              </h3>
               <p>{tr.description[lang]}</p>
             </div>
           </header>

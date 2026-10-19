@@ -227,3 +227,33 @@ kbd {
   justify-content: flex-end;
   margin-top: 8px;
 }
+.site-foot {
+  padding: 24px 26px calc(32px + env(safe-area-inset-bottom, 0px));
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 13.5px;
+}
+.site-foot nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  margin-bottom: 6px;
+}
+.site-foot a {
+  color: var(--ink-2);
+}
+.install {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 10px;
+  margin: 12px 20px 0;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  font-size: 14px;
+}
+.install span {
+  flex: 1 1 200px;
+}

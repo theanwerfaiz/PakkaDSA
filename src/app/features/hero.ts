@@ -46,7 +46,7 @@ async function startHero(box: HTMLElement): Promise<void> {
   matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', run);
 }
 
-/** Welcome screen: hero loop, "Continue" button, and learned ticks and progress on the track cards. */
+/** Welcome screen: hero loop and the "Continue" button. */
 export function initHome(): void {
   const box = $maybe('heroStage');
   if (box) void startHero(box);
@@ -61,6 +61,11 @@ export function initHome(): void {
     cont.href = algoPath(S.lang, la as Algorithm) + `#s=${step}`;
     cont.hidden = false;
   }
+  refreshTracks();
+}
+
+/** Learned ticks and progress on learning-path cards (home page) and track pages. */
+export function refreshTracks(): void {
   document.querySelectorAll<HTMLElement>('.track').forEach((tr) => {
     const pills = [...tr.querySelectorAll<HTMLElement>('.pill')];
     let done = 0;

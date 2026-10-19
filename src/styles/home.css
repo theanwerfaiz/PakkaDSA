@@ -146,3 +146,10 @@ a.pill {
 .pill.done {
   color: var(--done-ink);
 }
+.track h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+.track h3 a:hover {
+  text-decoration: underline;
+}

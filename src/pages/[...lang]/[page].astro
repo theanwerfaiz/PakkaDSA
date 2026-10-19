@@ -1,0 +1,46 @@
+---
+import Base from '../../layouts/Base.astro';
+import { t } from '../../app/i18n';
+import { langPrefix, type Lang } from '../../content/catalog';
+import { PAGES, type ProsePage } from '../../content/pages';
+import { withLangs } from '../../content/routes';
+import { breadcrumbs } from '../../content/seo';
+
+export function getStaticPaths() {
+  return withLangs(
+    (['about', 'privacy', 'contribute'] as const).map((page) => ({
+      params: { page },
+      props: { page },
+    })),
+  );
+}
+const { lang, page } = Astro.props as { lang: Lang; page: keyof typeof PAGES };
+const p: ProsePage = PAGES[page][lang];
+const site = Astro.site as URL;
+---
+
+<Base
+  lang={lang}
+  view="page"
+  path={`/${page}/`}
+  title={`${p.title} | PakkaDSA`}
+  description={p.description}
+  jsonld={[
+    breadcrumbs([
+      { name: t(lang, 'nav.home'), url: new URL(`${langPrefix(lang)}/`, site).href },
+      { name: p.title, url: new URL(`${langPrefix(lang)}/${page}/`, site).href },
+    ]),
+  ]}
+>
+  <div class="article page">
+    <h1>{p.title}</h1>
+    {p.sections.map((s) => (
+      <section>
+        {s.heading && <h2>{s.heading}</h2>}
+        {s.paragraphs.map((para) => (
+          <p>{para}</p>
+        ))}
+      </section>
+    ))}
+  </div>
+</Base>
