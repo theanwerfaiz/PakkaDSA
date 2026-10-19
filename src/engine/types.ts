@@ -263,3 +263,11 @@ export type ViewType =
   | 'hanoi';
 
 export type Generator<I extends Input = Input, S = unknown> = (input: I) => Step<S>[];
+
+/**
+ * A generator whose input type is not known statically. Each generator takes one member of the
+ * Input union; the registry pairs every id with its input type, so callers pass `defaultInput(id)`
+ * or an input validated for that id.
+ */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- see the comment above.
+export type AnyGenerator = (input: any) => Step[];

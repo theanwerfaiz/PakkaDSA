@@ -3,14 +3,14 @@ import { describe, expect, it } from 'vitest';
 import { GENERATORS } from '../../src/engine/algorithms';
 import { stepHash } from '../../src/engine/canon';
 import { defaultInput } from '../../src/engine/inputs';
-import type { Input, Step } from '../../src/engine/types';
+import type { Step } from '../../src/engine/types';
 
 type GoldenStep = [number | null, string, string, boolean, string];
 const golden = JSON.parse(readFileSync(new URL('./golden-steps.json', import.meta.url), 'utf8')) as {
   algorithms: Record<string, { steps: GoldenStep[] }>;
 };
 
-const run = (id: string): Step[] => (GENERATORS[id] as unknown as (i: Input) => Step[])(defaultInput(id));
+const run = (id: string): Step[] => GENERATORS[id](defaultInput(id));
 
 describe('golden steps', () => {
   for (const [id, g] of Object.entries(golden.algorithms)) {

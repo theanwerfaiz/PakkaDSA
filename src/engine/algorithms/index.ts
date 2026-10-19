@@ -1,4 +1,4 @@
-import type { Generator, Input } from '../types';
+import type { AnyGenerator } from '../types';
 import { bubble } from './bubble';
 import { fib } from './fib';
 import { coins } from './coins';
@@ -38,9 +38,8 @@ import { merge } from './merge';
 import { quick } from './quick';
 import { selection } from './selection';
 
-/** Every generator by algorithm id. Prefer `registry.ts`, which loads them lazily. */
-// Each generator accepts one member of the Input union; the registry pairs ids with matching inputs.
-export const GENERATORS: Record<string, Generator<never>> = {
+/** Every generator by id, loaded eagerly. Used by tests and build-time pages; the browser app uses `registry.ts`. */
+export const GENERATORS: Record<string, AnyGenerator> = {
   bubble,
   selection,
   insertion,
@@ -80,5 +79,3 @@ export const GENERATORS: Record<string, Generator<never>> = {
   subsets,
   hanoi,
 };
-
-export type AnyGenerator = (input: Input) => ReturnType<Generator>;
