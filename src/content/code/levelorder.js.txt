@@ -1,0 +1,10 @@
+|function levelOrder(root) {
+0|  const queue = [root], out = [];
+1|  while (queue.length) {
+2|    const node = queue.shift();
+2|    out.push(node.val);
+3|    if (node.left) queue.push(node.left);
+3|    if (node.right) queue.push(node.right);
+|  }
+4|  return out;
+|}

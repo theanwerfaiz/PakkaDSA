@@ -1,0 +1,11 @@
+|from collections import deque
+|def bfs(graph, start):
+0|    seen, queue, order = {start}, deque([start]), []
+1|    while queue:
+2|        u = queue.popleft()
+2|        order.append(u)
+3|        for v in graph[u]:
+4|            if v not in seen:
+4|                seen.add(v)
+4|                queue.append(v)
+5|    return order

@@ -1,0 +1,11 @@
+|static List<Integer> levelOrder(Node root) {
+0|    Queue<Node> queue = new ArrayDeque<>(); queue.add(root);
+0|    List<Integer> out = new ArrayList<>();
+1|    while (!queue.isEmpty()) {
+2|        Node node = queue.remove();
+2|        out.add(node.val);
+3|        if (node.left != null) queue.add(node.left);
+3|        if (node.right != null) queue.add(node.right);
+|    }
+4|    return out;
+|}

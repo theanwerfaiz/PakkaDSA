@@ -1,0 +1,9 @@
+|static int maxSumK(int[] a, int k) {
+0|    int s = 0; for (int i = 0; i < k; i++) s += a[i];
+0|    int best = s;
+1|    for (int i = k; i < a.length; i++) {
+2|        s += a[i] - a[i - k];
+3|        best = Math.max(best, s);
+|    }
+4|    return best;
+|}

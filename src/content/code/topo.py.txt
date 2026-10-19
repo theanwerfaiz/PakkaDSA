@@ -1,0 +1,14 @@
+|from collections import deque
+|def topo_sort(graph):
+0|    indeg = {v: 0 for v in graph}
+0|    for u in graph:
+0|        for v in graph[u]: indeg[v] += 1
+1|    queue = deque(v for v in graph if indeg[v] == 0)
+|    order = []
+2|    while queue:
+3|        u = queue.popleft()
+3|        order.append(u)
+4|        for v in graph[u]:
+4|            indeg[v] -= 1
+4|            if indeg[v] == 0: queue.append(v)
+5|    return order   # shorter than graph? there is a cycle

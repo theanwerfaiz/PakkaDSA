@@ -1,0 +1,11 @@
+|// openNeighbours() and tracePath() are small helpers (not shown)
+|function gridBfs(grid, start, goal) {
+0|  const queue = [start], prev = new Map([[key(start), null]]);
+1|  while (queue.length) {
+2|    const cell = queue.shift();
+4|    if (key(cell) === key(goal)) break;
+3|    for (const nb of openNeighbours(grid, cell))
+3|      if (!prev.has(key(nb))) { prev.set(key(nb), cell); queue.push(nb); }
+|  }
+5,6|  return prev.has(key(goal)) ? tracePath(prev, goal) : null;
+|}

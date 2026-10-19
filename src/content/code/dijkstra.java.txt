@@ -1,0 +1,19 @@
+|static int[] dijkstra(List<int[]>[] g, int start) {   // edge = {to, weight}
+0|    int[] dist = new int[g.length];
+0|    Arrays.fill(dist, Integer.MAX_VALUE); dist[start] = 0;
+|    PriorityQueue<int[]> pq = new PriorityQueue<>((x, y) -> x[0] - y[0]);
+|    pq.add(new int[]{0, start});
+1|    while (!pq.isEmpty()) {
+2|        int[] top = pq.remove();
+2|        int d = top[0], u = top[1];
+2|        if (d > dist[u]) continue;
+3|        // u is now finished
+4|        for (int[] e : g[u]) {
+5|            if (d + e[1] < dist[e[0]]) {
+5|                dist[e[0]] = d + e[1];
+5|                pq.add(new int[]{dist[e[0]], e[0]});
+|            }
+|        }
+|    }
+6|    return dist;
+|}

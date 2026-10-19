@@ -1,0 +1,10 @@
+|int lcs(const string& a, const string& b) {
+0|    vector<vector<int>> dp(a.size() + 1, vector<int>(b.size() + 1, 0));
+1|    for (size_t i = 1; i <= a.size(); i++)
+1|        for (size_t j = 1; j <= b.size(); j++)
+2|            if (a[i - 1] == b[j - 1])
+2|                dp[i][j] = dp[i - 1][j - 1] + 1;
+3|            else
+3|                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
+4|    return dp[a.size()][b.size()];   // walk back for the string itself
+|}

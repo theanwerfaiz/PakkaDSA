@@ -1,0 +1,11 @@
+|vector<int> nextGreater(const vector<int>& a) {
+0|    vector<int> ans(a.size(), -1);
+0|    stack<int> st;
+1|    for (int i = 0; i < (int)a.size(); i++) {
+2|        while (!st.empty() && a[st.top()] < a[i]) {
+3|            ans[st.top()] = a[i]; st.pop();
+|        }
+4|        st.push(i);
+|    }
+5|    return ans;
+|}

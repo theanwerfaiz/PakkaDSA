@@ -1,0 +1,9 @@
+|function maxSumK(a, k) {
+0|  let s = 0; for (let i = 0; i < k; i++) s += a[i];
+0|  let best = s;
+1|  for (let i = k; i < a.length; i++) {
+2|    s += a[i] - a[i - k];
+3|    best = Math.max(best, s);
+|  }
+4|  return best;
+|}

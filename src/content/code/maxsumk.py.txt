@@ -1,0 +1,6 @@
+|def max_sum_k(a, k):
+0|    s = sum(a[:k]); best = s
+1|    for i in range(k, len(a)):
+2|        s += a[i] - a[i - k]
+3|        best = max(best, s)
+4|    return best

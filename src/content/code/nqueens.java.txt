@@ -1,0 +1,13 @@
+|static boolean solve(int row, int n, int[] cols) {
+0|    if (row == n) return true;
+1|    for (int c = 0; c < n; c++) {
+2|        boolean attacked = false;
+2|        for (int r = 0; r < row; r++)
+2|            if (cols[r] == c || Math.abs(cols[r] - c) == row - r) attacked = true;
+2|        if (attacked) continue;
+3|        cols[row] = c;
+3|        if (solve(row + 1, n, cols)) return true;
+4|        cols[row] = -1;
+|    }
+6|    return false;
+|}

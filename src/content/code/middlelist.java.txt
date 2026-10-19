@@ -1,0 +1,8 @@
+|static ListNode middle(ListNode head) {
+0|    ListNode slow = head, fast = head;
+1|    while (fast != null && fast.next != null) {
+2|        slow = slow.next;
+2|        fast = fast.next.next;
+|    }
+3|    return slow;
+|}

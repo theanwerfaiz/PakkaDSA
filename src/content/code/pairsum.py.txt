@@ -1,0 +1,8 @@
+|def pair_sum(a, target):   # a is sorted
+0|    L, R = 0, len(a) - 1
+1|    while L < R:
+2|        s = a[L] + a[R]
+3|        if s == target: return (L, R)
+4|        if s < target: L += 1
+5|        else: R -= 1
+6|    return None

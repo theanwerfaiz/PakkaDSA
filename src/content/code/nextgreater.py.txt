@@ -1,0 +1,7 @@
+|def next_greater(a):
+0|    ans, stack = [-1] * len(a), []
+1|    for i, x in enumerate(a):
+2|        while stack and a[stack[-1]] < x:
+3|            ans[stack.pop()] = x
+4|        stack.append(i)
+5|    return ans

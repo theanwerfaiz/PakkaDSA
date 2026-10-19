@@ -1,0 +1,7 @@
+|def max_water(a):
+0|    L, R, best = 0, len(a) - 1, 0
+1|    while L < R:
+2|        best = max(best, min(a[L], a[R]) * (R - L))
+3|        if a[L] <= a[R]: L += 1
+4|        else: R -= 1
+5|    return best

@@ -1,0 +1,10 @@
+|// class ListNode { int val; ListNode next; }
+|static ListNode reverse(ListNode head) {
+0|    ListNode prev = null, curr = head;
+1|    while (curr != null) {
+2|        ListNode next = curr.next;
+3|        curr.next = prev;
+4|        prev = curr; curr = next;
+|    }
+5|    return prev;
+|}

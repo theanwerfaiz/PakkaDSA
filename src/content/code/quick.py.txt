@@ -1,0 +1,11 @@
+|def quick_sort(a, lo=0, hi=None):
+|    if hi is None: hi = len(a) - 1
+0|    if lo >= hi: return
+1|    pivot, i = a[hi], lo
+2|    for j in range(lo, hi):
+3|        if a[j] < pivot:
+3|            a[i], a[j] = a[j], a[i]
+3|            i += 1
+4|    a[i], a[hi] = a[hi], a[i]
+5|    quick_sort(a, lo, i - 1)
+5|    quick_sort(a, i + 1, hi)

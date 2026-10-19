@@ -1,0 +1,8 @@
+|void go(const vector<int>& a, int i, vector<int>& cur, vector<vector<int>>& out) {
+0|    if (i == (int)a.size()) {
+1|        out.push_back(cur);
+|        return;
+|    }
+2|    cur.push_back(a[i]); go(a, i + 1, cur, out);
+3|    cur.pop_back(); go(a, i + 1, cur, out);
+|}

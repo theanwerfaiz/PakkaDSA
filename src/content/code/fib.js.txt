@@ -1,0 +1,6 @@
+|function fib(n) {
+0|  const F = [0, 1];
+1|  for (let i = 2; i <= n; i++)
+2|    F[i] = F[i - 1] + F[i - 2];
+3|  return F[n];
+|}

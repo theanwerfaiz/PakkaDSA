@@ -1,0 +1,9 @@
+|static void dfs(List<Integer>[] g, int u, boolean[] seen, List<Integer> order) {
+0|    // visit u
+1|    seen[u] = true;
+1|    order.add(u);
+2|    for (int v : g[u])
+3|        if (!seen[v])
+3|            dfs(g, v, seen, order);
+4|    // all neighbours done: backtrack
+|}

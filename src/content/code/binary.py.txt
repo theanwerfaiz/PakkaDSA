@@ -1,0 +1,8 @@
+|def binary_search(a, target):
+0|    lo, hi = 0, len(a) - 1
+1|    while lo <= hi:
+2|        mid = (lo + hi) // 2
+3|        if a[mid] == target: return mid
+4|        if a[mid] < target: lo = mid + 1
+5|        else: hi = mid - 1
+6|    return -1

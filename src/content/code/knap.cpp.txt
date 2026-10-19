@@ -1,0 +1,10 @@
+|int knapsack(const vector<int>& w, const vector<int>& v, int cap) {
+0|    vector<vector<int>> dp(w.size() + 1, vector<int>(cap + 1, 0));
+1|    for (size_t i = 1; i <= w.size(); i++)
+2|        for (int c = 0; c <= cap; c++) {
+2|            dp[i][c] = dp[i - 1][c];
+3|            if (w[i - 1] <= c)
+3|                dp[i][c] = max(dp[i][c], dp[i - 1][c - w[i - 1]] + v[i - 1]);
+|        }
+4|    return dp[w.size()][cap];
+|}

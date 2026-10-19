@@ -25,3 +25,7 @@ Astro 7's `astro preview` keeps a lock file for background servers. Playwright s
 ## D6. Transitive build-only packages with other licences
 
 Astro and Vite pull in two build-time packages outside the allow-list: `lightningcss` (MPL-2.0, Vite's CSS tool) and the `@img/sharp-libvips-*` binaries (LGPL-3.0, Astro's optional image service). Neither is a direct dependency, neither is shipped in `dist/`, and we do not modify them, so their licences place no obligations on the site. The allow-list is applied to every package we add directly. Re-check this table when upgrading Astro: `node scripts/check-licences.mjs` lists anything new.
+
+## D7. Snippet harness reads the project's own content
+
+The original harness loaded the snippets and generators from the prototype source. In this repository the snippets live in `src/content/code/<id>.<lang>.txt` (tagged lines, as in `06` §1), so `tests/snippets/extract.cjs` and `cov.cjs` read from there. Until the TypeScript engine exists, `cov.cjs` takes each step's pseudocode line from `tests/golden/golden-steps.json`; the 45 allowed final "done" gaps are listed explicitly in the script and any change to that set fails the check. The scripts use `.cjs` because the package is an ES module. Output goes to `tests/snippets/out/` (git-ignored).

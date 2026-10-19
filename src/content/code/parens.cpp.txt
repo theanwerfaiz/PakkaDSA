@@ -1,0 +1,13 @@
+|bool isValid(const string& s) {
+0|    stack<char> st;
+1|    for (char ch : s) {
+2|        if (ch == '(' || ch == '[' || ch == '{') {
+2|            st.push(ch);
+3|        } else {
+4|            char p = ch == ')' ? '(' : ch == ']' ? '[' : '{';
+4|            if (st.empty() || st.top() != p) return false;
+5|            st.pop();
+|        }
+|    }
+6|    return st.empty();
+|}

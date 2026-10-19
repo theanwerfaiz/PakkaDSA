@@ -1,0 +1,7 @@
+|function inorder(node, out = []) {
+0|  if (!node) return out;
+2|  inorder(node.left, out);
+2|  out.push(node.val);
+4|  inorder(node.right, out);
+|  return out;
+|}

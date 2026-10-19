@@ -1,0 +1,9 @@
+|static int coinChange(int[] coins, int amount) {
+0|    int[] dp = new int[amount + 1];
+0|    Arrays.fill(dp, Integer.MAX_VALUE); dp[0] = 0;
+1|    for (int x = 1; x <= amount; x++)
+2|        for (int c : coins)
+3|            if (c <= x && dp[x - c] != Integer.MAX_VALUE)
+3|                dp[x] = Math.min(dp[x], dp[x - c] + 1);
+4|    return dp[amount] == Integer.MAX_VALUE ? -1 : dp[amount];
+|}

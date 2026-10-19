@@ -1,0 +1,14 @@
+|// node shape: { val, left, right }
+|function insert(root, val) {
+0|  if (!root) return { val, left: null, right: null };
+1|  let node = root;
+2|  while (true) {
+2|    if (val < node.val) {
+3|      if (!node.left) { node.left = { val, left: null, right: null }; return root; }
+|      node = node.left;
+|    } else {
+3|      if (!node.right) { node.right = { val, left: null, right: null }; return root; }
+|      node = node.right;
+|    }
+|  }
+|}

@@ -1,0 +1,6 @@
+|static void hanoi(int n, char src, char dst, char via) {
+0|    if (n == 0) return;
+1|    hanoi(n - 1, src, via, dst);
+2|    System.out.println("move disk " + n + ": " + src + " -> " + dst);
+3|    hanoi(n - 1, via, dst, src);
+|}

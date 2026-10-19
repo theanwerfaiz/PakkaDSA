@@ -1,0 +1,19 @@
+|def merge_sort(a, lo=0, hi=None):
+|    if hi is None: hi = len(a) - 1
+0|    if lo >= hi: return
+1|    mid = (lo + hi) // 2
+2|    merge_sort(a, lo, mid)
+2|    merge_sort(a, mid + 1, hi)
+3|    left, right = a[lo:mid + 1], a[mid + 1:hi + 1]
+|    i = j = 0
+|    k = lo
+4|    while i < len(left) and j < len(right):
+4|        if left[i] <= right[j]:
+4|            a[k] = left[i]; i += 1
+4|        else:
+4|            a[k] = right[j]; j += 1
+4|        k += 1
+5|    while i < len(left):
+5|        a[k] = left[i]; i += 1; k += 1
+5|    while j < len(right):
+5|        a[k] = right[j]; j += 1; k += 1

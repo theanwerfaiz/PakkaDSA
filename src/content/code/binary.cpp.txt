@@ -1,0 +1,10 @@
+|int binarySearch(const vector<int>& a, int target) {
+0|    int lo = 0, hi = (int)a.size() - 1;
+1|    while (lo <= hi) {
+2|        int mid = lo + (hi - lo) / 2;
+3|        if (a[mid] == target) return mid;
+4|        if (a[mid] < target) lo = mid + 1;
+5|        else hi = mid - 1;
+|    }
+6|    return -1;
+|}

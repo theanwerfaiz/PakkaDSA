@@ -1,0 +1,8 @@
+|function maxSubarray(a) {
+0|  let cur = 0, best = -Infinity;
+1|  for (const x of a) {
+2|    cur = Math.max(x, cur + x);
+3|    best = Math.max(best, cur);
+|  }
+4|  return best;
+|}

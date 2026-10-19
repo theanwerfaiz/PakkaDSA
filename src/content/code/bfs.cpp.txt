@@ -1,0 +1,13 @@
+|vector<int> bfs(const vector<vector<int>>& g, int start) {
+0|    vector<bool> seen(g.size(), false); seen[start] = true;
+0|    queue<int> q; q.push(start);
+|    vector<int> order;
+1|    while (!q.empty()) {
+2|        int u = q.front(); q.pop();
+2|        order.push_back(u);
+3|        for (int v : g[u]) {
+4|            if (!seen[v]) { seen[v] = true; q.push(v); }
+|        }
+|    }
+5|    return order;
+|}

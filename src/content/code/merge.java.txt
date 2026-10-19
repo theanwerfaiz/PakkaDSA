@@ -1,0 +1,13 @@
+|static void mergeSort(int[] a, int lo, int hi) {
+0|    if (lo >= hi) return;
+1|    int mid = (lo + hi) / 2;
+2|    mergeSort(a, lo, mid);
+2|    mergeSort(a, mid + 1, hi);
+3|    int[] left = Arrays.copyOfRange(a, lo, mid + 1);
+3|    int[] right = Arrays.copyOfRange(a, mid + 1, hi + 1);
+|    int i = 0, j = 0, k = lo;
+4|    while (i < left.length && j < right.length)
+4|        a[k++] = left[i] <= right[j] ? left[i++] : right[j++];
+5|    while (i < left.length) a[k++] = left[i++];
+5|    while (j < right.length) a[k++] = right[j++];
+|}

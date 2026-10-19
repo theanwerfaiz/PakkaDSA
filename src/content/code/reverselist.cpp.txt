@@ -1,0 +1,10 @@
+|// struct ListNode { int val; ListNode* next; };
+|ListNode* reverse(ListNode* head) {
+0|    ListNode *prev = nullptr, *curr = head;
+1|    while (curr) {
+2|        ListNode* next = curr->next;
+3|        curr->next = prev;
+4|        prev = curr; curr = next;
+|    }
+5|    return prev;
+|}

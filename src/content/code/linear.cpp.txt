@@ -1,0 +1,6 @@
+|int linearSearch(const vector<int>& a, int target) {
+0|    for (int i = 0; i < (int)a.size(); i++)
+1|        if (a[i] == target)
+2|            return i;
+3|    return -1;
+|}

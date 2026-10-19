@@ -1,0 +1,8 @@
+|Node* search(Node* root, int target) {
+0|    Node* node = root;
+1|    while (node) {
+2|        if (node->val == target) return node;
+3|        node = target < node->val ? node->left : node->right;
+|    }
+4|    return nullptr;
+|}

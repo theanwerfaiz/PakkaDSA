@@ -1,0 +1,8 @@
+|int coinChange(const vector<int>& coins, int amount) {
+0|    vector<int> dp(amount + 1, INT_MAX); dp[0] = 0;
+1|    for (int x = 1; x <= amount; x++)
+2|        for (int c : coins)
+3|            if (c <= x && dp[x - c] != INT_MAX)
+3|                dp[x] = min(dp[x], dp[x - c] + 1);
+4|    return dp[amount] == INT_MAX ? -1 : dp[amount];
+|}

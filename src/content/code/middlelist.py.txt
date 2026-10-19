@@ -1,0 +1,6 @@
+|def middle(head):
+0|    slow = fast = head
+1|    while fast and fast.next:
+2|        slow = slow.next
+2|        fast = fast.next.next
+3|    return slow

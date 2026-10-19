@@ -1,0 +1,7 @@
+|function preorder(node, out = []) {
+0|  if (!node) return out;
+1|  out.push(node.val);
+2|  preorder(node.left, out);
+3|  preorder(node.right, out);
+|  return out;
+|}

@@ -1,0 +1,16 @@
+|// openNeighbours(), tracePath() and h() are small helpers (not shown)
+|function aStar(grid, start, goal) {
+0|  const open = [{ f: h(start, goal), steps: 0, cell: start }];
+|  const g = new Map([[key(start), 0]]), prev = new Map([[key(start), null]]);
+1|  while (open.length) {
+|    open.sort((x, y) => x.f - y.f);
+2|    const { steps, cell } = open.shift();
+4|    if (key(cell) === key(goal)) break;
+3|    for (const nb of openNeighbours(grid, cell))
+3|      if (steps + 1 < (g.get(key(nb)) ?? Infinity)) {
+3|        g.set(key(nb), steps + 1); prev.set(key(nb), cell);
+3|        open.push({ f: steps + 1 + h(nb, goal), steps: steps + 1, cell: nb });
+3|      }
+|  }
+5,6|  return prev.has(key(goal)) ? tracePath(prev, goal) : null;
+|}

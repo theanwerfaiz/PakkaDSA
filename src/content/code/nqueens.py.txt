@@ -1,0 +1,9 @@
+|def solve(row, n, cols):   # cols[r] = column of the queen in row r
+0|    if row == n: return True
+1|    for c in range(n):
+2|        if any(cols[r] == c or abs(cols[r] - c) == row - r for r in range(row)):
+2|            continue
+3|        cols[row] = c
+3|        if solve(row + 1, n, cols): return True
+4|        cols[row] = -1
+6|    return False

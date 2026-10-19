@@ -1,0 +1,6 @@
+|function hanoi(n, src, dst, via) {
+0|  if (n === 0) return;
+1|  hanoi(n - 1, src, via, dst);
+2|  console.log("move disk " + n + ": " + src + " -> " + dst);
+3|  hanoi(n - 1, via, dst, src);
+|}

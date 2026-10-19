@@ -1,0 +1,11 @@
+|void heapPush(vector<int>& a, int val) {
+0|    a.push_back(val);
+1|    int i = a.size() - 1;
+2|    while (i > 0) {
+|        int p = (i - 1) / 2;
+3|        if (a[i] < a[p]) {
+3|            swap(a[i], a[p]);
+3|            i = p;
+4|        } else break;
+|    }
+|}

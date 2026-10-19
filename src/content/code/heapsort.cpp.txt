@@ -1,0 +1,19 @@
+|void siftDown(vector<int>& a, int i, int size) {
+|    while (true) {
+4|        int c = i, l = 2 * i + 1, r = 2 * i + 2;
+4|        if (l < size && a[l] > a[c]) c = l;
+4|        if (r < size && a[r] > a[c]) c = r;
+5|        if (c == i) return;
+5|        swap(a[i], a[c]);
+5|        i = c;
+|    }
+|}
+|
+|void heapSort(vector<int>& a) {
+|    int n = a.size();
+0|    for (int i = n / 2 - 1; i >= 0; i--) siftDown(a, i, n);
+1|    for (int end = n - 1; end > 0; end--) {
+2|        swap(a[0], a[end]);
+3|        siftDown(a, 0, end);
+|    }
+|}

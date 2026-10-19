@@ -1,0 +1,13 @@
+|function isValid(s) {
+0|  const stack = [], pair = {')': '(', ']': '[', '}': '{'};
+1|  for (const ch of s) {
+2|    if ('([{'.includes(ch)) {
+2|      stack.push(ch);
+3|    } else {
+4|      if (!stack.length || stack[stack.length - 1] !== pair[ch])
+4|        return false;
+5|      stack.pop();
+|    }
+|  }
+6|  return stack.length === 0;
+|}

@@ -1,0 +1,11 @@
+|function bfs(graph, start) {
+0|  const seen = new Set([start]), queue = [start], order = [];
+1|  while (queue.length) {
+2|    const u = queue.shift();
+2|    order.push(u);
+3|    for (const v of graph[u]) {
+4|      if (!seen.has(v)) { seen.add(v); queue.push(v); }
+|    }
+|  }
+5|  return order;
+|}

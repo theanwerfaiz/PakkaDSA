@@ -1,0 +1,9 @@
+|function nextGreater(a) {
+0|  const ans = new Array(a.length).fill(-1), stack = [];
+1|  for (let i = 0; i < a.length; i++) {
+2|    while (stack.length && a[stack[stack.length - 1]] < a[i])
+3|      ans[stack.pop()] = a[i];
+4|    stack.push(i);
+|  }
+5|  return ans;
+|}

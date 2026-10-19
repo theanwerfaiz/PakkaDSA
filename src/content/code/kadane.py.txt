@@ -1,0 +1,6 @@
+|def max_subarray(a):
+0|    cur, best = 0, float('-inf')
+1|    for x in a:
+2|        cur = max(x, cur + x)
+3|        best = max(best, cur)
+4|    return best

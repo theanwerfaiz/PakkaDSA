@@ -1,0 +1,16 @@
+|def heap_sort(a):
+|    n = len(a)
+0|    for i in range(n // 2 - 1, -1, -1):
+0|        sift_down(a, i, n)
+1|    for end in range(n - 1, 0, -1):
+2|        a[0], a[end] = a[end], a[0]
+3|        sift_down(a, 0, end)
+|
+|def sift_down(a, i, size):
+|    while True:
+4|        c, l, r = i, 2 * i + 1, 2 * i + 2
+4|        if l < size and a[l] > a[c]: c = l
+4|        if r < size and a[r] > a[c]: c = r
+5|        if c == i: return
+5|        a[i], a[c] = a[c], a[i]
+5|        i = c

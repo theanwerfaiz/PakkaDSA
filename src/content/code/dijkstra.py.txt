@@ -1,0 +1,14 @@
+|import heapq
+|def dijkstra(graph, start):
+0|    dist = {v: float('inf') for v in graph}
+0|    dist[start] = 0
+|    heap = [(0, start)]
+1|    while heap:
+2|        d, u = heapq.heappop(heap)
+2|        if d > dist[u]: continue
+3|        # u is now finished
+4|        for v, w in graph[u]:
+5|            if d + w < dist[v]:
+5|                dist[v] = d + w
+5|                heapq.heappush(heap, (dist[v], v))
+6|    return dist

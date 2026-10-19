@@ -1,0 +1,6 @@
+|void postorder(Node* node, vector<int>& out) {
+0|    if (!node) return;
+1|    postorder(node->left, out);
+2|    postorder(node->right, out);
+3|    out.push_back(node->val);
+|}

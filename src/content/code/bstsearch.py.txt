@@ -1,0 +1,6 @@
+|def search(root, target):
+0|    node = root
+1|    while node:
+2|        if node.val == target: return node
+3|        node = node.left if target < node.val else node.right
+4|    return None

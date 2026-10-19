@@ -1,0 +1,5 @@
+|def inorder(node, out):
+0|    if node is None: return
+2|    inorder(node.left, out)
+2|    out.append(node.val)
+4|    inorder(node.right, out)

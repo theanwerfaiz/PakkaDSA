@@ -1,0 +1,14 @@
+|// struct Node { int val; Node *left = nullptr, *right = nullptr; };
+|Node* insert(Node* root, int val) {
+0|    if (!root) return new Node{val};
+1|    Node* node = root;
+2|    while (true) {
+2|        if (val < node->val) {
+3|            if (!node->left) { node->left = new Node{val}; return root; }
+|            node = node->left;
+|        } else {
+3|            if (!node->right) { node->right = new Node{val}; return root; }
+|            node = node->right;
+|        }
+|    }
+|}

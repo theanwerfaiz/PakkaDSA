@@ -1,0 +1,10 @@
+|static int knapsack(int[] w, int[] v, int cap) {
+0|    int[][] dp = new int[w.length + 1][cap + 1];
+1|    for (int i = 1; i <= w.length; i++)
+2|        for (int c = 0; c <= cap; c++) {
+2|            dp[i][c] = dp[i - 1][c];
+3|            if (w[i - 1] <= c)
+3|                dp[i][c] = Math.max(dp[i][c], dp[i - 1][c - w[i - 1]] + v[i - 1]);
+|        }
+4|    return dp[w.length][cap];
+|}

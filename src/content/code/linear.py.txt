@@ -1,0 +1,5 @@
+|def linear_search(a, target):
+0|    for i in range(len(a)):
+1|        if a[i] == target:
+2|            return i
+3|    return -1

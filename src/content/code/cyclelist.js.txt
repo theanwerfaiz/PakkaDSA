@@ -1,0 +1,9 @@
+|function hasCycle(head) {
+0|  let slow = head, fast = head;
+1|  while (fast && fast.next) {
+2|    slow = slow.next;
+2|    fast = fast.next.next;
+3|    if (slow === fast) return true;
+|  }
+4|  return false;
+|}

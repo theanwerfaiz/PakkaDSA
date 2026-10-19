@@ -1,0 +1,10 @@
+|static int[] nextGreater(int[] a) {
+0|    int[] ans = new int[a.length]; Arrays.fill(ans, -1);
+0|    Deque<Integer> stack = new ArrayDeque<>();
+1|    for (int i = 0; i < a.length; i++) {
+2|        while (!stack.isEmpty() && a[stack.peek()] < a[i])
+3|            ans[stack.pop()] = a[i];
+4|        stack.push(i);
+|    }
+5|    return ans;
+|}

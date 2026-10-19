@@ -1,0 +1,11 @@
+|static void heapPush(List<Integer> a, int val) {
+0|    a.add(val);
+1|    int i = a.size() - 1;
+2|    while (i > 0) {
+|        int p = (i - 1) / 2;
+3|        if (a.get(i) < a.get(p)) {
+3|            Collections.swap(a, i, p);
+3|            i = p;
+4|        } else break;
+|    }
+|}

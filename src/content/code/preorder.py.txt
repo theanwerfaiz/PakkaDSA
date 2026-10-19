@@ -1,0 +1,5 @@
+|def preorder(node, out):
+0|    if node is None: return
+1|    out.append(node.val)
+2|    preorder(node.left, out)
+3|    preorder(node.right, out)

@@ -1,0 +1,8 @@
+|function search(root, target) {
+0|  let node = root;
+1|  while (node) {
+2|    if (node.val === target) return node;
+3|    node = target < node.val ? node.left : node.right;
+|  }
+4|  return null;
+|}

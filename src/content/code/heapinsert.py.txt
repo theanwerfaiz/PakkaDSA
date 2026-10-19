@@ -1,0 +1,10 @@
+|def heap_push(a, val):
+0|    a.append(val)
+1|    i = len(a) - 1
+2|    while i > 0:
+|        p = (i - 1) // 2
+3|        if a[i] < a[p]:
+3|            a[i], a[p] = a[p], a[i]
+3|            i = p
+4|        else:
+4|            break

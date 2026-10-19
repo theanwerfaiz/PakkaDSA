@@ -1,0 +1,8 @@
+|def knapsack(items, cap):   # items = [(weight, value), ...]
+0|    dp = [[0] * (cap + 1) for _ in range(len(items) + 1)]
+1|    for i, (w, v) in enumerate(items, 1):
+2|        for c in range(cap + 1):
+2|            dp[i][c] = dp[i - 1][c]
+3|            if w <= c:
+3|                dp[i][c] = max(dp[i][c], dp[i - 1][c - w] + v)
+4|    return dp[len(items)][cap]

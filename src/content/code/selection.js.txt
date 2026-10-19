@@ -1,0 +1,8 @@
+|function selectionSort(a) {
+0|  for (let i = 0; i < a.length - 1; i++) {
+1|    let m = i;
+2|    for (let j = i + 1; j < a.length; j++)
+3|      if (a[j] < a[m]) m = j;
+4|    [a[i], a[m]] = [a[m], a[i]];
+|  }
+|}

@@ -1,0 +1,8 @@
+|def dfs(graph, u, seen, order):
+0|    # visit u
+1|    seen.add(u)
+1|    order.append(u)
+2|    for v in graph[u]:
+3|        if v not in seen:
+3|            dfs(graph, v, seen, order)
+4|    # all neighbours done: backtrack

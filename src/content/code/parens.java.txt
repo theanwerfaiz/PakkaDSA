@@ -1,0 +1,14 @@
+|static boolean isValid(String s) {
+0|    Deque<Character> stack = new ArrayDeque<>();
+1|    for (char ch : s.toCharArray()) {
+2|        if ("([{".indexOf(ch) >= 0) {
+2|            stack.push(ch);
+3|        } else {
+4|            if (stack.isEmpty() || stack.peek() != partner(ch))
+4|                return false;
+5|            stack.pop();
+|        }
+|    }
+6|    return stack.isEmpty();
+|}
+|static char partner(char c) { return c == ')' ? '(' : c == ']' ? '[' : '{'; }

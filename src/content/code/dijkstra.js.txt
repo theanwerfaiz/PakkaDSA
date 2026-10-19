@@ -1,0 +1,18 @@
+|function dijkstra(graph, start) {   // graph[u] = [[v, weight], ...]
+0|  const dist = graph.map(() => Infinity);
+0|  dist[start] = 0;
+|  const heap = [[0, start]];   // use a real priority queue in production
+1|  while (heap.length) {
+|    heap.sort((x, y) => x[0] - y[0]);
+2|    const [d, u] = heap.shift();
+2|    if (d > dist[u]) continue;
+3|    // u is now finished
+4|    for (const [v, w] of graph[u]) {
+5|      if (d + w < dist[v]) {
+5|        dist[v] = d + w;
+5|        heap.push([dist[v], v]);
+|      }
+|    }
+|  }
+6|  return dist;
+|}

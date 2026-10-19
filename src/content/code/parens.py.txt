@@ -1,0 +1,10 @@
+|def is_valid(s):
+0|    stack, pair = [], {')': '(', ']': '[', '}': '{'}
+1|    for ch in s:
+2|        if ch in '([{':
+2|            stack.append(ch)
+3|        else:
+4|            if not stack or stack[-1] != pair[ch]:
+4|                return False
+5|            stack.pop()
+6|    return not stack

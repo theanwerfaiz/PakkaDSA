@@ -1,0 +1,12 @@
+|from collections import deque
+|# open_neighbours() and trace_path() are small helpers (not shown)
+|def grid_bfs(grid, start, goal):
+0|    queue, prev = deque([start]), {start: None}
+1|    while queue:
+2|        cell = queue.popleft()
+4|        if cell == goal: break
+3|        for nb in open_neighbours(grid, cell):
+3|            if nb not in prev:
+3|                prev[nb] = cell
+3|                queue.append(nb)
+5,6|    return trace_path(prev, goal) if goal in prev else None

@@ -1,0 +1,13 @@
+|def insert(root, val):
+0|    if root is None:
+0|        return Node(val)
+1|    node = root
+2|    while True:
+2|        if val < node.val:
+3|            if node.left is None:
+3|                node.left = Node(val); return root
+|            node = node.left
+2|        else:
+3|            if node.right is None:
+3|                node.right = Node(val); return root
+|            node = node.right

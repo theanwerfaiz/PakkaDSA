@@ -1,0 +1,16 @@
+|// openNeighbours(), tracePath() and h() are small helpers (not shown)
+|vector<Cell> aStar(const Grid& grid, Cell start, Cell goal) {
+0|    using T = tuple<int,int,Cell>;   // {f, steps, cell}
+0|    priority_queue<T, vector<T>, greater<T>> open; open.push({h(start, goal), 0, start});
+|    map<Cell,int> g{{start, 0}}; map<Cell,Cell> prev{{start, start}};
+1|    while (!open.empty()) {
+2|        auto [f, steps, cell] = open.top(); open.pop();
+4|        if (cell == goal) break;
+3|        for (Cell nb : openNeighbours(grid, cell))
+3|            if (!g.count(nb) || steps + 1 < g[nb]) {
+3|                g[nb] = steps + 1; prev[nb] = cell;
+3|                open.push({steps + 1 + h(nb, goal), steps + 1, nb});
+3|            }
+|    }
+5,6|    return prev.count(goal) ? tracePath(prev, goal) : vector<Cell>{};
+|}

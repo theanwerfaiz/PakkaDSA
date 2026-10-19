@@ -1,0 +1,17 @@
+|vector<int> dijkstra(const vector<vector<pair<int,int>>>& g, int start) {   // edge = {to, weight}
+0|    vector<int> dist(g.size(), INT_MAX); dist[start] = 0;
+|    priority_queue<pair<int,int>, vector<pair<int,int>>, greater<>> pq;
+|    pq.push({0, start});
+1|    while (!pq.empty()) {
+2|        auto [d, u] = pq.top(); pq.pop();
+2|        if (d > dist[u]) continue;
+3|        // u is now finished
+4|        for (auto [v, w] : g[u]) {
+5|            if (d + w < dist[v]) {
+5|                dist[v] = d + w;
+5|                pq.push({dist[v], v});
+|            }
+|        }
+|    }
+6|    return dist;
+|}

@@ -1,0 +1,14 @@
+|vector<int> topoSort(const vector<vector<int>>& g) {
+0|    vector<int> indeg(g.size(), 0);
+0|    for (auto& out : g) for (int v : out) indeg[v]++;
+1|    queue<int> q;
+1|    for (int v = 0; v < (int)g.size(); v++) if (indeg[v] == 0) q.push(v);
+|    vector<int> order;
+2|    while (!q.empty()) {
+3|        int u = q.front(); q.pop();
+3|        order.push_back(u);
+4|        for (int v : g[u])
+4|            if (--indeg[v] == 0) q.push(v);
+|    }
+5|    return order;   // smaller than g.size()? there is a cycle
+|}

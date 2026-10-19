@@ -1,0 +1,13 @@
+|static List<Integer> bfs(List<Integer>[] g, int start) {
+0|    boolean[] seen = new boolean[g.length]; seen[start] = true;
+0|    Queue<Integer> queue = new ArrayDeque<>(List.of(start));
+|    List<Integer> order = new ArrayList<>();
+1|    while (!queue.isEmpty()) {
+2|        int u = queue.remove();
+2|        order.add(u);
+3|        for (int v : g[u]) {
+4|            if (!seen[v]) { seen[v] = true; queue.add(v); }
+|        }
+|    }
+5|    return order;
+|}

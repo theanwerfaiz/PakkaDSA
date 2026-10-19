@@ -1,0 +1,10 @@
+|pair<int,int> pairSum(const vector<int>& a, int target) {   // a is sorted
+0|    int L = 0, R = (int)a.size() - 1;
+1|    while (L < R) {
+2|        int s = a[L] + a[R];
+3|        if (s == target) return {L, R};
+4|        if (s < target) L++;
+5|        else R--;
+|    }
+6|    return {-1, -1};
+|}

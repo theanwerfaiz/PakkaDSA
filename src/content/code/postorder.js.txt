@@ -1,0 +1,7 @@
+|function postorder(node, out = []) {
+0|  if (!node) return out;
+1|  postorder(node.left, out);
+2|  postorder(node.right, out);
+3|  out.push(node.val);
+|  return out;
+|}

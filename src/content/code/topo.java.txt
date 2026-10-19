@@ -1,0 +1,14 @@
+|static List<Integer> topoSort(List<Integer>[] g) {
+0|    int[] indeg = new int[g.length];
+0|    for (List<Integer> out : g) for (int v : out) indeg[v]++;
+1|    Queue<Integer> queue = new ArrayDeque<>();
+1|    for (int v = 0; v < g.length; v++) if (indeg[v] == 0) queue.add(v);
+|    List<Integer> order = new ArrayList<>();
+2|    while (!queue.isEmpty()) {
+3|        int u = queue.remove();
+3|        order.add(u);
+4|        for (int v : g[u])
+4|            if (--indeg[v] == 0) queue.add(v);
+|    }
+5|    return order;   // shorter than g.length? there is a cycle
+|}

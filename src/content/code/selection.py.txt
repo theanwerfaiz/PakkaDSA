@@ -1,0 +1,7 @@
+|def selection_sort(a):
+0|    for i in range(len(a) - 1):
+1|        m = i
+2|        for j in range(i + 1, len(a)):
+3|            if a[j] < a[m]:
+3|                m = j
+4|        a[i], a[m] = a[m], a[i]

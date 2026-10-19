@@ -1,0 +1,10 @@
+|function longestUnique(s) {
+0|  let L = 0, best = 0; const last = new Map();
+1|  for (let R = 0; R < s.length; R++) {
+2|    if (last.has(s[R]) && last.get(s[R]) >= L)
+2|      L = last.get(s[R]) + 1;
+3|    last.set(s[R], R);
+3|    best = Math.max(best, R - L + 1);
+|  }
+5|  return best;
+|}

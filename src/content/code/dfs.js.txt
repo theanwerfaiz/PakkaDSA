@@ -1,0 +1,10 @@
+|function dfs(graph, u, seen = new Set(), order = []) {
+0|  // visit u
+1|  seen.add(u);
+1|  order.push(u);
+2|  for (const v of graph[u])
+3|    if (!seen.has(v))
+3|      dfs(graph, v, seen, order);
+4|  // all neighbours done: backtrack
+5|  return order;
+|}

@@ -1,0 +1,12 @@
+|function quickSort(a, lo = 0, hi = a.length - 1) {
+0|  if (lo >= hi) return;
+1|  const pivot = a[hi]; let i = lo;
+2|  for (let j = lo; j < hi; j++) {
+3|    if (a[j] < pivot) {
+3|      [a[i], a[j]] = [a[j], a[i]]; i++;
+|    }
+|  }
+4|  [a[i], a[hi]] = [a[hi], a[i]];
+5|  quickSort(a, lo, i - 1);
+5|  quickSort(a, i + 1, hi);
+|}

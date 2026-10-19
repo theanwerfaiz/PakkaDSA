@@ -1,0 +1,8 @@
+|static int maxSubarray(int[] a) {
+0|    int cur = 0, best = Integer.MIN_VALUE;
+1|    for (int x : a) {
+2|        cur = Math.max(x, cur + x);
+3|        best = Math.max(best, cur);
+|    }
+4|    return best;
+|}

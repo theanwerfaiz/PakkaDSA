@@ -1,0 +1,7 @@
+|function coinChange(coins, amount) {
+0|  const dp = [0].concat(new Array(amount).fill(Infinity));
+1|  for (let x = 1; x <= amount; x++)
+2|    for (const c of coins)
+3|      if (c <= x) dp[x] = Math.min(dp[x], dp[x - c] + 1);
+4|  return dp[amount] === Infinity ? -1 : dp[amount];
+|}

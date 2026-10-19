@@ -1,0 +1,6 @@
+|static void inorder(Node node, List<Integer> out) {
+0|    if (node == null) return;
+2|    inorder(node.left, out);
+2|    out.add(node.val);
+4|    inorder(node.right, out);
+|}

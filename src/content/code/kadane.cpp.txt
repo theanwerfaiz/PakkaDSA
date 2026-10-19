@@ -1,0 +1,8 @@
+|int maxSubarray(const vector<int>& a) {
+0|    int cur = 0, best = INT_MIN;
+1|    for (int x : a) {
+2|        cur = max(x, cur + x);
+3|        best = max(best, cur);
+|    }
+4|    return best;
+|}

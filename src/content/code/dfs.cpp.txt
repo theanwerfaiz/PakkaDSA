@@ -1,0 +1,9 @@
+|void dfs(const vector<vector<int>>& g, int u, vector<bool>& seen, vector<int>& order) {
+0|    // visit u
+1|    seen[u] = true;
+1|    order.push_back(u);
+2|    for (int v : g[u])
+3|        if (!seen[v])
+3|            dfs(g, v, seen, order);
+4|    // all neighbours done: backtrack
+|}

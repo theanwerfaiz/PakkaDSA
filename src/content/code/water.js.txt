@@ -1,0 +1,9 @@
+|function maxWater(a) {
+0|  let L = 0, R = a.length - 1, best = 0;
+1|  while (L < R) {
+2|    best = Math.max(best, Math.min(a[L], a[R]) * (R - L));
+3|    if (a[L] <= a[R]) L++;
+4|    else R--;
+|  }
+5|  return best;
+|}

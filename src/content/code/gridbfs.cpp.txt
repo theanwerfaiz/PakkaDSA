@@ -1,0 +1,12 @@
+|// openNeighbours() and tracePath() are small helpers (not shown)
+|vector<Cell> gridBfs(const Grid& grid, Cell start, Cell goal) {
+0|    queue<Cell> q; q.push(start);
+0|    map<Cell, Cell> prev; prev[start] = start;
+1|    while (!q.empty()) {
+2|        Cell cell = q.front(); q.pop();
+4|        if (cell == goal) break;
+3|        for (Cell nb : openNeighbours(grid, cell))
+3|            if (!prev.count(nb)) { prev[nb] = cell; q.push(nb); }
+|    }
+5,6|    return prev.count(goal) ? tracePath(prev, goal) : vector<Cell>{};
+|}

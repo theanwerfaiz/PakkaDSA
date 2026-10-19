@@ -1,0 +1,12 @@
+|void quickSort(vector<int>& a, int lo, int hi) {
+0|    if (lo >= hi) return;
+1|    int pivot = a[hi], i = lo;
+2|    for (int j = lo; j < hi; j++) {
+3|        if (a[j] < pivot) {
+3|            swap(a[i], a[j]); i++;
+|        }
+|    }
+4|    swap(a[i], a[hi]);
+5|    quickSort(a, lo, i - 1);
+5|    quickSort(a, i + 1, hi);
+|}

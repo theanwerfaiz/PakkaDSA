@@ -1,0 +1,8 @@
+|static void go(int[] a, int i, List<Integer> cur, List<List<Integer>> out) {
+0|    if (i == a.length) {
+1|        out.add(new ArrayList<>(cur));
+|        return;
+|    }
+2|    cur.add(a[i]); go(a, i + 1, cur, out);
+3|    cur.remove(cur.size() - 1); go(a, i + 1, cur, out);
+|}

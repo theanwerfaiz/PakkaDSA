@@ -1,0 +1,6 @@
+|void preorder(Node* node, vector<int>& out) {
+0|    if (!node) return;
+1|    out.push_back(node->val);
+2|    preorder(node->left, out);
+3|    preorder(node->right, out);
+|}

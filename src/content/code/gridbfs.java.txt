@@ -1,0 +1,12 @@
+|// openNeighbours() and tracePath() are small helpers (not shown)
+|static List<int[]> gridBfs(int[][] grid, int[] start, int[] goal) {
+0|    Queue<int[]> queue = new ArrayDeque<>(); queue.add(start);
+0|    Map<String, int[]> prev = new HashMap<>(); prev.put(key(start), null);
+1|    while (!queue.isEmpty()) {
+2|        int[] cell = queue.remove();
+4|        if (Arrays.equals(cell, goal)) break;
+3|        for (int[] nb : openNeighbours(grid, cell))
+3|            if (!prev.containsKey(key(nb))) { prev.put(key(nb), cell); queue.add(nb); }
+|    }
+5,6|    return prev.containsKey(key(goal)) ? tracePath(prev, goal) : null;
+|}

@@ -1,0 +1,14 @@
+|function topoSort(graph) {   // graph[u] = [v, ...]
+0|  const indeg = graph.map(() => 0);
+0|  for (const out of graph) for (const v of out) indeg[v]++;
+1|  const queue = [];
+1|  indeg.forEach((d, v) => { if (d === 0) queue.push(v); });
+|  const order = [];
+2|  while (queue.length) {
+3|    const u = queue.shift();
+3|    order.push(u);
+4|    for (const v of graph[u])
+4|      if (--indeg[v] === 0) queue.push(v);
+|  }
+5|  return order;   // shorter than graph.length? there is a cycle
+|}
