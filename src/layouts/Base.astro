@@ -8,21 +8,40 @@ import '../styles/viewer.css';
 import '../styles/responsive.css';
 import Icon from '../components/Icon.astro';
 import Sidebar from '../components/Sidebar.astro';
-import { homePath, type Lang } from '../content/catalog';
+import Footer from '../components/Footer.astro';
+import { homePath, langPrefix, type Lang } from '../content/catalog';
+import { ldJson, type JsonLd } from '../content/seo';
 import { t } from '../app/i18n';
 
 interface Props {
   lang: Lang;
   title: string;
   description: string;
-  /** Path of this page in the other language. */
-  mirror: string;
+  /** Path of this page without the language prefix, e.g. "/algorithms/bubble-sort/". */
+  path: string;
   /** Open algorithm id, if this is an algorithm page. */
-  current?: string;
+  current?: string | undefined;
   view: 'home' | 'viz' | 'page';
+  jsonld?: JsonLd[];
+  /** Open Graph image path, 1200 × 630. */
+  og?: string;
+  noindex?: boolean;
 }
-const { lang, title, description, mirror, current, view } = Astro.props;
+const {
+  lang,
+  title,
+  description,
+  path,
+  current,
+  view,
+  jsonld = [],
+  og = '/og/home.png',
+  noindex = false,
+} = Astro.props;
 const other: Lang = lang === 'en' ? 'hi' : 'en';
+const site = Astro.site as URL;
+const abs = (l: Lang) => new URL(langPrefix(l) + path, site).href;
+const mirror = langPrefix(other) + path;
 ---
 
 <!doctype html>
@@ -30,8 +49,38 @@ const other: Lang = lang === 'en' ? 'hi' : 'en';
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; font-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'"
+    />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <link rel="canonical" href={abs(lang)} />
+    <link rel="alternate" hreflang="en" href={abs('en')} />
+    <link rel="alternate" hreflang="hi" href={abs('hi')} />
+    <link rel="alternate" hreflang="x-default" href={abs('en')} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="PakkaDSA" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={abs(lang)} />
+    <meta property="og:image" content={new URL(og, site).href} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content={lang === 'hi' ? 'hi_IN' : 'en_IN'} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(og, site).href} />
+    <link rel="icon" href="/icons/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <link rel="manifest" href={`${langPrefix(lang)}/manifest.webmanifest`} />
+    <meta name="theme-color" content="#F7F8F4" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#10152B" media="(prefers-color-scheme: dark)" />
+    {jsonld.map((d) => (
+      <script type="application/ld+json" set:html={ldJson(d)} />
+    ))}
     <script is:inline src="/theme-init.js"></script>
     <link
       rel="preload"
@@ -135,6 +184,7 @@ const other: Lang = lang === 'en' ? 'hi' : 'en';
         <Sidebar lang={lang} current={current} />
         <main id="main">
           <slot />
+          <Footer lang={lang} />
         </main>
       </div>
     </div>

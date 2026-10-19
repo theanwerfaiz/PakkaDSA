@@ -1,0 +1,24 @@
+---
+import { langPrefix, type Lang } from '../content/catalog';
+import { t } from '../app/i18n';
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const p = langPrefix(lang);
+const github = import.meta.env.PUBLIC_GITHUB_URL as string | undefined;
+const sponsor = import.meta.env.PUBLIC_SPONSOR_URL as string | undefined;
+---
+
+<footer class="site-foot">
+  <nav aria-label={t(lang, 'h.related')}>
+    <a href={`${p}/`}>{t(lang, 'nav.home')}</a>
+    <a href={`${p}/algorithms/`}>{t(lang, 'nav.algorithms')}</a>
+    <a href={`${p}/about/`}>{t(lang, 'nav.about')}</a>
+    <a href={`${p}/privacy/`}>{t(lang, 'nav.privacy')}</a>
+    <a href={`${p}/contribute/`}>{t(lang, 'nav.contribute')}</a>
+    {github && <a href={github}>{t(lang, 'footer.source')}</a>}
+    {sponsor && <a href={sponsor}>{t(lang, 'footer.sponsor')}</a>}
+  </nav>
+  <p>{t(lang, 'footer.free')}</p>
+</footer>
