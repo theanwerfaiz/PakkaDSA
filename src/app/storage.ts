@@ -3,7 +3,8 @@
 
 const PREFIX = 'pakkadsa:';
 
-export type StoreKey = 'learned' | 'last' | 'lang' | 'theme' | 'speed' | 'anim' | 'codeLang';
+export type StoreKey =
+  'learned' | 'last' | 'lang' | 'theme' | 'speed' | 'anim' | 'codeLang' | 'install';
 
 export const store = {
   get<T>(key: StoreKey, fallback: T): T {
