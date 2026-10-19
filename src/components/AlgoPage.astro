@@ -1,0 +1,22 @@
+---
+import Base from '../layouts/Base.astro';
+import Viewer from './Viewer.astro';
+import { algoPath, type Algorithm, type Lang } from '../content/catalog';
+interface Props {
+  lang: Lang;
+  algo: Algorithm;
+}
+const { lang, algo } = Astro.props;
+const other: Lang = lang === 'en' ? 'hi' : 'en';
+---
+
+<Base
+  lang={lang}
+  view="viz"
+  current={algo.id}
+  mirror={algoPath(other, algo)}
+  title={`${algo.name} Visualization & Code | PakkaDSA`}
+  description={`See how ${algo.name} works one step at a time, with Python, Java, C++ and JavaScript code and Hindi explanations. Free, no signup.`}
+>
+  <Viewer lang={lang} algo={algo} />
+</Base>

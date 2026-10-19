@@ -1,0 +1,11 @@
+---
+import AlgoPage from '../../../components/AlgoPage.astro';
+import { ALGORITHMS, type Algorithm } from '../../../content/catalog';
+
+export function getStaticPaths() {
+  return ALGORITHMS.map((algo) => ({ params: { slug: algo.slug }, props: { algo } }));
+}
+const { algo } = Astro.props as { algo: Algorithm };
+---
+
+<AlgoPage lang="hi" algo={algo} />

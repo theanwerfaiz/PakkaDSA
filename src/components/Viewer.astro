@@ -1,0 +1,121 @@
+---
+import Icon from './Icon.astro';
+import { categoryOf, type Algorithm, type Lang } from '../content/catalog';
+import { t } from '../app/i18n';
+interface Props {
+  lang: Lang;
+  algo: Algorithm;
+}
+const { lang, algo } = Astro.props;
+---
+
+<div class="wrap" id="viewViz">
+  <section aria-labelledby="algoTitle">
+    <div class="title">
+      <h1 id="algoTitle">{algo.name}</h1>
+      <span class="catname">{categoryOf(algo).name[lang]}</span>
+      <div class="chips">
+        <span class="chip">
+          {t(lang, 'avg')} {algo.complexity.average}
+        </span>
+        <span class="chip">
+          {t(lang, 'space')} {algo.complexity.space}
+        </span>
+      </div>
+    </div>
+    <div class="stage" id="stage" data-view={algo.view}>
+      <p class="loading" id="loading">
+        {t(lang, 'loading')}
+      </p>
+      <noscript>
+        <p class="loading">{t(lang, 'noscript')}</p>
+      </noscript>
+    </div>
+    <div class="legend" id="legend"></div>
+    <p class="note" id="note" aria-live="polite" data-step=""></p>
+    <div class="watch" id="watch"></div>
+    <div class="ctrls" role="group" aria-label={t(lang, 'playback')}>
+      <button class="cbtn" id="bStart" aria-label={t(lang, 'first')}>
+        <Icon name="first" />
+      </button>
+      <button class="cbtn" id="bPrev" aria-label={t(lang, 'prev')}>
+        <Icon name="prev" />
+      </button>
+      <button class="cbtn play" id="bPlay" aria-label={t(lang, 'play')}>
+        <svg id="playIco" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M8 5.5v13l11-6.5z"></path>
+        </svg>
+      </button>
+      <button class="cbtn" id="bNext" aria-label={t(lang, 'next')}>
+        <Icon name="next" />
+      </button>
+      <button class="cbtn" id="bEnd" aria-label={t(lang, 'last')}>
+        <Icon name="last" />
+      </button>
+      <div class="scrub">
+        <input type="range" id="scrub" min="0" max="0" value="0" aria-label={t(lang, 'step')} />
+        <div class="lbl">
+          <span id="stepLbl"></span>
+          <span id="score" class="score"></span>
+        </div>
+      </div>
+      <label class="speed">
+        <span>{t(lang, 'speed')}</span>
+        <input type="range" id="speed" min="0" max="6" value="3" aria-label={t(lang, 'speed')} />
+        <span id="speedLbl">1×</span>
+      </label>
+    </div>
+  </section>
+  <div class="panel">
+    <div class="card">
+      <div class="tabs" role="tablist">
+        <button class="tab" role="tab" id="tCode" aria-selected="true" aria-controls="pCode">
+          {t(lang, 'code')}
+        </button>
+        <button
+          class="tab"
+          role="tab"
+          id="tInput"
+          aria-selected="false"
+          aria-controls="pInput"
+          tabindex="-1"
+        >
+          {t(lang, 'input')}
+        </button>
+        <button
+          class="tab"
+          role="tab"
+          id="tAbout"
+          aria-selected="false"
+          aria-controls="pAbout"
+          tabindex="-1"
+        >
+          {t(lang, 'about')}
+        </button>
+      </div>
+      <div class="tabp" id="pCode" role="tabpanel" aria-labelledby="tCode">
+        <div class="codebar">
+          <div class="seg" id="langSeg" role="group" aria-label={t(lang, 'codeLang')}></div>
+          <button class="btn sm" id="copyCode">
+            {t(lang, 'copy')}
+          </button>
+        </div>
+        <div class="code" id="code"></div>
+      </div>
+      <div class="tabp" id="pInput" role="tabpanel" aria-labelledby="tInput" hidden></div>
+      <div class="tabp about" id="pAbout" role="tabpanel" aria-labelledby="tAbout" hidden></div>
+    </div>
+    <button class="learn" id="learnBtn" aria-pressed="false">
+      {t(lang, 'markL')}
+    </button>
+    <button class="btn nextbtn" id="nextAlgo"></button>
+    <div class="card share-box" id="shareBox">
+      <div class="tabp">
+        <div class="field">
+          <label for="shareInp">{t(lang, 'shareLbl')}</label>
+          <input id="shareInp" readonly />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
