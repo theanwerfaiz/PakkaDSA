@@ -165,6 +165,7 @@ export const ERR = {
     '1 से 6 चीज़ें 2:3, 4:5 जैसे लिखें (weight:value)।',
   ),
   cap: M('Capacity must be 1 to 12.', 'क्षमता 1 से 12 हो।'),
+  node: M('Pick a start node from A to H.', 'A से H तक कोई शुरुआती नोड चुनें।'),
 };
 
 /** Parses "5, 3 8" into whole numbers; null if anything is not a whole number. */
@@ -223,6 +224,11 @@ export function validateInput(
     const s = v('s');
     if (!s || s.length > 14) return fail(ERR.str);
     if (id === 'parens' && /[^()[\]{}]/.test(s)) return fail(ERR.parens);
+    i.s = s;
+  }
+  if (i.type === 'node') {
+    const s = v('s');
+    if (!G1.nodes.some((n) => n.id === s)) return fail(ERR.node);
     i.s = s;
   }
   if (i.type === 'n') {

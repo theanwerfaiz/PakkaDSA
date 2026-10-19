@@ -35,6 +35,8 @@ function toFields(i: Input): InputFields {
       return { s: i.s };
     case 'n':
       return { n: String(i.n) };
+    case 'node':
+      return { s: i.s };
     case 'coins':
       return { amt: String(i.amt), coins: i.coins.join(', ') };
     case 'two':
@@ -181,6 +183,12 @@ describe('other fields', () => {
     fails('knap', { items: '', cap: '5' }, ERR.items);
     fails('knap', { items: '1:1', cap: '0' }, ERR.cap);
     fails('knap', { items: '1:1', cap: '13' }, ERR.cap);
+  });
+
+  it('start node must be one of the fixed graph’s nodes', () => {
+    expect(check('bfs', { s: 'H' })).toMatchObject({ ok: true, input: { s: 'H' } });
+    fails('bfs', { s: 'Z' }, ERR.node);
+    fails('dijkstra', { s: '' }, ERR.node);
   });
 
   it('every error exists in both languages', () => {
