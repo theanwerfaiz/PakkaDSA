@@ -1,0 +1,110 @@
+/* Colour, font and theme tokens. Values are fixed by the design system; change them only there. */
+:root {
+  --paper: #f7f8f4;
+  --paper-2: #eceee6;
+  --surface: #ffffff;
+  --ink: #1f2a5c;
+  --ink-2: #4b5480;
+  --muted: #6e7387;
+  --line: #dcded3;
+  --line-strong: #bfc3b5;
+  --grid-line: #e3e5dc;
+  --node: #ffffff;
+  --node-line: #9aa0b8;
+  --hl: #ffd94a;
+  --hl-soft: rgba(255, 217, 74, 0.28);
+  --act-fill: #ffd94a;
+  --act-line: #c99a00;
+  --act-ink: #3b2f00;
+  --act-ink-strong: #8a6a00;
+  --cmp-fill: #fbd3dc;
+  --cmp-line: #d9466a;
+  --cmp-ink: #6e1029;
+  --done-fill: #cdefd9;
+  --done-line: #1f8a55;
+  --done-ink: #0e4a2c;
+  --vis-fill: #e2dbfa;
+  --vis-line: #6d53c9;
+  --vis-ink: #2e1f6e;
+  --wait-fill: #fff0b3;
+  --wait-line: #c99a00;
+  --ptr: #2f5bd3;
+  --water: rgba(47, 91, 211, 0.18);
+  --wall: #2b356b;
+  --font:
+    'Instrument Sans', 'Noto Sans Devanagari', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --hand: 'Kalam', 'Noto Sans Devanagari', 'Comic Sans MS', cursive;
+  --mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+
+/* Dark theme: follows the system unless the user picked light, or forced with data-theme="dark". */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --paper: #10152b;
+    --paper-2: #19203b;
+    --surface: #161c35;
+    --ink: #e8ebf7;
+    --ink-2: #afb6d6;
+    --muted: #8d94b4;
+    --line: #2a3257;
+    --line-strong: #3d4672;
+    --grid-line: #232a4a;
+    --node: #1c2343;
+    --node-line: #56608f;
+    --act-fill: #ffd94a;
+    --act-line: #ffe27a;
+    --act-ink: #2e2400;
+    --act-ink-strong: #ffd94a;
+    --hl-soft: rgba(255, 217, 74, 0.16);
+    --cmp-fill: #5a1e33;
+    --cmp-line: #ff7d9c;
+    --cmp-ink: #ffe1e9;
+    --done-fill: #123f2b;
+    --done-line: #4fd08e;
+    --done-ink: #d8f7e6;
+    --vis-fill: #2d2563;
+    --vis-line: #a08cff;
+    --vis-ink: #e6e0ff;
+    --wait-fill: #4a3e10;
+    --wait-line: #ffd94a;
+    --ptr: #8aa8ff;
+    --water: rgba(138, 168, 255, 0.2);
+    --wall: #5b6597;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme='dark'] {
+  --paper: #10152b;
+  --paper-2: #19203b;
+  --surface: #161c35;
+  --ink: #e8ebf7;
+  --ink-2: #afb6d6;
+  --muted: #8d94b4;
+  --line: #2a3257;
+  --line-strong: #3d4672;
+  --grid-line: #232a4a;
+  --node: #1c2343;
+  --node-line: #56608f;
+  --act-fill: #ffd94a;
+  --act-line: #ffe27a;
+  --act-ink: #2e2400;
+  --act-ink-strong: #ffd94a;
+  --hl-soft: rgba(255, 217, 74, 0.16);
+  --cmp-fill: #5a1e33;
+  --cmp-line: #ff7d9c;
+  --cmp-ink: #ffe1e9;
+  --done-fill: #123f2b;
+  --done-line: #4fd08e;
+  --done-ink: #d8f7e6;
+  --vis-fill: #2d2563;
+  --vis-line: #a08cff;
+  --vis-ink: #e6e0ff;
+  --wait-fill: #4a3e10;
+  --wait-line: #ffd94a;
+  --ptr: #8aa8ff;
+  --water: rgba(138, 168, 255, 0.2);
+  --wall: #5b6597;
+  color-scheme: dark;
+}
