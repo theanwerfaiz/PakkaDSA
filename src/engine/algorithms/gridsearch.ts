@@ -1,15 +1,17 @@
 import { M } from '../messages';
+import { clone } from '../recorder';
 import type { GridInput, GridState, Msg, Step } from '../types';
 
 export type GridKind = 'bfs' | 'astar';
 
 /**
  * Shared grid search used by BFS and A*. Like the prototype, it does not use the recorder: every
- * step shares the input grid and, at the end, the full exploration order; `k` says how much of it
- * to show. Cells are indexes (row * C + col).
+ * step shares one copy of the input grid and, at the end, the full exploration order; `k` says how
+ * much of it to show. Cells are indexes (row * C + col).
  */
 export function gridSearch(kind: GridKind, inp: GridInput): Step<GridState>[] {
-  const { R, C, walls, start, end } = inp.grid;
+  const grid = clone(inp.grid);
+  const { R, C, walls, start, end } = grid;
   const W = new Set(walls);
   const key = (r: number, c: number) => r * C + c;
   const steps: Step<GridState>[] = [];
@@ -24,7 +26,7 @@ export function gridSearch(kind: GridKind, inp: GridInput): Step<GridState>[] {
   ) =>
     steps.push({
       st: {
-        grid: inp.grid,
+        grid,
         k: order.length,
         order: null,
         frontier: extra.frontier || [],

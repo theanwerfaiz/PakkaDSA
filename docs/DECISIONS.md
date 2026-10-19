@@ -37,3 +37,7 @@ The project uses TypeScript `strict` plus Astro's "strictest" preset, except `no
 ## D9. Snapshots use a JSON round-trip
 
 `Rec.add` deep-copies state with `JSON.parse(JSON.stringify(…))`, exactly as the prototype does. `structuredClone` would be faster but keeps `undefined` and `Infinity`, which would change the golden hashes. Highlight objects are stored by reference, as in the prototype; generators never mutate a highlight after recording it.
+
+## D10. Grid steps share a private copy of the grid
+
+The prototype's grid search stored the caller's input grid in every step by reference (`runAlgo` always cloned the input first, so the app was never affected). The "no mutation leak" invariant tests generators directly, so `gridSearch` now copies the grid once and shares that copy across its steps. Every step's content is unchanged and the golden hashes still match.
