@@ -21,6 +21,7 @@
     "test:e2e": "playwright test",
     "check:golden": "vitest run tests/golden",
     "check:snippets": "sh tests/snippets/run_all.sh",
+    "check:licences": "node scripts/check-licences.mjs",
     "check:all": "npm run lint && npm run typecheck && npm test && npm run check:golden && npm run check:snippets && npm run build && npm run test:e2e"
   },
   "devDependencies": {
