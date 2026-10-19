@@ -4,6 +4,6 @@
   "exclude": ["dist", "node_modules", "docs", "tests/snippets", "coverage"],
   "compilerOptions": {
     "types": ["node"],
-    "noUncheckedIndexedAccess": true
+    "noUncheckedIndexedAccess": false
   }
 }

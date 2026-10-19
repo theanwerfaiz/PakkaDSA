@@ -29,3 +29,11 @@ Astro and Vite pull in two build-time packages outside the allow-list: `lightnin
 ## D7. Snippet harness reads the project's own content
 
 The original harness loaded the snippets and generators from the prototype source. In this repository the snippets live in `src/content/code/<id>.<lang>.txt` (tagged lines, as in `06` §1), so `tests/snippets/extract.cjs` and `cov.cjs` read from there. Until the TypeScript engine exists, `cov.cjs` takes each step's pseudocode line from `tests/golden/golden-steps.json`; the 45 allowed final "done" gaps are listed explicitly in the script and any change to that set fails the check. The scripts use `.cjs` because the package is an ES module. Output goes to `tests/snippets/out/` (git-ignored).
+
+## D8. `noUncheckedIndexedAccess` is off
+
+The project uses TypeScript `strict` plus Astro's "strictest" preset, except `noUncheckedIndexedAccess`. That flag is not part of `strict`; with it, every `a[i]` in the generators becomes `number | undefined`, which would force hundreds of non-null assertions into code whose indexes are already bounded by its loops, and would make the port harder to compare line by line with the prototype.
+
+## D9. Snapshots use a JSON round-trip
+
+`Rec.add` deep-copies state with `JSON.parse(JSON.stringify(…))`, exactly as the prototype does. `structuredClone` would be faster but keeps `undefined` and `Infinity`, which would change the golden hashes. Highlight objects are stored by reference, as in the prototype; generators never mutate a highlight after recording it.
