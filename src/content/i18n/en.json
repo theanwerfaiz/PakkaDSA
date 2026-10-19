@@ -115,5 +115,22 @@
   "keyQuiz": "quiz",
   "keyClass": "classroom",
   "loading": "Loading visualizer…",
-  "noscript": "The interactive visualizer needs JavaScript. The explanation and code below work without it."
+  "noscript": "The interactive visualizer needs JavaScript. The explanation and code below work without it.",
+  "err.nums": "Use whole numbers separated by commas, like 5, 3, 8.",
+  "err.count": "Enter between {lo} and {hi} numbers.",
+  "err.range": "Keep numbers between −999 and 999.",
+  "err.negWall": "Wall heights cannot be negative.",
+  "err.target": "Target must be a whole number.",
+  "err.k": "k must be between 1 and {n}.",
+  "err.cycle": "Cycle index must be −1 to {max}.",
+  "err.str": "Enter 1 to 14 characters.",
+  "err.parens": "Only ( ) [ ] { } are allowed here.",
+  "err.n": "Choose n from {lo} to {hi}.",
+  "err.amt": "Amount must be 1 to 30.",
+  "err.coins": "Coins must be positive numbers like 1, 2, 5.",
+  "err.two": "Each string needs 1 to 10 characters.",
+  "err.items": "Write 1 to 6 items like 2:3, 4:5 (weight:value).",
+  "err.cap": "Capacity must be 1 to 12.",
+  "err.node": "Pick a start node from A to H.",
+  "stageLabel": "{name}, step {step} of {total}"
 }

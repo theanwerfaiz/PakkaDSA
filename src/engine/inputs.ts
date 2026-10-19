@@ -1,3 +1,5 @@
+import en from '../content/i18n/en.json';
+import hi from '../content/i18n/hi.json';
 import { M } from './messages';
 import type { Graph, Grid, Input, Msg, Pair, ViewType } from './types';
 
@@ -142,30 +144,29 @@ export const ARRAY_LIMITS: Partial<Record<ViewType, Pair>> = {
 };
 const DEFAULT_LIMIT: Pair = [1, 14];
 
+/** A dictionary message in both languages, with {placeholders} filled in. */
+const msg = (key: keyof typeof en, params: Record<string, number> = {}): Msg => {
+  const fill = (text: string) => text.replace(/\{(\w+)\}/g, (_, p: string) => String(params[p]));
+  return M(fill(en[key]), fill(hi[key]));
+};
+
 export const ERR = {
-  nums: M(
-    'Use whole numbers separated by commas, like 5, 3, 8.',
-    'कॉमा से अलग पूर्ण अंक लिखें, जैसे 5, 3, 8।',
-  ),
-  count: (lo: number, hi: number) =>
-    M(`Enter between ${lo} and ${hi} numbers.`, `${lo} से ${hi} अंक लिखें।`),
-  range: M('Keep numbers between −999 and 999.', 'अंक −999 से 999 के बीच रखें।'),
-  negWall: M('Wall heights cannot be negative.', 'दीवार की ऊँचाई ऋणात्मक नहीं हो सकती।'),
-  target: M('Target must be a whole number.', 'लक्ष्य पूर्ण अंक होना चाहिए।'),
-  k: (n: number) => M(`k must be between 1 and ${n}.`, `k, 1 से ${n} के बीच हो।`),
-  cycle: (n: number) => M(`Cycle index must be −1 to ${n - 1}.`, `लूप इंडेक्स −1 से ${n - 1} हो।`),
-  str: M('Enter 1 to 14 characters.', '1 से 14 अक्षर लिखें।'),
-  parens: M('Only ( ) [ ] { } are allowed here.', 'यहाँ सिर्फ़ ( ) [ ] { } चलेंगे।'),
-  n: (lo: number, hi: number) => M(`Choose n from ${lo} to ${hi}.`, `n, ${lo} से ${hi} चुनें।`),
-  amt: M('Amount must be 1 to 30.', 'रकम 1 से 30 हो।'),
-  coins: M('Coins must be positive numbers like 1, 2, 5.', 'सिक्के धनात्मक अंक हों, जैसे 1, 2, 5।'),
-  two: M('Each string needs 1 to 10 characters.', 'हर स्ट्रिंग में 1 से 10 अक्षर हों।'),
-  items: M(
-    'Write 1 to 6 items like 2:3, 4:5 (weight:value).',
-    '1 से 6 चीज़ें 2:3, 4:5 जैसे लिखें (weight:value)।',
-  ),
-  cap: M('Capacity must be 1 to 12.', 'क्षमता 1 से 12 हो।'),
-  node: M('Pick a start node from A to H.', 'A से H तक कोई शुरुआती नोड चुनें।'),
+  nums: msg('err.nums'),
+  count: (lo: number, hi: number) => msg('err.count', { lo, hi }),
+  range: msg('err.range'),
+  negWall: msg('err.negWall'),
+  target: msg('err.target'),
+  k: (n: number) => msg('err.k', { n }),
+  cycle: (n: number) => msg('err.cycle', { max: n - 1 }),
+  str: msg('err.str'),
+  parens: msg('err.parens'),
+  n: (lo: number, hi: number) => msg('err.n', { lo, hi }),
+  amt: msg('err.amt'),
+  coins: msg('err.coins'),
+  two: msg('err.two'),
+  items: msg('err.items'),
+  cap: msg('err.cap'),
+  node: msg('err.node'),
 };
 
 /** Parses "5, 3 8" into whole numbers; null if anything is not a whole number. */
