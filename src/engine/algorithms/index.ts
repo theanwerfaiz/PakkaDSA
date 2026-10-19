@@ -1,5 +1,11 @@
 import type { Generator, Input } from '../types';
 import { bubble } from './bubble';
+import { bfs } from './bfs';
+import { dfs } from './dfs';
+import { dijkstra } from './dijkstra';
+import { topo } from './topo';
+import { gridbfs } from './gridbfs';
+import { astar } from './astar';
 import { bstbuild } from './bstbuild';
 import { bstsearch } from './bstsearch';
 import { inorder } from './inorder';
@@ -53,6 +59,12 @@ export const GENERATORS: Record<string, Generator<never>> = {
   postorder,
   levelorder,
   heapinsert,
+  bfs,
+  dfs,
+  dijkstra,
+  topo,
+  gridbfs,
+  astar,
 };
 
 export type AnyGenerator = (input: Input) => ReturnType<Generator>;
