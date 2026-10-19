@@ -24,6 +24,7 @@
     "check:licences": "node scripts/check-licences.mjs",
     "fonts:copy": "node scripts/copy-fonts.mjs",
     "lighthouse": "node scripts/lighthouse.mjs",
+    "check:budget": "node scripts/check-budget.mjs",
     "images": "node scripts/make-images.mjs",
     "check:all": "npm run lint && npm run typecheck && npm test && npm run check:golden && npm run check:snippets && npm run build && npm run test:e2e"
   },

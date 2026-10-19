@@ -40,8 +40,19 @@ jobs:
       - run: npm run check:golden
       - run: npm run check:snippets
       - run: npm run build
+      - run: npm run check:budget
       - run: npx playwright install --with-deps
       - run: npm run test:e2e
+      # Lighthouse on shared runners varies with their CPU speed, so here it reports rather than
+      # gates; the release gate is `npm run lighthouse` (see docs/spec 09 §1.6 and docs/DECISIONS.md).
+      - run: npm run lighthouse
+        continue-on-error: true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lighthouse-report
+          path: lighthouse-report.json
+          retention-days: 14
       - uses: actions/upload-artifact@v4
         if: failure()
         with:
