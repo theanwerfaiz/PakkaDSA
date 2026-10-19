@@ -11,6 +11,8 @@ import Sidebar from '../components/Sidebar.astro';
 import Footer from '../components/Footer.astro';
 import { homePath, langPrefix, type Lang } from '../content/catalog';
 import { ldJson, type JsonLd } from '../content/seo';
+import { createHash } from 'node:crypto';
+import themeInit from '../app/theme-init.js?raw';
 import { t } from '../app/i18n';
 
 interface Props {
@@ -26,6 +28,8 @@ interface Props {
   /** Open Graph image path, 1200 × 630. */
   og?: string;
   noindex?: boolean;
+  /** Fonts this page needs first (its largest text), preloaded. */
+  preload?: string[];
 }
 const {
   lang,
@@ -37,7 +41,11 @@ const {
   jsonld = [],
   og = '/og/home.png',
   noindex = false,
+  preload = [],
 } = Astro.props;
+// The theme script runs inline before first paint; the security policy allows it by its hash only.
+const themeHash = createHash('sha256').update(themeInit).digest('base64');
+const csp = `default-src 'self'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self' 'sha256-${themeHash}'; connect-src 'self'; font-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'`;
 const other: Lang = lang === 'en' ? 'hi' : 'en';
 const site = Astro.site as URL;
 const abs = (l: Lang) => new URL(langPrefix(l) + path, site).href;
@@ -49,10 +57,7 @@ const mirror = langPrefix(other) + path;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'self'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; font-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'"
-    />
+    <meta http-equiv="Content-Security-Policy" content={csp} />
     <title>{title}</title>
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex" />}
@@ -81,7 +86,7 @@ const mirror = langPrefix(other) + path;
     {jsonld.map((d) => (
       <script type="application/ld+json" set:html={ldJson(d)} />
     ))}
-    <script is:inline src="/theme-init.js"></script>
+    <script is:inline set:html={themeInit} />
     <link
       rel="preload"
       href="/fonts/instrument-sans-latin-400-normal.woff2"
@@ -89,6 +94,9 @@ const mirror = langPrefix(other) + path;
       type="font/woff2"
       crossorigin
     />
+    {preload.map((f) => (
+      <link rel="preload" href={`/fonts/${f}`} as="font" type="font/woff2" crossorigin />
+    ))}
     <slot name="head" />
   </head>
   <body data-view={view} data-lang={lang} data-algo={current ?? ''}>
@@ -103,7 +111,7 @@ const mirror = langPrefix(other) + path;
         >
           <Icon name="menu" />
         </button>
-        <a class="brand" href={homePath(lang)} id="home" aria-label={t(lang, 'homeLink')}>
+        <a class="brand" href={homePath(lang)} id="home">
           <span class="mark" aria-hidden="true">
             P
           </span>
@@ -119,7 +127,7 @@ const mirror = langPrefix(other) + path;
             href={mirror}
             hreflang={other}
             lang={other}
-            aria-label={t(lang, 'switchLang')}
+            aria-label={`${t(lang, 'langName')} (${t(lang, 'switchLang')})`}
           >
             <Icon name="lang" />
             <span>

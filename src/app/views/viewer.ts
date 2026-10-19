@@ -1,44 +1,42 @@
-import { algoPath, byId, homePath, nextOf, type Algorithm } from '../../content/catalog';
+import { byId, homePath, type Algorithm } from '../../content/catalog';
 import { defaultInput } from '../../engine/inputs';
 import { runAlgorithm } from '../../engine/registry';
 import type { Input } from '../../engine/types';
 import { stageHeight } from '../../render';
-import { $, esc } from '../dom';
-import { L, t, type Key } from '../i18n';
+import { $ } from '../dom';
+import { legendHtml, nextLink, noteHtml, watchHtml } from './viewer-html';
+import { t } from '../i18n';
 import { draw, glideMs, widthFor } from '../paint';
 import { S, SPEEDS } from '../state';
 import { store } from '../storage';
 import { refreshProgress } from './sidebar';
 
-/** Colour keys shown in the legend for each view. */
-const LEGEND: Record<string, string[]> = {
-  bars: ['def', 'cmp', 'act', 'done'],
-  cells: ['def', 'cmp', 'act', 'done'],
-  stack: ['vis', 'act', 'done', 'cmp'],
-  list: ['def', 'act', 'done'],
-  tree: ['def', 'cmp', 'act', 'vis', 'done'],
-  heap: ['def', 'cmp', 'act', 'done'],
-  graph: ['def', 'wait', 'act', 'vis', 'done'],
-  grid: ['vis', 'wait', 'act'],
-  dp1: ['vis', 'cmp', 'act'],
-  dp2: ['def', 'cmp', 'act'],
-  board: ['act', 'cmp'],
-  hanoi: ['def', 'act'],
-  sets: ['def', 'done', 'act'],
-};
-const SWATCH: Record<string, [string, string]> = {
-  def: ['--node', '--node-line'],
-  cmp: ['--cmp-fill', '--cmp-line'],
-  act: ['--act-fill', '--act-line'],
-  done: ['--done-fill', '--done-line'],
-  vis: ['--vis-fill', '--vis-line'],
-  wait: ['--wait-fill', '--wait-line'],
-};
-
 export const algo = (): Algorithm => byId(S.id as string) as Algorithm;
 
 /** Tallest drawing of the current run per width, so the stage never changes height between steps. */
 const reserved = new Map<number, number>();
+
+/**
+ * The page ships step 1 of the default input already drawn at both widths. If the app starts there,
+ * it adopts that drawing (and its reserved height) instead of drawing it again.
+ */
+let ssrPending = true;
+function adoptBuildTimeDrawing(stg: HTMLElement, W: number, sig: string): boolean {
+  if (!ssrPending) return false;
+  ssrPending = false;
+  const svgs = [...stg.querySelectorAll<SVGSVGElement>('svg.ssr')];
+  const mine = svgs.find((s) => s.viewBox.baseVal.width === W);
+  if (!mine || S.i !== 0 || !isDefaultInput()) {
+    svgs.forEach((s) => s.remove());
+    return false;
+  }
+  svgs.forEach((s) => s !== mine && s.remove());
+  mine.removeAttribute('class');
+  mine.setAttribute('data-sig', sig);
+  reserved.set(W, mine.viewBox.baseVal.height);
+  return true;
+}
+const isDefaultInput = () => JSON.stringify(S.input) === JSON.stringify(defaultInput(algo().id));
 
 /** (Re)generates the steps for the current input and resets to step 1. */
 export async function regen(input?: Input): Promise<void> {
@@ -73,9 +71,9 @@ export function render(animate = false): void {
   if (!st) return;
   const stg = $('stage');
   stg.style.setProperty('--dur', glideMs(SPEEDS[S.speedIdx]) + 'ms');
-  document.getElementById('loading')?.remove();
   const W = widthFor(stg);
-  draw(stg, a.id, a.view, st, animate && S.anim);
+  if (!adoptBuildTimeDrawing(stg, W, `${a.id}|${a.view}|${W}`))
+    draw(stg, a.id, a.view, st, animate && S.anim);
   const svg = stg.querySelector('svg');
   if (svg) {
     svg.setAttribute('viewBox', `0 0 ${W} ${reserveFor(W)}`);
@@ -84,22 +82,10 @@ export function render(animate = false): void {
       t(S.lang, 'stageLabel', { name: a.name, step: S.i + 1, total: S.steps.length }),
     );
   }
-  const m = L(S.lang, st.m);
   const note = $('note');
-  note.innerHTML = esc(m).replace(/(\d+(\.\d+)?|'[^']*'|&quot;[^&]*&quot;)/g, '<mark>$1</mark>');
+  note.innerHTML = noteHtml(S.lang, st);
   note.dataset.step = `${S.i + 1}.`;
-  let w = '';
-  const s = st.st as { vars?: Record<string, unknown>; out?: unknown[] };
-  for (const [k, v] of Object.entries(s.vars || {}))
-    w += `<span class="wv"><b>${esc(k)}</b>${esc(v)}</span>`;
-  if (
-    ['bars', 'cells', 'heap'].includes(a.view) &&
-    !['two', 'window', 'array'].includes(a.category)
-  )
-    w += `<span class="wv"><b>${t(S.lang, 'cmp')}</b>${st.c.cmp}</span><span class="wv"><b>${t(S.lang, 'swp')}</b>${st.c.swp}</span>`;
-  if (s.out && s.out.length)
-    w += `<span class="wv out"><b>${t(S.lang, 'out')}</b>${esc(s.out.join(a.view === 'graph' ? ' → ' : ', '))}</span>`;
-  $('watch').innerHTML = w;
+  $('watch').innerHTML = watchHtml(S.lang, a, st);
   ($('scrub') as HTMLInputElement).value = String(S.i);
   $('stepLbl').textContent = `${t(S.lang, 'step')} ${S.i + 1} ${t(S.lang, 'of')} ${S.steps.length}`;
   $('score').textContent =
@@ -112,24 +98,15 @@ export function render(animate = false): void {
 /** Parts that change per algorithm or language, not per step. */
 export function renderStatic(): void {
   const a = algo();
-  $('legend').innerHTML =
-    (LEGEND[a.view] || [])
-      .map(
-        (k) =>
-          `<span><i style="background:var(${SWATCH[k][0]});border-color:var(${SWATCH[k][1]})"></i>${t(S.lang, `lg.${k}` as Key)}</span>`,
-      )
-      .join('') +
-    (['bars', 'cells', 'list'].includes(a.view)
-      ? `<span><i style="background:transparent;border-color:var(--ptr)"></i>${t(S.lang, 'lg.ptr')}</span>`
-      : '');
+  $('legend').innerHTML = legendHtml(S.lang, a.view);
   const lr = S.learned.has(a.id);
   const learn = $('learnBtn');
   learn.setAttribute('aria-pressed', String(lr));
   learn.textContent = t(S.lang, lr ? 'isL' : 'markL');
-  const n = nextOf(a.id);
   const next = $('nextAlgo');
-  next.dataset.go = n ? algoPath(S.lang, byId(n) as Algorithm) : homePath(S.lang);
-  next.innerHTML = `<span>${esc(n ? t(S.lang, 'upNext') + ': ' + (byId(n) as Algorithm).name : t(S.lang, 'pathEnd'))}</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>`;
+  const link = nextLink(S.lang, a);
+  next.dataset.go = link.href;
+  next.innerHTML = link.html;
   $('stage').classList.toggle('gridmode', a.view === 'grid');
 }
 

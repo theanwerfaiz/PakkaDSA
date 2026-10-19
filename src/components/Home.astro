@@ -1,11 +1,25 @@
 ---
 import { algoPath, byId, trackPath, TRACKS, type Algorithm, type Lang } from '../content/catalog';
 import { t } from '../app/i18n';
+import { bubble as bubbleSort } from '../engine/algorithms/bubble';
+import { assignIds } from '../engine/ids';
+import { NARROW, render, WIDE } from '../render';
 interface Props {
   lang: Lang;
 }
 const { lang } = Astro.props;
 const bubble = byId('bubble') as Algorithm;
+// First frame of the hero animation, drawn at build time so the hero has its size before scripts run.
+const heroSteps = bubbleSort({ type: 'arr', a: [6, 3, 8, 2, 9, 4, 7, 1] });
+assignIds(heroSteps);
+const heroSvg = [WIDE, NARROW]
+  .map((W) =>
+    render('bars', heroSteps[0].st, heroSteps[0].hl, W).replace(
+      '<svg ',
+      `<svg class="ssr ${W === WIDE ? 'wide' : 'narrow'}" `,
+    ),
+  )
+  .join('');
 ---
 
 <div class="home" id="viewHome">
@@ -20,7 +34,7 @@ const bubble = byId('bubble') as Algorithm;
         <a class="btn big" id="hCont" href="#" hidden data-template={t(lang, 'cont')}></a>
       </div>
     </div>
-    <div class="stage hero-stage" id="heroStage" aria-hidden="true"></div>
+    <div class="stage hero-stage" id="heroStage" aria-hidden="true" set:html={heroSvg} />
   </section>
   <section class="path" aria-labelledby="pathH">
     <h2 id="pathH">{t(lang, 'pathH')}</h2>

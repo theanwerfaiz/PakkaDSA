@@ -1,5 +1,6 @@
-import { CODE_TABS, loadSnippet, plain, pseudoLines, type CodeLine } from '../../content/code';
-import { $, esc, toast } from '../dom';
+import { loadSnippet, plain, pseudoLines, type CodeLine } from '../../content/code';
+import { $, toast } from '../dom';
+import { codeHtml, codeTabsHtml } from './viewer-html';
 import { t } from '../i18n';
 import { S, type CodeLang } from '../state';
 import { store } from '../storage';
@@ -8,10 +9,7 @@ import { algo, onRender } from './viewer';
 let lines: CodeLine[] = [];
 
 function buildTabs(): void {
-  $('langSeg').innerHTML = CODE_TABS.map(
-    (c) =>
-      `<button data-cl="${c.id}" aria-pressed="${c.id === S.codeLang}" aria-label="${c.full}">${c.short}</button>`,
-  ).join('');
+  $('langSeg').innerHTML = codeTabsHtml(S.codeLang);
 }
 
 async function renderCode(): Promise<void> {
@@ -22,9 +20,7 @@ async function renderCode(): Promise<void> {
   lines = got;
   const box = $('code');
   box.classList.toggle('pseudo', want === 'pseudo');
-  box.innerHTML = lines
-    .map((l) => `<div data-ln="${l.ln.join(',')}">${esc(l.text) || ' '}</div>`)
-    .join('');
+  box.innerHTML = codeHtml(lines, S.steps[S.i]?.ln ?? null);
   markCode();
 }
 

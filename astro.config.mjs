@@ -9,8 +9,9 @@ export default defineConfig({
   trailingSlash: 'always',
   build: {
     format: 'directory',
-    // Never inline scripts or styles, so the strict Content-Security-Policy (script-src 'self') holds.
-    inlineStylesheets: 'never',
+    // Styles are inlined (the policy allows inline styles) to save a render-blocking request.
+    // Scripts are never inlined, so script-src stays 'self' plus the theme script's hash.
+    inlineStylesheets: 'always',
   },
   vite: {
     build: { assetsInlineLimit: 0 },

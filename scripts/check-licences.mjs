@@ -5,7 +5,7 @@ import { join } from 'node:path';
 
 const ALLOWED =
   /^\(?(MIT|ISC|Apache-2\.0|BSD-[23]-Clause|0BSD|BlueOak-1\.0\.0|CC0-1\.0|OFL-1\.1|Python-2\.0|CC-BY-4\.0|Unlicense)/;
-const KNOWN = /^(lightningcss(-.*)?|@img\/sharp-libvips-.*)$/;
+const KNOWN = /^(lightningcss(-.*)?|@img\/sharp-libvips-.*|axe-core)$/;
 
 const found = [];
 function walk(dir) {

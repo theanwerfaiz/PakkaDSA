@@ -547,3 +547,20 @@ ol.algo-list {
   color: var(--muted);
   max-width: 320px;
 }
+/* The two build-time drawings: the stage shows the one matching the width the app will use
+   (narrow when the stage is under 640 px including its 12 px padding). */
+.stage {
+  container-type: inline-size;
+}
+.stage .ssr.narrow {
+  display: none;
+}
+@container (max-width: 615.98px) {
+  /* hero-stage padding is 10 px, close enough: both drawings have the same proportions */
+  .stage .ssr.wide {
+    display: none;
+  }
+  .stage .ssr.narrow {
+    display: block;
+  }
+}

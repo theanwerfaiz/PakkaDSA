@@ -17,6 +17,7 @@ const { lang } = Astro.props as { lang: Lang };
   title={t(lang, 'seo.homeTitle')}
   description={t(lang, 'seo.homeDesc')}
   jsonld={[webApplication((Astro.site as URL).href, lang)]}
+  preload={lang === 'hi' ? [] : ['kalam-latin-700-normal.woff2']}
 >
   <Home lang={lang} />
 </Base>
