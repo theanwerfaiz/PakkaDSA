@@ -1,5 +1,12 @@
 import type { Generator, Input } from '../types';
 import { bubble } from './bubble';
+import { fib } from './fib';
+import { coins } from './coins';
+import { lcs } from './lcs';
+import { knap } from './knap';
+import { nqueens } from './nqueens';
+import { subsets } from './subsets';
+import { hanoi } from './hanoi';
 import { bfs } from './bfs';
 import { dfs } from './dfs';
 import { dijkstra } from './dijkstra';
@@ -65,6 +72,13 @@ export const GENERATORS: Record<string, Generator<never>> = {
   topo,
   gridbfs,
   astar,
+  fib,
+  coins,
+  lcs,
+  knap,
+  nqueens,
+  subsets,
+  hanoi,
 };
 
 export type AnyGenerator = (input: Input) => ReturnType<Generator>;
