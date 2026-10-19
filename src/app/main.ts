@@ -6,6 +6,7 @@ import { initPlayback } from './features/playback';
 import { S, type CodeLang } from './state';
 import { store } from './storage';
 import { initMenu, isDark, menuOpen, refreshToggles, setTheme } from './views/menu';
+import { initCodePanel } from './views/codepanel';
 import { initSidebar } from './views/sidebar';
 import { initViewerStatic, regen, render, renderStatic } from './views/viewer';
 
@@ -15,7 +16,8 @@ function loadPrefs(): void {
   S.learned = new Set(store.get<string[]>('learned', []));
   S.speedIdx = Math.max(0, Math.min(6, store.get('speed', 3)));
   S.anim = store.get('anim', true);
-  S.codeLang = store.get<CodeLang>('codeLang', 'pseudo');
+  const cl = store.get<CodeLang>('codeLang', 'pseudo');
+  S.codeLang = ['pseudo', 'py', 'java', 'cpp', 'js'].includes(cl) ? cl : 'pseudo';
   document.documentElement.classList.toggle('noanim', !S.anim);
 }
 
@@ -50,6 +52,7 @@ async function initViewer(id: string): Promise<void> {
   initPlayback();
   initKeyboard();
   renderStatic();
+  initCodePanel();
   await regen();
   render(false);
   let rz: ReturnType<typeof setTimeout> | undefined;
