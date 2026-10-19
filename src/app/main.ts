@@ -4,12 +4,14 @@ import { $, $maybe } from './dom';
 import { initClassroom } from './features/classroom';
 import { initKeyboard } from './features/keyboard';
 import { initNarration } from './features/narration';
+import { initSaveImage } from './features/saveimage';
+import { initShare, readHash } from './features/share';
 import { initPlayback } from './features/playback';
 import { S, type CodeLang } from './state';
 import { store } from './storage';
 import { initMenu, isDark, menuOpen, refreshToggles, setTheme } from './views/menu';
 import { initCodePanel } from './views/codepanel';
-import { initInputPanel } from './views/inputpanel';
+import { initInputPanel, renderInputPanel } from './views/inputpanel';
 import { initQuiz } from './views/quiz';
 import { initSidebar } from './views/sidebar';
 import { initViewerStatic, regen, render, renderStatic } from './views/viewer';
@@ -59,9 +61,21 @@ async function initViewer(id: string): Promise<void> {
   initKeyboard();
   renderStatic();
   initCodePanel();
-  await regen();
+  initShare();
+  initSaveImage();
+  const fromLink = readHash();
+  await regen(fromLink.input ?? undefined);
+  S.i = Math.min(fromLink.step, S.steps.length - 1);
   initInputPanel();
   render(false);
+  window.addEventListener('hashchange', () => {
+    const h = readHash();
+    void regen(h.input ?? undefined).then(() => {
+      S.i = Math.min(h.step, S.steps.length - 1);
+      renderInputPanel();
+      render(false);
+    });
+  });
   let rz: ReturnType<typeof setTimeout> | undefined;
   window.addEventListener('resize', () => {
     clearTimeout(rz);
