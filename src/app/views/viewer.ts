@@ -77,7 +77,13 @@ export function render(animate = false): void {
   const W = widthFor(stg);
   draw(stg, a.id, a.view, st, animate && S.anim);
   const svg = stg.querySelector('svg');
-  if (svg) svg.setAttribute('viewBox', `0 0 ${W} ${reserveFor(W)}`);
+  if (svg) {
+    svg.setAttribute('viewBox', `0 0 ${W} ${reserveFor(W)}`);
+    svg.setAttribute(
+      'aria-label',
+      t(S.lang, 'stageLabel', { name: a.name, step: S.i + 1, total: S.steps.length }),
+    );
+  }
   const m = L(S.lang, st.m);
   const note = $('note');
   note.innerHTML = esc(m).replace(/(\d+(\.\d+)?|'[^']*'|&quot;[^&]*&quot;)/g, '<mark>$1</mark>');

@@ -8,6 +8,11 @@ on:
 permissions:
   contents: read
 
+# A newer push to the same branch cancels the run it replaces.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
 env:
   ASTRO_TELEMETRY_DISABLED: '1'
 
