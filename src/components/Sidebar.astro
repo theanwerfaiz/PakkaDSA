@@ -1,0 +1,52 @@
+---
+import { ALGORITHMS, algoPath, CATEGORIES, type Lang } from '../content/catalog';
+import { t } from '../app/i18n';
+interface Props {
+  lang: Lang;
+  current?: string | undefined;
+}
+const { lang, current } = Astro.props;
+---
+
+<aside class="side" id="side" aria-label={t(lang, 'algorithms')}>
+  <input
+    class="search"
+    id="search"
+    type="search"
+    autocomplete="off"
+    placeholder={t(lang, 'search')}
+    aria-label={t(lang, 'searchLabel')}
+  />
+  <div class="progress">
+    <span id="progTxt">
+      0 / {ALGORITHMS.length} {t(lang, 'learned')}
+    </span>
+    <div class="bar">
+      <i id="progBar"></i>
+    </div>
+  </div>
+  <nav id="nav">
+    {CATEGORIES.map((c) => (
+      <div class="cat" data-cat-en={c.name.en.toLowerCase()} data-cat-hi={c.name.hi.toLowerCase()}>
+        <h3>{c.name[lang]}</h3>
+        {ALGORITHMS.filter((a) => a.category === c.id).map((a) => (
+          <a
+            class="al"
+            href={algoPath(lang, a)}
+            data-id={a.id}
+            data-name={a.name.toLowerCase()}
+            aria-current={a.id === current ? 'page' : undefined}
+          >
+            {a.name}
+            <span class="tick" aria-label={t(lang, 'learnedMark')} hidden>
+              ✓
+            </span>
+          </a>
+        ))}
+      </div>
+    ))}
+    <p class="progress" id="noMatch" hidden>
+      {t(lang, 'noMatch')}
+    </p>
+  </nav>
+</aside>
