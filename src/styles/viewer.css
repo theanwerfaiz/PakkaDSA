@@ -1,0 +1,453 @@
+/* Algorithm viewer: stage, motion, legend, note, watch chips, playback, code and side panel. */
+.wrap {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 400px;
+  gap: 18px;
+  padding: 18px 20px 40px;
+  max-width: 1500px;
+}
+.title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px 14px;
+  margin-bottom: 12px;
+}
+.title h1 {
+  font-size: 28px;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 0;
+  font-weight: 700;
+}
+.title .catname {
+  font-size: 14px;
+  color: var(--muted);
+}
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.chip {
+  font-size: 12.5px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: var(--paper-2);
+  color: var(--ink-2);
+  border: 1px solid var(--line);
+}
+.stage {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 12px;
+  position: relative;
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 22px 22px;
+  background-position: -1px -1px;
+}
+.stage svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 62vh;
+}
+.stage.gridmode {
+  cursor: crosshair;
+}
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 12.5px;
+  color: var(--muted);
+  margin: 10px 4px 0;
+}
+.legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.legend i {
+  width: 13px;
+  height: 13px;
+  border-radius: 4px;
+  border: 1.5px solid;
+}
+.note {
+  margin-top: 14px;
+  position: relative;
+  font-family: var(--hand);
+  font-size: 21px;
+  line-height: 1.45;
+  color: var(--ink);
+  min-height: 62px;
+  padding: 4px 2px 4px 40px;
+}
+.note::before {
+  content: attr(data-step);
+  position: absolute;
+  left: 0;
+  top: 7px;
+  font-family: var(--font);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  width: 32px;
+  text-align: right;
+}
+.note mark {
+  background: linear-gradient(transparent 55%, var(--hl-soft) 55%);
+  color: inherit;
+  padding: 0 2px;
+}
+.watch {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 6px 0 0 40px;
+}
+.wv {
+  font-size: 13.5px;
+  padding: 4px 10px;
+  border-radius: 8px;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+}
+.wv b {
+  font-weight: 600;
+  color: var(--ink-2);
+  margin-right: 6px;
+}
+.wv.out {
+  background: var(--done-fill);
+  border-color: var(--done-line);
+  color: var(--done-ink);
+}
+.ctrls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 10px 12px;
+}
+.cbtn {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  display: grid;
+  place-items: center;
+  color: var(--ink);
+}
+.cbtn:hover {
+  border-color: var(--line-strong);
+}
+.cbtn.play {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--paper);
+  border: 0;
+}
+.cbtn svg {
+  width: 20px;
+  height: 20px;
+}
+.scrub {
+  flex: 1;
+  min-width: 140px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.scrub input {
+  width: 100%;
+  accent-color: var(--act-line);
+}
+.scrub .lbl {
+  font-size: 12.5px;
+  color: var(--muted);
+  display: flex;
+  justify-content: space-between;
+}
+.speed {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.speed input {
+  width: 90px;
+  accent-color: var(--ink-2);
+}
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.tabs {
+  display: flex;
+  border-bottom: 1px solid var(--line);
+}
+.tab {
+  flex: 1;
+  padding: 10px 6px;
+  border: 0;
+  background: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--muted);
+  border-bottom: 2.5px solid transparent;
+}
+.tab[aria-selected='true'] {
+  color: var(--ink);
+  border-bottom-color: var(--act-line);
+}
+.tabp {
+  padding: 12px 14px;
+}
+.code {
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.75;
+  margin: 0;
+  counter-reset: ln;
+}
+.code div {
+  display: flex;
+  gap: 10px;
+  padding: 0 8px;
+  border-radius: 6px;
+  white-space: pre-wrap;
+}
+.code div::before {
+  counter-increment: ln;
+  content: counter(ln);
+  color: var(--muted);
+  width: 16px;
+  text-align: right;
+  flex: none;
+  opacity: 0.7;
+}
+.code div.on {
+  background: var(--hl);
+  color: #3b2f00;
+}
+.code div.on::before {
+  color: #6b5600;
+  opacity: 1;
+}
+.about p {
+  margin: 0 0 12px;
+  max-width: 62ch;
+}
+.cx {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  margin: 6px 0 12px;
+}
+.cx div {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 6px 8px;
+}
+.cx small {
+  display: block;
+  font-size: 11.5px;
+  color: var(--muted);
+}
+.cx b {
+  font-size: 13.5px;
+  font-family: var(--mono);
+  font-weight: 500;
+}
+.tip {
+  border-left: 3px solid var(--act-line);
+  padding: 6px 0 6px 12px;
+  background: var(--hl-soft);
+  border-radius: 0;
+  font-size: 14px;
+}
+.keys {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 12px;
+}
+.learn {
+  width: 100%;
+  height: 40px;
+  border-radius: 10px;
+  border: 1.5px dashed var(--line-strong);
+  background: none;
+  font-weight: 600;
+}
+.learn[aria-pressed='true'] {
+  border: 1.5px solid var(--done-line);
+  background: var(--done-fill);
+  color: var(--done-ink);
+}
+.ask textarea {
+  width: 100%;
+  min-height: 70px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 8px 10px;
+  background: var(--paper);
+  resize: vertical;
+}
+.ans {
+  font-size: 14.5px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  margin-top: 10px;
+  max-height: 320px;
+  overflow: auto;
+}
+.ans:empty {
+  display: none;
+}
+.score {
+  font-size: 13px;
+  color: var(--muted);
+}
+.livebar {
+  display: none;
+  align-items: center;
+  gap: 10px;
+  background: var(--vis-fill);
+  color: var(--vis-ink);
+  border: 1px solid var(--vis-line);
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+.livebar.show {
+  display: flex;
+}
+.livebar button {
+  margin-left: auto;
+}
+.share-box {
+  display: none;
+  margin-top: 10px;
+}
+.share-box.show {
+  display: block;
+}
+.share-box input {
+  width: 100%;
+  height: 36px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0 8px;
+  background: var(--paper);
+  font-size: 12px;
+  font-family: var(--mono);
+}
+.stage {
+  overflow: hidden;
+}
+.stage svg {
+  max-height: min(54vh, 520px);
+}
+.stage svg .k {
+  transition: transform var(--dur, 300ms) cubic-bezier(0.3, 0.7, 0.2, 1);
+}
+.stage svg rect,
+.stage svg circle,
+.stage svg line,
+.stage svg text {
+  transition:
+    fill calc(var(--dur, 300ms) * 0.8) ease,
+    stroke calc(var(--dur, 300ms) * 0.8) ease,
+    opacity calc(var(--dur, 300ms) * 0.8) ease;
+}
+.stage svg .enter {
+  animation: pop calc(var(--dur, 300ms) * 0.9) ease-out;
+}
+@keyframes pop {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.stage.nojump svg *,
+.noanim .stage svg * {
+  transition: none !important;
+  animation: none !important;
+}
+.ctrls {
+  position: sticky;
+  bottom: 10px;
+  z-index: 10;
+  box-shadow: 0 8px 28px rgba(16, 21, 43, 0.1);
+}
+.codebar {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.codebar .seg {
+  margin: 0;
+  flex: 1;
+  min-width: 0;
+}
+.codebar .seg button {
+  padding: 7px 2px;
+  font-size: 12.5px;
+}
+.code {
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+.code div {
+  white-space: pre;
+  min-width: max-content;
+}
+.nextbtn {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 600;
+}
+.nextbtn svg {
+  width: 16px;
+  height: 16px;
+}
+.code.pseudo div {
+  white-space: pre-wrap;
+  min-width: 0;
+}
+.loading {
+  margin: 0;
+  padding: 40px 12px;
+  text-align: center;
+  color: var(--muted);
+}

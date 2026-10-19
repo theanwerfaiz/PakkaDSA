@@ -1,0 +1,159 @@
+---
+import '../styles/fonts.css';
+import '../styles/tokens.css';
+import '../styles/base.css';
+import '../styles/header.css';
+import '../styles/home.css';
+import '../styles/viewer.css';
+import '../styles/responsive.css';
+import Icon from '../components/Icon.astro';
+import Sidebar from '../components/Sidebar.astro';
+import { homePath, type Lang } from '../content/catalog';
+import { t } from '../app/i18n';
+
+interface Props {
+  lang: Lang;
+  title: string;
+  description: string;
+  /** Path of this page in the other language. */
+  mirror: string;
+  /** Open algorithm id, if this is an algorithm page. */
+  current?: string;
+  view: 'home' | 'viz' | 'page';
+}
+const { lang, title, description, mirror, current, view } = Astro.props;
+const other: Lang = lang === 'en' ? 'hi' : 'en';
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <script is:inline src="/theme-init.js"></script>
+    <link
+      rel="preload"
+      href="/fonts/instrument-sans-latin-400-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <slot name="head" />
+  </head>
+  <body data-view={view} data-lang={lang} data-algo={current ?? ''}>
+    <div class="app">
+      <header class="top">
+        <button
+          class="tbtn menu-btn"
+          id="menuBtn"
+          aria-label={t(lang, 'openList')}
+          aria-controls="side"
+          aria-expanded="false"
+        >
+          <Icon name="menu" />
+        </button>
+        <a class="brand" href={homePath(lang)} id="home" aria-label={t(lang, 'homeLink')}>
+          <span class="mark" aria-hidden="true">
+            P
+          </span>
+          <span>
+            <b>PakkaDSA</b>
+            <small>{t(lang, 'tag')}</small>
+          </span>
+        </a>
+        <div class="tools" role="toolbar" aria-label={t(lang, 'mainActions')}>
+          <a
+            class="tbtn"
+            id="langBtn"
+            href={mirror}
+            hreflang={other}
+            lang={other}
+            aria-label={t(lang, 'switchLang')}
+          >
+            <Icon name="lang" />
+            <span>
+              <span class="lang-l">{t(lang, 'langName')}</span>
+              <span class="lang-s">{t(lang, 'langShort')}</span>
+            </span>
+          </a>
+          <button class="tbtn" id="quizBtn" aria-pressed="false" aria-label={t(lang, 'quiz')}>
+            <Icon name="quiz" />
+            <span class="lbl">{t(lang, 'quiz')}</span>
+          </button>
+          <button class="tbtn" id="shareBtn" aria-label={t(lang, 'share')}>
+            <Icon name="share" />
+            <span class="lbl">{t(lang, 'share')}</span>
+          </button>
+          <div class="menu-wrap">
+            <button
+              class="tbtn"
+              id="moreBtn"
+              aria-haspopup="menu"
+              aria-expanded="false"
+              aria-controls="moreMenu"
+              aria-label={t(lang, 'more')}
+            >
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <circle cx="5" cy="12" r="1.8"></circle>
+                <circle cx="12" cy="12" r="1.8"></circle>
+                <circle cx="19" cy="12" r="1.8"></circle>
+              </svg>
+              <span class="lbl">{t(lang, 'more')}</span>
+            </button>
+            <div class="menu" id="moreMenu" role="menu" aria-label={t(lang, 'moreOptions')} hidden>
+              <button class="mi" role="menuitemcheckbox" aria-checked="false" id="voiceBtn">
+                <Icon name="voice" />
+                <span>{t(lang, 'voice')}</span>
+                <em class="st">{t(lang, 'off')}</em>
+              </button>
+              <button class="mi" role="menuitemcheckbox" aria-checked="false" id="classBtn">
+                <Icon name="class" />
+                <span>{t(lang, 'class')}</span>
+                <em class="st">{t(lang, 'off')}</em>
+              </button>
+              <button class="mi" role="menuitemcheckbox" aria-checked="true" id="animBtn">
+                <Icon name="anim" />
+                <span>{t(lang, 'anim')}</span>
+                <em class="st">{t(lang, 'on')}</em>
+              </button>
+              <button class="mi" role="menuitemcheckbox" aria-checked="false" id="themeBtn">
+                <Icon name="dark" />
+                <span>{t(lang, 'dark')}</span>
+                <em class="st">{t(lang, 'off')}</em>
+              </button>
+              <button class="mi" role="menuitem" id="saveBtn" hidden={view !== 'viz'}>
+                <Icon name="save" />
+                <span>{t(lang, 'save')}</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+      <div class="body">
+        <Sidebar lang={lang} current={current} />
+        <main id="main">
+          <slot />
+        </main>
+      </div>
+    </div>
+    <div class="overlay" id="quiz" role="dialog" aria-modal="true" aria-labelledby="quizH">
+      <div class="modal">
+        <h2 id="quizH">{t(lang, 'predict')}</h2>
+        <p class="q" id="quizQ"></p>
+        <div class="opts" id="quizOpts"></div>
+        <p class="fb" id="quizFb" aria-live="assertive"></p>
+        <div class="row end">
+          <button class="btn pri" id="quizGo" hidden>
+            {t(lang, 'continue')}
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="toast" id="toast" role="status"></div>
+    <script>
+      import '../app/main';
+    </script>
+  </body>
+</html>
