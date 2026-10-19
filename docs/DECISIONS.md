@@ -50,3 +50,7 @@ Two views are taller on some steps than others in the prototype: the heap during
 ## D12. One page per algorithm, with full page loads between them
 
 The prototype switched algorithms inside one page with hash routing. The site has a real, pre-rendered URL per algorithm and language (`/algorithms/<slug>/`, `/hi/algorithms/<slug>/`) so each page carries its own indexable text. Choosing an algorithm (sidebar, learning path, "Up next") is an ordinary link to that page; settings, progress and the last position persist through `localStorage`. Client-side routing would leave each page's static text out of date, and the pages are small and cached, so a full load stays fast. The language button links to the mirror page and carries the hash (step and input) across.
+
+## D13. Narrated playback starts on Play
+
+In the prototype, turning on narration and then pressing Play did nothing: playback waited for the end of an utterance that was never started. Play now advances after 250 ms when nothing is being spoken, and each spoken step then schedules the next one, as specified in F9. This is a UI fix; no algorithm output changes.

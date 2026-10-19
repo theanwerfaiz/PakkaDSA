@@ -1,7 +1,9 @@
 /* Entry point for every page: shared header, menu and sidebar, plus the viewer on algorithm pages. */
 import type { Lang } from '../content/catalog';
 import { $, $maybe } from './dom';
+import { initClassroom } from './features/classroom';
 import { initKeyboard } from './features/keyboard';
+import { initNarration } from './features/narration';
 import { initPlayback } from './features/playback';
 import { S, type CodeLang } from './state';
 import { store } from './storage';
@@ -53,6 +55,7 @@ async function initViewer(id: string): Promise<void> {
   initViewerStatic();
   initPlayback();
   initQuiz();
+  initNarration();
   initKeyboard();
   renderStatic();
   initCodePanel();
@@ -68,6 +71,7 @@ async function initViewer(id: string): Promise<void> {
 
 loadPrefs();
 initHeader();
+initClassroom();
 initSidebar();
 const algoId = document.body.dataset.algo;
 if (algoId && $maybe('stage')) void initViewer(algoId);
