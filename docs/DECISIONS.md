@@ -66,3 +66,14 @@ Routes live under `src/pages/[...lang]/`: the rest parameter is empty for Englis
 ## D16. Offline support without a service-worker library
 
 An Astro build hook (`scripts/sw-integration.mjs`) writes `dist/sw.js` with the list of every built file and a content hash as the cache version. Pages are network-first (so updates appear) with a cached fallback; hashed assets and fonts are cache-first. A one-time install offer uses `beforeinstallprompt`; dismissing it is remembered in `pakkadsa:install`, one extra device-local key beyond the F13 list.
+
+## D17. Accessibility and performance audits run through Lighthouse
+
+The spec names axe-core for accessibility checks, but axe-core is MPL-2.0, outside the licence allow-list. Lighthouse (Apache-2.0) is added as a dev dependency instead: its accessibility category runs the axe rules, and the same run gives the Performance, Best Practices and SEO scores the release gate needs. axe-core arrives as Lighthouse's own dependency, is used only by the audit script and is never shipped, the same situation as D6; `scripts/check-licences.mjs` lists it as a known exception. Run with `npm run build && npm run lighthouse`.
+
+## D18. Contrast and font loading changes made for the release gate
+
+- `--muted` in the light theme is `#63687C` instead of `#6E7387`: the original measured 4.41:1 on `--paper` and 4.02:1 on `--paper-2`, below WCAG AA (4.5:1) for the small muted labels. The new value is at least 4.7:1 on every light background. The dark theme is unchanged (already at least 5.3:1).
+- Every font face uses `font-display: optional`. A late swap from the fallback font reflowed text and caused layout shift; with `optional` a font that is not ready almost at once is skipped for that page view, and the service worker caches the fonts for every later page.
+- Styles are inlined into each page (the policy already allows inline styles), saving a render-blocking request. Scripts are still never inlined except the tiny theme script, which the policy allows by its SHA-256 hash.
+- Each algorithm page ships its first step already drawn at both widths, along with the legend, note, watch chips, pseudocode and "Up next" button, built by the same pure functions the app uses (`src/app/views/viewer-html.ts`). The app adopts that drawing instead of redrawing it.
