@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test';
 test.describe('code panel', () => {
   test('highlights the swap line in every language at bubble sort step 3', async ({ page }) => {
     await page.goto('/algorithms/bubble-sort/');
-    await expect(page.locator('#stage svg')).toBeVisible();
+    await expect(page.locator('#stage svg:not(.ssr)')).toBeVisible();
     await page.keyboard.press('ArrowRight');
     await page.keyboard.press('ArrowRight');
     await expect(page.locator('#stepLbl')).toHaveText('Step 3 of 58');

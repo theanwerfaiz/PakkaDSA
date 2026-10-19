@@ -2,7 +2,7 @@ import { expect, test, type Page } from '@playwright/test';
 
 const open = async (page: Page, path: string) => {
   await page.goto(path);
-  await expect(page.locator('#stage svg')).toBeVisible();
+  await expect(page.locator('#stage svg:not(.ssr)')).toBeVisible();
   await page.click('#tInput');
 };
 
@@ -21,7 +21,7 @@ test.describe('input panel', () => {
     page,
   }) => {
     await page.goto('/algorithms/bubble-sort/');
-    await expect(page.locator('#stage svg')).toBeVisible();
+    await expect(page.locator('#stage svg:not(.ssr)')).toBeVisible();
     await page.keyboard.press('ArrowRight');
     await page.click('#tInput'); // after stepping: arrow keys on a focused tab move between tabs
     await page.fill('#in-a', '1, x');

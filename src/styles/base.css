@@ -243,16 +243,29 @@ kbd {
   color: var(--ink-2);
 }
 .install {
+  /* An overlay, never in the page flow, so offering installation cannot shift the layout. */
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  z-index: 45;
+  max-width: 560px;
+  margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 8px 10px;
-  margin: 12px 20px 0;
   padding: 10px 12px;
   border: 1px solid var(--line);
   border-radius: 12px;
   background: var(--surface);
+  box-shadow: 0 10px 30px rgba(16, 21, 43, 0.18);
   font-size: 14px;
+}
+@media (max-width: 900px) {
+  body[data-view='viz'] .install {
+    bottom: calc(150px + env(safe-area-inset-bottom, 0px));
+  }
 }
 .install span {
   flex: 1 1 200px;

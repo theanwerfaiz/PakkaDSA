@@ -147,7 +147,7 @@ test.describe('offline and installable', () => {
     });
     await context.setOffline(true);
     await page.goto('/hi/algorithms/quick-sort/');
-    await expect(page.locator('#stage svg')).toBeVisible();
+    await expect(page.locator('#stage svg:not(.ssr)')).toBeVisible();
     await page.keyboard.press('ArrowRight');
     await expect(page.locator('#stepLbl')).toHaveText('कदम 2 में से 42');
     await page.click('#langSeg button:text-is("Java")');

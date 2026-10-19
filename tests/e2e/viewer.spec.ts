@@ -2,7 +2,7 @@ import { expect, test, type Page } from '@playwright/test';
 import algorithms from '../../src/content/algorithms.json' with { type: 'json' };
 
 const SLUGS = algorithms.algorithms.map((a) => a.slug);
-const ready = async (page: Page) => expect(page.locator('#stage svg')).toBeVisible();
+const ready = async (page: Page) => expect(page.locator('#stage svg:not(.ssr)')).toBeVisible();
 
 function collectErrors(page: Page): string[] {
   const errors: string[] = [];

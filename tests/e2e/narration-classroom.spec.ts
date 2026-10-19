@@ -29,7 +29,7 @@ test.describe('narration', () => {
       });
     });
     await page.goto('/hi/algorithms/linear-search/');
-    await expect(page.locator('#stage svg')).toBeVisible();
+    await expect(page.locator('#stage svg:not(.ssr)')).toBeVisible();
     await page.click('#moreBtn');
     await page.click('#voiceBtn');
     await page.click('#moreBtn');
@@ -70,7 +70,7 @@ test.describe('classroom mode', () => {
   test('hides the sidebar and enlarges the note; C toggles it', async ({ page }) => {
     await page.setViewportSize({ width: 1366, height: 800 });
     await page.goto('/algorithms/merge-sort/');
-    await expect(page.locator('#stage svg')).toBeVisible();
+    await expect(page.locator('#stage svg:not(.ssr)')).toBeVisible();
     const before = await page
       .locator('#note')
       .evaluate((e) => parseFloat(getComputedStyle(e).fontSize));

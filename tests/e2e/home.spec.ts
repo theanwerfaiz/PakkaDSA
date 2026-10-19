@@ -40,7 +40,7 @@ test.describe('welcome screen', () => {
     page,
   }) => {
     await page.goto('/algorithms/linear-search/');
-    await expect(page.locator('#stage svg')).toBeVisible();
+    await expect(page.locator('#stage svg:not(.ssr)')).toBeVisible();
     await page.click('#learnBtn');
     await page.keyboard.press('ArrowRight');
     await page.keyboard.press('ArrowRight');

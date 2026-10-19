@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test';
 test.describe('share link', () => {
   test('opens the same algorithm, input and step in a fresh page', async ({ page, browser }) => {
     await page.goto('/algorithms/quick-sort/');
-    await expect(page.locator('#stage svg')).toBeVisible();
+    await expect(page.locator('#stage svg:not(.ssr)')).toBeVisible();
     await page.click('#tInput');
     await page.fill('#in-a', '5, 1, 4, 2');
     await page.click('#inApply');
@@ -31,7 +31,7 @@ test.describe('share link', () => {
       '#s=-5',
     ]) {
       await page.goto('/algorithms/bubble-sort/' + hash);
-      await expect(page.locator('#stage svg')).toBeVisible();
+      await expect(page.locator('#stage svg:not(.ssr)')).toBeVisible();
       await page.click('#tInput');
       await expect(page.locator('#in-a')).toHaveValue('38, 27, 43, 3, 9, 82, 10, 55');
     }
@@ -52,7 +52,7 @@ test.describe('share link', () => {
 test.describe('save image', () => {
   test('downloads a PNG of the current step', async ({ page }) => {
     await page.goto('/algorithms/merge-sort/');
-    await expect(page.locator('#stage svg')).toBeVisible();
+    await expect(page.locator('#stage svg:not(.ssr)')).toBeVisible();
     await page.click('#bNext');
     await page.click('#moreBtn');
     const [download] = await Promise.all([page.waitForEvent('download'), page.click('#saveBtn')]);

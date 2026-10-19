@@ -1,4 +1,3 @@
-import { $ } from '../dom';
 import { t } from '../i18n';
 import { S } from '../state';
 import { store } from '../storage';
@@ -43,6 +42,6 @@ export function initInstallPrompt(): void {
       void evt.prompt();
     });
     no.addEventListener('click', done);
-    $('main').prepend(bar);
+    document.body.append(bar);
   });
 }

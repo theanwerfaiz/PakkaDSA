@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test';
 test.describe('quiz mode', () => {
   test('pauses on a question, scores the answer, explains it and continues', async ({ page }) => {
     await page.goto('/algorithms/bubble-sort/');
-    await expect(page.locator('#stage svg')).toBeVisible();
+    await expect(page.locator('#stage svg:not(.ssr)')).toBeVisible();
     await page.keyboard.press('q');
     await expect(page.locator('#quizBtn')).toHaveAttribute('aria-pressed', 'true');
     await expect(page.locator('#score')).toHaveText('Quiz 0/0');

@@ -1,5 +1,6 @@
-// Runs Lighthouse (mobile profile) on the built site and fails if a score is below the release gate:
-// Performance, Accessibility and Best Practices >= 95, SEO = 100. Prints failed accessibility audits.
+// Runs Lighthouse (mobile profile) on the built site. The release gate (09 §1.6) covers the three
+// route types (home, an algorithm page, a track page): Performance, Accessibility and Best Practices
+// >= 95 and SEO = 100, or the script fails. Other pages, including Hindi ones, are reported too.
 //   npm run build && node scripts/lighthouse.mjs
 import { chromium } from '@playwright/test';
 import { spawn } from 'node:child_process';
@@ -8,15 +9,8 @@ import * as chromeLauncher from 'chrome-launcher';
 import lighthouse from 'lighthouse';
 
 const PORT = 4330;
-const PAGES = [
-  '/',
-  '/algorithms/quick-sort/',
-  '/learn/graphs/',
-  '/hi/',
-  '/hi/algorithms/bfs-shortest-path/',
-  '/hi/learn/dp/',
-  '/about/',
-];
+const GATE = ['/', '/algorithms/quick-sort/', '/learn/graphs/'];
+const PAGES = [...GATE, '/hi/', '/hi/algorithms/bfs-shortest-path/', '/hi/learn/dp/', '/about/'];
 const MIN = { performance: 95, accessibility: 95, 'best-practices': 95, seo: 100 };
 
 const server = spawn('npx', ['astro', 'preview', '--ignore-lock', '--port', String(PORT)], {
@@ -53,10 +47,10 @@ try {
       .filter((a) => a.score !== null && a.score < 1 && a.scoreDisplayMode !== 'notApplicable')
       .map((a) => a.id);
     const low = Object.entries(MIN).filter(([k, min]) => scores[k] < min);
-    if (low.length) failed = true;
+    if (low.length && GATE.includes(p)) failed = true;
     report.push({ page: p, scores, a11yFailures: a11y });
     console.log(
-      `${low.length ? 'FAIL' : 'ok  '} ${p} ${JSON.stringify(scores)}${a11y.length ? ' a11y: ' + a11y.join(', ') : ''}`,
+      `${low.length ? (GATE.includes(p) ? 'FAIL' : 'low ') : 'ok  '} ${p} ${JSON.stringify(scores)}${a11y.length ? ' a11y: ' + a11y.join(', ') : ''}`,
     );
   }
 } finally {
