@@ -77,3 +77,7 @@ The spec names axe-core for accessibility checks, but axe-core is MPL-2.0, outsi
 - Every font face uses `font-display: optional`. A late swap from the fallback font reflowed text and caused layout shift; with `optional` a font that is not ready almost at once is skipped for that page view, and the service worker caches the fonts for every later page.
 - Styles are inlined into each page (the policy already allows inline styles), saving a render-blocking request. Scripts are still never inlined except the tiny theme script, which the policy allows by its SHA-256 hash.
 - Each algorithm page ships its first step already drawn at both widths, along with the legend, note, watch chips, pseudocode and "Up next" button, built by the same pure functions the app uses (`src/app/views/viewer-html.ts`). The app adopts that drawing instead of redrawing it.
+
+## D19. The optional network modules are not built
+
+"Ask a doubt" (a bring-your-own-key chatbot helper) and "Go live" (peer-to-peer class) are P2 items that would add requests to other origins, behind flags that default to off. They are not built in v1: the default build is unaffected, a peer-to-peer class still needs a signalling server and usually a third-party relay, and leaving them out keeps the privacy promise simple. Their flags and the prototype's unused strings were removed. Either can be added later as a lazy module behind its own build flag, with an in-product disclosure, as `02_TECHNICAL_ARCHITECTURE.md` §8 describes.
