@@ -8,6 +8,7 @@ import { store } from './storage';
 import { initMenu, isDark, menuOpen, refreshToggles, setTheme } from './views/menu';
 import { initCodePanel } from './views/codepanel';
 import { initInputPanel } from './views/inputpanel';
+import { initQuiz } from './views/quiz';
 import { initSidebar } from './views/sidebar';
 import { initViewerStatic, regen, render, renderStatic } from './views/viewer';
 
@@ -51,6 +52,7 @@ async function initViewer(id: string): Promise<void> {
   S.id = id;
   initViewerStatic();
   initPlayback();
+  initQuiz();
   initKeyboard();
   renderStatic();
   initCodePanel();
