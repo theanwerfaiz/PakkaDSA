@@ -364,3 +364,82 @@ export function randomInput(id: string, view: ViewType, current: Input, rng: Rng
   }
   return i;
 }
+
+/* ---------- Inputs from share links ---------- */
+
+const isInt = (x: unknown): x is number => typeof x === 'number' && Number.isInteger(x);
+
+/** Checks a grid from outside: fixed 13 × 25, cells in range, start and goal open and distinct. */
+function validGrid(g: unknown): Grid | null {
+  if (!g || typeof g !== 'object') return null;
+  const d = defaultGrid();
+  const { R, C, walls, start, end } = g as Record<string, unknown>;
+  if (
+    R !== d.R ||
+    C !== d.C ||
+    !Array.isArray(walls) ||
+    !Array.isArray(start) ||
+    !Array.isArray(end)
+  )
+    return null;
+  const cell = (p: unknown[]): p is Pair =>
+    p.length === 2 &&
+    isInt(p[0]) &&
+    isInt(p[1]) &&
+    p[0] >= 0 &&
+    p[0] < d.R &&
+    p[1] >= 0 &&
+    p[1] < d.C;
+  if (!cell(start) || !cell(end) || (start[0] === end[0] && start[1] === end[1])) return null;
+  if (walls.length > d.R * d.C || !walls.every((k) => isInt(k) && k >= 0 && k < d.R * d.C))
+    return null;
+  const w = [...new Set(walls as number[])];
+  if (w.includes(start[0] * d.C + start[1]) || w.includes(end[0] * d.C + end[1])) return null;
+  return { R: d.R, C: d.C, walls: w, start: [start[0], start[1]], end: [end[0], end[1]] };
+}
+
+/**
+ * Turns untrusted data (a share link) into a valid input for this algorithm, or null. The data must
+ * have the algorithm's input type and pass exactly the same checks as the input form.
+ */
+export function inputFromData(id: string, view: ViewType, raw: unknown): Input | null {
+  if (!raw || typeof raw !== 'object') return null;
+  const o = raw as Record<string, unknown>;
+  const base = defaultInput(id);
+  if (o.type !== base.type) return null;
+  const s = (v: unknown) => (typeof v === 'string' || typeof v === 'number' ? String(v) : '');
+  const list = (v: unknown) => (Array.isArray(v) ? v.map(s).join(', ') : '');
+  let fields: InputFields;
+  switch (base.type) {
+    case 'grid': {
+      const grid = validGrid(o.grid);
+      return grid ? { type: 'grid', grid } : null;
+    }
+    case 'none':
+      return base;
+    case 'knap':
+      fields = {
+        items: Array.isArray(o.items)
+          ? o.items.map((x) => (Array.isArray(x) ? x.map(s).join(':') : '')).join(', ')
+          : '',
+        cap: s(o.cap),
+      };
+      break;
+    case 'coins':
+      fields = { amt: s(o.amt), coins: list(o.coins) };
+      break;
+    default:
+      fields = {
+        a: list(o.a),
+        t: s(o.t),
+        k: s(o.k),
+        c: s(o.c),
+        s: s(o.s),
+        n: s(o.n),
+        s1: s(o.s1),
+        s2: s(o.s2),
+      };
+  }
+  const res = validateInput(id, view, base, fields);
+  return res.ok ? res.input : null;
+}
