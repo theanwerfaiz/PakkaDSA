@@ -1,0 +1,78 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { t } from '../../../app/i18n';
+import {
+  algoPath,
+  byId,
+  langPrefix,
+  trackPath,
+  TRACKS,
+  type Algorithm,
+  type Lang,
+  type Track,
+} from '../../../content/catalog';
+import { withLangs } from '../../../content/routes';
+import { breadcrumbs, itemList, trackDescription, trackTitle } from '../../../content/seo';
+
+export function getStaticPaths() {
+  return withLangs(TRACKS.map((tr) => ({ params: { track: tr.id }, props: { tr } })));
+}
+const { lang, tr } = Astro.props as { lang: Lang; tr: Track };
+const site = Astro.site as URL;
+const url = (p: string) => new URL(p, site).href;
+const algos = tr.algorithms.map((id) => byId(id) as Algorithm);
+const n = TRACKS.indexOf(tr) + 1;
+---
+
+<Base
+  lang={lang}
+  view="page"
+  path={`/learn/${tr.id}/`}
+  title={trackTitle(lang, tr)}
+  description={trackDescription(lang, tr)}
+  og={`/og/track-${tr.id}.png`}
+  jsonld={[
+    itemList(algos.map((a) => ({ name: a.name, url: url(algoPath(lang, a)) }))),
+    breadcrumbs([
+      { name: t(lang, 'nav.home'), url: url(`${langPrefix(lang)}/`) },
+      { name: tr.name[lang], url: url(trackPath(lang, tr)) },
+    ]),
+  ]}
+>
+  <div class="article page track" data-track={tr.id}>
+    <p class="crumb">
+      <span class="tno" aria-hidden="true">
+        {n}
+      </span>{' '}
+      {t(lang, 'pathH')}
+    </p>
+    <h1>{tr.name[lang]}</h1>
+    <p>{tr.description[lang]}</p>
+    <p>
+      <a class="btn pri big" href={algoPath(lang, algos[0])}>
+        {t(lang, 'track.start')}
+      </a>
+    </p>
+    <ol class="algo-list">
+      {algos.map((a) => (
+        <li>
+          <a class="pill" href={algoPath(lang, a)} data-id={a.id}>
+            {a.name}
+            <span class="tick" aria-label={t(lang, 'learnedMark')} hidden>
+              ✓
+            </span>
+          </a>
+          <span class="sum">{a.description[lang]}</span>
+        </li>
+      ))}
+    </ol>
+    <footer>
+      <span class="count" data-total={algos.length}>
+        0 / {algos.length} {t(lang, 'learned')}
+      </span>
+      <div class="bar">
+        <i style="width:0%"></i>
+      </div>
+    </footer>
+  </div>
+</Base>

@@ -9,3 +9,4 @@ tests/snippets/out/
 .env.*
 !.env.example
 .DS_Store
+lighthouse-report.json

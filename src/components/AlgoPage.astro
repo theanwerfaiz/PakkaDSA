@@ -1,0 +1,38 @@
+---
+import Base from '../layouts/Base.astro';
+import AlgoArticle from './AlgoArticle.astro';
+import Viewer from './Viewer.astro';
+import { t } from '../app/i18n';
+import { algoPath, langPrefix, type Algorithm, type Lang } from '../content/catalog';
+import { algoDescription, algoTitle, breadcrumbs, faqPage, learningResource } from '../content/seo';
+interface Props {
+  lang: Lang;
+  algo: Algorithm;
+}
+const { lang, algo } = Astro.props;
+const site = Astro.site as URL;
+const url = (p: string) => new URL(p, site).href;
+---
+
+<Base
+  lang={lang}
+  view="viz"
+  current={algo.id}
+  path={`/algorithms/${algo.slug}/`}
+  title={algoTitle(lang, algo)}
+  description={algoDescription(lang, algo)}
+  og={`/og/${algo.slug}.png`}
+  preload={lang === 'en' ? ['kalam-latin-400-normal.woff2'] : []}
+  jsonld={[
+    learningResource(url(algoPath(lang, algo)), lang, algo),
+    faqPage(lang, algo),
+    breadcrumbs([
+      { name: t(lang, 'nav.home'), url: url(`${langPrefix(lang)}/`) },
+      { name: t(lang, 'nav.algorithms'), url: url(`${langPrefix(lang)}/algorithms/`) },
+      { name: algo.name, url: url(algoPath(lang, algo)) },
+    ]),
+  ]}
+>
+  <Viewer lang={lang} algo={algo} />
+  <AlgoArticle lang={lang} algo={algo} />
+</Base>

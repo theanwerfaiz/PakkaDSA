@@ -1,0 +1,1719 @@
+{
+  "categories": [
+    {
+      "id": "sort",
+      "name": {
+        "en": "Sorting",
+        "hi": "सॉर्टिंग"
+      }
+    },
+    {
+      "id": "search",
+      "name": {
+        "en": "Searching",
+        "hi": "सर्चिंग"
+      }
+    },
+    {
+      "id": "two",
+      "name": {
+        "en": "Two pointers",
+        "hi": "दो पॉइंटर"
+      }
+    },
+    {
+      "id": "window",
+      "name": {
+        "en": "Sliding window",
+        "hi": "स्लाइडिंग विंडो"
+      }
+    },
+    {
+      "id": "array",
+      "name": {
+        "en": "Arrays",
+        "hi": "ऐरे"
+      }
+    },
+    {
+      "id": "stack",
+      "name": {
+        "en": "Stack",
+        "hi": "स्टैक"
+      }
+    },
+    {
+      "id": "list",
+      "name": {
+        "en": "Linked list",
+        "hi": "लिंक्ड लिस्ट"
+      }
+    },
+    {
+      "id": "tree",
+      "name": {
+        "en": "Trees",
+        "hi": "ट्री"
+      }
+    },
+    {
+      "id": "heap",
+      "name": {
+        "en": "Heaps",
+        "hi": "हीप"
+      }
+    },
+    {
+      "id": "graph",
+      "name": {
+        "en": "Graphs",
+        "hi": "ग्राफ़"
+      }
+    },
+    {
+      "id": "grid",
+      "name": {
+        "en": "Grid pathfinding",
+        "hi": "ग्रिड रास्ता खोज"
+      }
+    },
+    {
+      "id": "dp",
+      "name": {
+        "en": "Dynamic programming",
+        "hi": "डायनामिक प्रोग्रामिंग"
+      }
+    },
+    {
+      "id": "back",
+      "name": {
+        "en": "Backtracking & recursion",
+        "hi": "बैकट्रैकिंग और रिकर्शन"
+      }
+    }
+  ],
+  "tracks": [
+    {
+      "id": "basics",
+      "name": {
+        "en": "Start here: the basics",
+        "hi": "यहाँ से शुरू: बुनियादी बातें"
+      },
+      "description": {
+        "en": "Sorting and searching. The ideas everything else builds on.",
+        "hi": "सॉर्टिंग और सर्चिंग। बाकी सब इन्हीं विचारों पर बनता है।"
+      },
+      "algorithms": [
+        "bubble",
+        "selection",
+        "insertion",
+        "linear",
+        "binary"
+      ]
+    },
+    {
+      "id": "patterns",
+      "name": {
+        "en": "Interview patterns",
+        "hi": "इंटरव्यू पैटर्न"
+      },
+      "description": {
+        "en": "Two pointers, sliding window and stacks: the tricks behind most coding-round questions.",
+        "hi": "दो पॉइंटर, स्लाइडिंग विंडो और स्टैक: ज़्यादातर कोडिंग राउंड के सवालों के पीछे की तरकीबें।"
+      },
+      "algorithms": [
+        "pairsum",
+        "water",
+        "maxsumk",
+        "longestuniq",
+        "kadane",
+        "parens",
+        "nextgreater"
+      ]
+    },
+    {
+      "id": "fast",
+      "name": {
+        "en": "Faster sorting",
+        "hi": "तेज़ सॉर्टिंग"
+      },
+      "description": {
+        "en": "Divide and conquer, and how real libraries sort.",
+        "hi": "बाँटो और जीतो, और असली लाइब्रेरी कैसे सॉर्ट करती हैं।"
+      },
+      "algorithms": [
+        "merge",
+        "quick",
+        "heapsort"
+      ]
+    },
+    {
+      "id": "lists",
+      "name": {
+        "en": "Linked lists",
+        "hi": "लिंक्ड लिस्ट"
+      },
+      "description": {
+        "en": "Pointer juggling that shows up in every interview.",
+        "hi": "पॉइंटर का खेल जो हर इंटरव्यू में आता है।"
+      },
+      "algorithms": [
+        "reverselist",
+        "middlelist",
+        "cyclelist"
+      ]
+    },
+    {
+      "id": "trees",
+      "name": {
+        "en": "Trees and heaps",
+        "hi": "ट्री और हीप"
+      },
+      "description": {
+        "en": "Build a search tree, walk it four ways, and meet the heap.",
+        "hi": "सर्च ट्री बनाएँ, उसे चार तरह से घूमें, और हीप से मिलें।"
+      },
+      "algorithms": [
+        "bstbuild",
+        "bstsearch",
+        "inorder",
+        "preorder",
+        "postorder",
+        "levelorder",
+        "heapinsert"
+      ]
+    },
+    {
+      "id": "graphs",
+      "name": {
+        "en": "Graphs and grids",
+        "hi": "ग्राफ़ और ग्रिड"
+      },
+      "description": {
+        "en": "Explore, find shortest paths, order tasks, and escape a maze.",
+        "hi": "खोजें, सबसे छोटे रास्ते निकालें, काम क्रम में लगाएँ, और भूलभुलैया से निकलें।"
+      },
+      "algorithms": [
+        "bfs",
+        "dfs",
+        "dijkstra",
+        "topo",
+        "gridbfs",
+        "astar"
+      ]
+    },
+    {
+      "id": "dp",
+      "name": {
+        "en": "Dynamic programming and backtracking",
+        "hi": "डायनामिक प्रोग्रामिंग और बैकट्रैकिंग"
+      },
+      "description": {
+        "en": "Reuse answers, try choices, and undo them.",
+        "hi": "उत्तर दोबारा इस्तेमाल करें, विकल्प आज़माएँ, और उन्हें वापस लें।"
+      },
+      "algorithms": [
+        "fib",
+        "coins",
+        "lcs",
+        "knap",
+        "nqueens",
+        "subsets",
+        "hanoi"
+      ]
+    }
+  ],
+  "algorithms": [
+    {
+      "id": "bubble",
+      "slug": "bubble-sort",
+      "name": "Bubble sort",
+      "category": "sort",
+      "view": "bars",
+      "input": {
+        "type": "arr",
+        "a": [
+          38,
+          27,
+          43,
+          3,
+          9,
+          82,
+          10,
+          55
+        ]
+      },
+      "complexity": {
+        "best": "O(n)",
+        "average": "O(n²)",
+        "worst": "O(n²)",
+        "space": "O(1)"
+      },
+      "description": {
+        "en": "Repeatedly compares neighbours and swaps them if they are out of order. After each pass, the largest remaining item \"bubbles\" to the end.",
+        "hi": "पड़ोसी अंकों की बार-बार तुलना करता है और गलत क्रम होने पर बदल देता है। हर पास के बाद बचा हुआ सबसे बड़ा अंक आखिर तक \"बुलबुले\" की तरह पहुँच जाता है।"
+      },
+      "interviewTip": {
+        "en": "Rarely used in practice, but the early-exit trick (stop when a pass has no swaps) is a common interview follow-up.",
+        "hi": "असल में कम इस्तेमाल होता है, पर बिना अदला-बदली वाले पास पर रुकने की तरकीब इंटरव्यू में अक्सर पूछी जाती है।"
+      },
+      "pseudocode": [
+        "for i ← 0 to n−2",
+        "  for j ← 0 to n−2−i",
+        "    if a[j] > a[j+1]",
+        "      swap a[j], a[j+1]",
+        "  a[n−1−i] is now fixed",
+        "  if no swaps this pass: stop",
+        "done"
+      ]
+    },
+    {
+      "id": "selection",
+      "slug": "selection-sort",
+      "name": "Selection sort",
+      "category": "sort",
+      "view": "bars",
+      "input": {
+        "type": "arr",
+        "a": [
+          38,
+          27,
+          43,
+          3,
+          9,
+          82,
+          10,
+          55
+        ]
+      },
+      "complexity": {
+        "best": "O(n²)",
+        "average": "O(n²)",
+        "worst": "O(n²)",
+        "space": "O(1)"
+      },
+      "description": {
+        "en": "Finds the smallest item in the unsorted part and swaps it to the front, growing a sorted prefix one item at a time.",
+        "hi": "बिना क्रम वाले हिस्से का सबसे छोटा अंक ढूँढकर आगे रखता है, और क्रमबद्ध हिस्सा एक-एक करके बढ़ता है।"
+      },
+      "interviewTip": {
+        "en": "Makes at most n−1 swaps, useful when writing to memory is expensive.",
+        "hi": "ज़्यादा से ज़्यादा n−1 अदला-बदली करता है, जब मेमोरी में लिखना महँगा हो तब उपयोगी।"
+      },
+      "pseudocode": [
+        "for i ← 0 to n−2",
+        "  min ← i",
+        "  for j ← i+1 to n−1",
+        "    if a[j] < a[min]: min ← j",
+        "  swap a[i], a[min]",
+        "done"
+      ]
+    },
+    {
+      "id": "insertion",
+      "slug": "insertion-sort",
+      "name": "Insertion sort",
+      "category": "sort",
+      "view": "bars",
+      "input": {
+        "type": "arr",
+        "a": [
+          38,
+          27,
+          43,
+          3,
+          9,
+          82,
+          10,
+          55
+        ]
+      },
+      "complexity": {
+        "best": "O(n)",
+        "average": "O(n²)",
+        "worst": "O(n²)",
+        "space": "O(1)"
+      },
+      "description": {
+        "en": "Takes items one by one and slides each into its correct place in the already-sorted left part, like sorting playing cards in your hand.",
+        "hi": "अंकों को एक-एक करके लेता है और हर अंक को बाईं ओर के क्रमबद्ध हिस्से में सही जगह खिसकाता है, जैसे हाथ में ताश के पत्ते सजाना।"
+      },
+      "interviewTip": {
+        "en": "Very fast on nearly sorted data. Real libraries use it for small chunks inside bigger sorts.",
+        "hi": "लगभग क्रमबद्ध डेटा पर बहुत तेज़। असली लाइब्रेरी बड़े सॉर्ट के छोटे हिस्सों में इसका इस्तेमाल करती हैं।"
+      },
+      "pseudocode": [
+        "for i ← 1 to n−1",
+        "  key ← a[i]",
+        "  j ← i",
+        "  while j > 0 and a[j−1] > key",
+        "    shift a[j−1] right; j ← j−1",
+        "  place key at a[j]",
+        "done"
+      ]
+    },
+    {
+      "id": "merge",
+      "slug": "merge-sort",
+      "name": "Merge sort",
+      "category": "sort",
+      "view": "bars",
+      "input": {
+        "type": "arr",
+        "a": [
+          38,
+          27,
+          43,
+          3,
+          9,
+          82,
+          10,
+          55
+        ]
+      },
+      "complexity": {
+        "best": "O(n log n)",
+        "average": "O(n log n)",
+        "worst": "O(n log n)",
+        "space": "O(n)"
+      },
+      "description": {
+        "en": "Divide and conquer: split the array in half, sort each half, then merge the two sorted halves by repeatedly taking the smaller front item.",
+        "hi": "बाँटो और जीतो: ऐरे को आधा करें, हर आधे को क्रम में लगाएँ, फिर आगे वाले छोटे अंक को बार-बार लेकर दोनों को जोड़ें।"
+      },
+      "interviewTip": {
+        "en": "Stable and always O(n log n). The merge step is the heart of many interview problems, like merging k sorted lists.",
+        "hi": "स्थिर और हमेशा O(n log n)। जोड़ने वाला कदम कई इंटरव्यू सवालों का आधार है, जैसे k क्रमबद्ध लिस्ट जोड़ना।"
+      },
+      "pseudocode": [
+        "mergeSort(lo, hi): if lo ≥ hi return",
+        "  mid ← (lo + hi) / 2",
+        "  mergeSort(lo, mid); mergeSort(mid+1, hi)",
+        "  merge the two halves:",
+        "    take the smaller front item into a[k]",
+        "    copy any leftovers",
+        "done"
+      ]
+    },
+    {
+      "id": "quick",
+      "slug": "quick-sort",
+      "name": "Quick sort",
+      "category": "sort",
+      "view": "bars",
+      "input": {
+        "type": "arr",
+        "a": [
+          38,
+          27,
+          43,
+          3,
+          9,
+          82,
+          10,
+          55
+        ]
+      },
+      "complexity": {
+        "best": "O(n log n)",
+        "average": "O(n log n)",
+        "worst": "O(n²)",
+        "space": "O(log n)"
+      },
+      "description": {
+        "en": "Pick a pivot, move smaller items to its left and bigger ones to its right, then sort both sides the same way.",
+        "hi": "एक pivot चुनें, छोटे अंक उसके बाईं ओर और बड़े दाईं ओर रखें, फिर दोनों तरफ़ यही दोहराएँ।"
+      },
+      "interviewTip": {
+        "en": "The partition step also solves \"k-th largest element\" in average O(n) (quickselect).",
+        "hi": "partition वाला कदम \"k-वाँ सबसे बड़ा अंक\" को औसतन O(n) में हल करता है (quickselect)।"
+      },
+      "pseudocode": [
+        "quickSort(lo, hi): if lo ≥ hi return",
+        "  pivot ← a[hi]; i ← lo",
+        "  for j ← lo to hi−1",
+        "    if a[j] < pivot: swap a[i], a[j]; i ← i+1",
+        "  swap a[i], a[hi]   (pivot fixed)",
+        "  quickSort(lo, i−1); quickSort(i+1, hi)"
+      ]
+    },
+    {
+      "id": "heapsort",
+      "slug": "heap-sort",
+      "name": "Heap sort",
+      "category": "sort",
+      "view": "heap",
+      "input": {
+        "type": "arr",
+        "a": [
+          38,
+          27,
+          43,
+          3,
+          9,
+          82,
+          10,
+          55
+        ]
+      },
+      "complexity": {
+        "best": "O(n log n)",
+        "average": "O(n log n)",
+        "worst": "O(n log n)",
+        "space": "O(1)"
+      },
+      "description": {
+        "en": "Turns the array into a max-heap, then repeatedly moves the root (the maximum) to the end and repairs the heap.",
+        "hi": "ऐरे को मैक्स-हीप बनाता है, फिर बार-बार जड़ (सबसे बड़ा) को आखिर में ले जाकर हीप ठीक करता है।"
+      },
+      "interviewTip": {
+        "en": "In-place and guaranteed O(n log n), but not stable.",
+        "hi": "अपनी जगह पर काम करता है और हमेशा O(n log n), पर स्थिर नहीं।"
+      },
+      "pseudocode": [
+        "build max-heap: siftDown(i) for i ← n/2−1 down to 0",
+        "for end ← n−1 down to 1",
+        "  swap a[0], a[end]   (max to the end)",
+        "  siftDown(0, end)",
+        "siftDown(i): find the larger child c",
+        "  if a[c] > a[i]: swap and continue at c",
+        "done"
+      ]
+    },
+    {
+      "id": "linear",
+      "slug": "linear-search",
+      "name": "Linear search",
+      "category": "search",
+      "view": "cells",
+      "input": {
+        "type": "arrt",
+        "a": [
+          12,
+          45,
+          7,
+          23,
+          56,
+          89,
+          34
+        ],
+        "t": 56
+      },
+      "complexity": {
+        "best": "O(1)",
+        "average": "O(n)",
+        "worst": "O(n)",
+        "space": "O(1)"
+      },
+      "description": {
+        "en": "Checks every item from left to right until it finds the target.",
+        "hi": "लक्ष्य मिलने तक हर अंक को बाएँ से दाएँ जाँचता है।"
+      },
+      "interviewTip": {
+        "en": "The only option for unsorted data you search once.",
+        "hi": "बिना क्रम वाले डेटा में एक बार खोजने का यही तरीका है।"
+      },
+      "pseudocode": [
+        "for i ← 0 to n−1",
+        "  if a[i] = target",
+        "    return i",
+        "return −1"
+      ]
+    },
+    {
+      "id": "binary",
+      "slug": "binary-search",
+      "name": "Binary search",
+      "category": "search",
+      "view": "cells",
+      "input": {
+        "type": "arrt",
+        "a": [
+          3,
+          8,
+          15,
+          21,
+          27,
+          34,
+          42,
+          56,
+          63,
+          77
+        ],
+        "t": 42
+      },
+      "complexity": {
+        "best": "O(1)",
+        "average": "O(log n)",
+        "worst": "O(log n)",
+        "space": "O(1)"
+      },
+      "description": {
+        "en": "On a sorted array, look at the middle. Throw away the half that cannot contain the target. Repeat.",
+        "hi": "क्रमबद्ध ऐरे में बीच वाला अंक देखें। जिस आधे में लक्ष्य नहीं हो सकता उसे हटा दें। दोहराएँ।"
+      },
+      "interviewTip": {
+        "en": "Also works on any monotonic yes/no question: \"binary search on the answer\".",
+        "hi": "किसी भी बढ़ते हाँ/नहीं सवाल पर भी काम करता है: \"उत्तर पर बाइनरी सर्च\"।"
+      },
+      "pseudocode": [
+        "lo ← 0, hi ← n−1",
+        "while lo ≤ hi",
+        "  mid ← (lo + hi) / 2",
+        "  if a[mid] = target: return mid",
+        "  if a[mid] < target: lo ← mid + 1",
+        "  else: hi ← mid − 1",
+        "return −1"
+      ]
+    },
+    {
+      "id": "pairsum",
+      "slug": "pair-with-target-sum",
+      "name": "Pair with target sum",
+      "category": "two",
+      "view": "cells",
+      "input": {
+        "type": "arrt",
+        "a": [
+          2,
+          4,
+          7,
+          11,
+          15,
+          18,
+          21
+        ],
+        "t": 22
+      },
+      "complexity": {
+        "best": "O(n)",
+        "average": "O(n)",
+        "worst": "O(n)",
+        "space": "O(1)"
+      },
+      "description": {
+        "en": "In a sorted array, put one pointer at each end. If the sum is too small move left up; if too big move right down.",
+        "hi": "क्रमबद्ध ऐरे में दोनों सिरों पर पॉइंटर रखें। जोड़ छोटा हो तो बायाँ आगे, बड़ा हो तो दायाँ पीछे।"
+      },
+      "interviewTip": {
+        "en": "Classic \"Two Sum II\". The same idea solves 3Sum after sorting.",
+        "hi": "क्लासिक \"Two Sum II\"। सॉर्ट करने के बाद यही तरीका 3Sum भी हल करता है।"
+      },
+      "pseudocode": [
+        "L ← 0, R ← n−1",
+        "while L < R",
+        "  sum ← a[L] + a[R]",
+        "  if sum = target: return (L, R)",
+        "  if sum < target: L ← L + 1",
+        "  else: R ← R − 1",
+        "no pair"
+      ]
+    },
+    {
+      "id": "water",
+      "slug": "container-with-most-water",
+      "name": "Container with most water",
+      "category": "two",
+      "view": "bars",
+      "input": {
+        "type": "arr",
+        "a": [
+          1,
+          8,
+          6,
+          2,
+          5,
+          4,
+          8,
+          3,
+          7
+        ]
+      },
+      "complexity": {
+        "best": "O(n)",
+        "average": "O(n)",
+        "worst": "O(n)",
+        "space": "O(1)"
+      },
+      "description": {
+        "en": "Two walls hold water equal to the shorter wall × distance. Start wide and always move the shorter wall inward.",
+        "hi": "दो दीवारें छोटी दीवार × दूरी जितना पानी रोकती हैं। चौड़ाई से शुरू करें और हमेशा छोटी दीवार अंदर खिसकाएँ।"
+      },
+      "interviewTip": {
+        "en": "The key proof: moving the taller wall can never increase the area.",
+        "hi": "मुख्य तर्क: लंबी दीवार खिसकाने से क्षेत्रफल कभी नहीं बढ़ सकता।"
+      },
+      "pseudocode": [
+        "L ← 0, R ← n−1, best ← 0",
+        "while L < R",
+        "  best ← max(best, min(a[L], a[R]) × (R − L))",
+        "  if a[L] ≤ a[R]: L ← L + 1",
+        "  else: R ← R − 1",
+        "return best"
+      ]
+    },
+    {
+      "id": "maxsumk",
+      "slug": "max-sum-of-k-items",
+      "name": "Max sum of k items",
+      "category": "window",
+      "view": "cells",
+      "input": {
+        "type": "arrk",
+        "a": [
+          2,
+          1,
+          5,
+          1,
+          3,
+          2,
+          9,
+          1,
+          4
+        ],
+        "k": 3
+      },
+      "complexity": {
+        "best": "O(n)",
+        "average": "O(n)",
+        "worst": "O(n)",
+        "space": "O(1)"
+      },
+      "description": {
+        "en": "Keep a window of k items. Slide it one step: add the new item, subtract the one that left. No need to re-add everything.",
+        "hi": "k अंकों की खिड़की रखें। एक कदम खिसकाएँ: नया अंक जोड़ें, निकला हुआ घटाएँ। सब दोबारा जोड़ने की ज़रूरत नहीं।"
+      },
+      "interviewTip": {
+        "en": "Fixed-size window template. Turns O(n·k) into O(n).",
+        "hi": "तय आकार की खिड़की का ढाँचा। O(n·k) को O(n) बना देता है।"
+      },
+      "pseudocode": [
+        "sum ← a[0] + … + a[k−1]; best ← sum",
+        "for i ← k to n−1",
+        "  sum ← sum + a[i] − a[i−k]",
+        "  best ← max(best, sum)",
+        "return best"
+      ]
+    },
+    {
+      "id": "longestuniq",
+      "slug": "longest-substring-no-repeats",
+      "name": "Longest substring, no repeats",
+      "category": "window",
+      "view": "cells",
+      "input": {
+        "type": "str",
+        "s": "abcabcbbpq"
+      },
+      "complexity": {
+        "best": "O(n)",
+        "average": "O(n)",
+        "worst": "O(n)",
+        "space": "O(k)"
+      },
+      "description": {
+        "en": "Grow the window to the right. When a letter repeats, jump the left edge just past its last position.",
+        "hi": "खिड़की को दाईं ओर बढ़ाएँ। अक्षर दोहराए तो बायाँ किनारा उसकी पिछली जगह के ठीक बाद ले जाएँ।"
+      },
+      "interviewTip": {
+        "en": "Variable-size window template with a hash map of last positions.",
+        "hi": "बदलते आकार की खिड़की का ढाँचा, आखिरी जगहों के hash map के साथ।"
+      },
+      "pseudocode": [
+        "L ← 0, best ← 0, last ← {}",
+        "for R ← 0 to n−1",
+        "  if s[R] seen at index ≥ L: L ← last[s[R]] + 1",
+        "  last[s[R]] ← R; best ← max(best, R − L + 1)",
+        "",
+        "return best"
+      ]
+    },
+    {
+      "id": "kadane",
+      "slug": "kadanes-max-subarray",
+      "name": "Kadane's max subarray",
+      "category": "array",
+      "view": "cells",
+      "input": {
+        "type": "arr",
+        "a": [
+          -2,
+          1,
+          -3,
+          4,
+          -1,
+          2,
+          1,
+          -5,
+          4
+        ]
+      },
+      "complexity": {
+        "best": "O(n)",
+        "average": "O(n)",
+        "worst": "O(n)",
+        "space": "O(1)"
+      },
+      "description": {
+        "en": "At each item decide: extend the current run, or start fresh from here. Track the best sum seen.",
+        "hi": "हर अंक पर तय करें: मौजूदा हिस्सा बढ़ाएँ या यहीं से नई शुरुआत करें। सबसे अच्छा जोड़ याद रखें।"
+      },
+      "interviewTip": {
+        "en": "The simplest DP you will meet. Watch out for all-negative arrays.",
+        "hi": "सबसे सरल DP। सारे ऋणात्मक अंकों वाली ऐरे पर ध्यान दें।"
+      },
+      "pseudocode": [
+        "cur ← 0, best ← −∞",
+        "for each x in a",
+        "  cur ← max(x, cur + x)",
+        "  best ← max(best, cur)",
+        "return best"
+      ]
+    },
+    {
+      "id": "parens",
+      "slug": "valid-parentheses",
+      "name": "Valid parentheses",
+      "category": "stack",
+      "view": "stack",
+      "input": {
+        "type": "str",
+        "s": "{[()()]}"
+      },
+      "complexity": {
+        "best": "O(n)",
+        "average": "O(n)",
+        "worst": "O(n)",
+        "space": "O(n)"
+      },
+      "description": {
+        "en": "Push every opening bracket. For a closing bracket, the top of the stack must be its partner.",
+        "hi": "हर खुलने वाला ब्रैकेट डालें। बंद होने वाले के लिए स्टैक में सबसे ऊपर उसका जोड़ीदार होना चाहिए।"
+      },
+      "interviewTip": {
+        "en": "The last thing opened must be the first thing closed: that is exactly a stack.",
+        "hi": "जो आखिर में खुला वही पहले बंद होगा: यही स्टैक है।"
+      },
+      "pseudocode": [
+        "stack ← empty",
+        "for each ch in s",
+        "  if ch opens: push ch",
+        "  else",
+        "    if top ≠ partner(ch): return false",
+        "    else pop",
+        "return stack is empty"
+      ]
+    },
+    {
+      "id": "nextgreater",
+      "slug": "next-greater-element",
+      "name": "Next greater element",
+      "category": "stack",
+      "view": "stack",
+      "input": {
+        "type": "arr",
+        "a": [
+          4,
+          5,
+          2,
+          25,
+          7,
+          8,
+          1
+        ]
+      },
+      "complexity": {
+        "best": "O(n)",
+        "average": "O(n)",
+        "worst": "O(n)",
+        "space": "O(n)"
+      },
+      "description": {
+        "en": "Keep a stack of items still waiting for a bigger number. A new bigger item answers all smaller waiting items at once.",
+        "hi": "उन अंकों का स्टैक रखें जो किसी बड़े अंक का इंतज़ार कर रहे हैं। नया बड़ा अंक सभी छोटे इंतज़ार वालों का जवाब एक साथ दे देता है।"
+      },
+      "interviewTip": {
+        "en": "Monotonic stack pattern: daily temperatures, stock span, largest rectangle in histogram.",
+        "hi": "मोनोटोनिक स्टैक पैटर्न: रोज़ का तापमान, स्टॉक स्पैन, हिस्टोग्राम का सबसे बड़ा आयत।"
+      },
+      "pseudocode": [
+        "stack ← empty (indices)",
+        "for i ← 0 to n−1",
+        "  while stack and a[top] < a[i]",
+        "    answer[pop] ← a[i]",
+        "  push i",
+        "remaining items → −1"
+      ]
+    },
+    {
+      "id": "reverselist",
+      "slug": "reverse-a-linked-list",
+      "name": "Reverse a linked list",
+      "category": "list",
+      "view": "list",
+      "input": {
+        "type": "arr",
+        "a": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "complexity": {
+        "best": "O(n)",
+        "average": "O(n)",
+        "worst": "O(n)",
+        "space": "O(1)"
+      },
+      "description": {
+        "en": "Walk the list with three pointers (prev, curr, next) and flip each arrow backwards.",
+        "hi": "तीन पॉइंटर (prev, curr, next) से लिस्ट पर चलें और हर तीर को पीछे की ओर पलटें।"
+      },
+      "interviewTip": {
+        "en": "One of the most asked questions. Save next before you overwrite curr.next!",
+        "hi": "सबसे ज़्यादा पूछे जाने वाले सवालों में से एक। curr.next बदलने से पहले next सहेज लें!"
+      },
+      "pseudocode": [
+        "prev ← null, curr ← head",
+        "while curr ≠ null",
+        "  next ← curr.next",
+        "  curr.next ← prev",
+        "  prev ← curr; curr ← next",
+        "head ← prev"
+      ]
+    },
+    {
+      "id": "middlelist",
+      "slug": "middle-node-fast-slow",
+      "name": "Middle node (fast & slow)",
+      "category": "list",
+      "view": "list",
+      "input": {
+        "type": "arr",
+        "a": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "complexity": {
+        "best": "O(n)",
+        "average": "O(n)",
+        "worst": "O(n)",
+        "space": "O(1)"
+      },
+      "description": {
+        "en": "Move slow by one and fast by two. When fast hits the end, slow is at the middle.",
+        "hi": "slow को एक और fast को दो कदम चलाएँ। जब fast आखिर तक पहुँचे, slow बीच में होगा।"
+      },
+      "interviewTip": {
+        "en": "Fast and slow pointers find middles and cycles in one pass with no extra memory.",
+        "hi": "fast और slow पॉइंटर बिना अतिरिक्त मेमोरी के एक बार में बीच और लूप ढूँढते हैं।"
+      },
+      "pseudocode": [
+        "slow ← head, fast ← head",
+        "while fast and fast.next",
+        "  slow ← slow.next; fast ← fast.next.next",
+        "return slow"
+      ]
+    },
+    {
+      "id": "cyclelist",
+      "slug": "cycle-detection-floyd",
+      "name": "Cycle detection (Floyd)",
+      "category": "list",
+      "view": "list",
+      "input": {
+        "type": "arrc",
+        "a": [
+          3,
+          7,
+          1,
+          9,
+          4,
+          6
+        ],
+        "c": 2
+      },
+      "complexity": {
+        "best": "O(n)",
+        "average": "O(n)",
+        "worst": "O(n)",
+        "space": "O(1)"
+      },
+      "description": {
+        "en": "If the list loops, the fast pointer will eventually lap the slow one and they meet inside the loop.",
+        "hi": "अगर लिस्ट घूमती है, तो fast पॉइंटर आखिरकार slow को पकड़ लेगा और दोनों लूप के अंदर मिलेंगे।"
+      },
+      "interviewTip": {
+        "en": "Set \"cycle at\" to −1 to see the no-cycle case.",
+        "hi": "बिना लूप वाला मामला देखने के लिए \"लूप कहाँ\" को −1 करें।"
+      },
+      "pseudocode": [
+        "slow ← head, fast ← head",
+        "loop",
+        "  slow ← slow.next; fast ← fast.next.next",
+        "  if slow = fast: cycle!",
+        "  if fast reaches null: no cycle"
+      ]
+    },
+    {
+      "id": "bstbuild",
+      "slug": "bst-insert",
+      "name": "BST insert",
+      "category": "tree",
+      "view": "tree",
+      "input": {
+        "type": "arr",
+        "a": [
+          50,
+          30,
+          70,
+          20,
+          40,
+          60,
+          80,
+          35,
+          65
+        ]
+      },
+      "complexity": {
+        "best": "O(log n)",
+        "average": "O(log n)",
+        "worst": "O(n)",
+        "space": "O(n)"
+      },
+      "description": {
+        "en": "Each new value walks down from the root: smaller goes left, bigger goes right, until it finds an empty spot.",
+        "hi": "हर नया मान जड़ से नीचे चलता है: छोटा बाएँ, बड़ा दाएँ, जब तक खाली जगह न मिल जाए।"
+      },
+      "interviewTip": {
+        "en": "Insert sorted values and the tree becomes a line: that is the O(n) worst case.",
+        "hi": "क्रमबद्ध मान डालें तो ट्री एक सीधी लाइन बन जाता है: यही O(n) वाला सबसे खराब मामला है।"
+      },
+      "pseudocode": [
+        "if tree empty: value becomes root",
+        "node ← root",
+        "loop: compare value with node",
+        "  if the child spot is empty: place value there",
+        "done"
+      ]
+    },
+    {
+      "id": "bstsearch",
+      "slug": "bst-search",
+      "name": "BST search",
+      "category": "tree",
+      "view": "tree",
+      "input": {
+        "type": "arrt",
+        "a": [
+          50,
+          30,
+          70,
+          20,
+          40,
+          60,
+          80,
+          35,
+          65
+        ],
+        "t": 65
+      },
+      "complexity": {
+        "best": "O(log n)",
+        "average": "O(log n)",
+        "worst": "O(n)",
+        "space": "O(1)"
+      },
+      "description": {
+        "en": "Like binary search on a tree: each comparison throws away one whole subtree.",
+        "hi": "ट्री पर बाइनरी सर्च जैसा: हर तुलना एक पूरे उप-ट्री को हटा देती है।"
+      },
+      "interviewTip": {
+        "en": "Balanced trees (AVL, red-black) keep this O(log n).",
+        "hi": "संतुलित ट्री (AVL, red-black) इसे O(log n) रखते हैं।"
+      },
+      "pseudocode": [
+        "node ← root",
+        "while node: compare target with node",
+        "  if equal: found",
+        "  go left if smaller, right if bigger",
+        "not found"
+      ]
+    },
+    {
+      "id": "inorder",
+      "slug": "in-order-traversal",
+      "name": "In-order traversal",
+      "category": "tree",
+      "view": "tree",
+      "input": {
+        "type": "arr",
+        "a": [
+          50,
+          30,
+          70,
+          20,
+          40,
+          60,
+          80,
+          35,
+          65
+        ]
+      },
+      "complexity": {
+        "best": "O(n)",
+        "average": "O(n)",
+        "worst": "O(n)",
+        "space": "O(h)"
+      },
+      "description": {
+        "en": "Visit left subtree, then the node, then the right subtree.",
+        "hi": "पहले बायाँ उप-ट्री, फिर नोड, फिर दायाँ उप-ट्री।"
+      },
+      "interviewTip": {
+        "en": "On a BST it prints values in sorted order. Used to validate a BST.",
+        "hi": "BST पर यह मान क्रम में देता है। BST जाँचने में उपयोगी।"
+      },
+      "pseudocode": [
+        "inorder(node): if null return",
+        "  (pre-order would visit here)",
+        "  inorder(node.left); visit node",
+        "  (post-order would visit here)",
+        "  inorder(node.right)"
+      ]
+    },
+    {
+      "id": "preorder",
+      "slug": "pre-order-traversal",
+      "name": "Pre-order traversal",
+      "category": "tree",
+      "view": "tree",
+      "input": {
+        "type": "arr",
+        "a": [
+          50,
+          30,
+          70,
+          20,
+          40,
+          60,
+          80,
+          35,
+          65
+        ]
+      },
+      "complexity": {
+        "best": "O(n)",
+        "average": "O(n)",
+        "worst": "O(n)",
+        "space": "O(h)"
+      },
+      "description": {
+        "en": "Visit the node first, then left, then right.",
+        "hi": "पहले नोड, फिर बायाँ, फिर दायाँ।"
+      },
+      "interviewTip": {
+        "en": "Used to copy or serialize a tree.",
+        "hi": "ट्री कॉपी या सेव करने में उपयोगी।"
+      },
+      "pseudocode": [
+        "preorder(node): if null return",
+        "  visit node",
+        "  preorder(node.left)",
+        "  preorder(node.right)",
+        "done"
+      ]
+    },
+    {
+      "id": "postorder",
+      "slug": "post-order-traversal",
+      "name": "Post-order traversal",
+      "category": "tree",
+      "view": "tree",
+      "input": {
+        "type": "arr",
+        "a": [
+          50,
+          30,
+          70,
+          20,
+          40,
+          60,
+          80,
+          35,
+          65
+        ]
+      },
+      "complexity": {
+        "best": "O(n)",
+        "average": "O(n)",
+        "worst": "O(n)",
+        "space": "O(h)"
+      },
+      "description": {
+        "en": "Visit left, then right, then the node last.",
+        "hi": "पहले बायाँ, फिर दायाँ, नोड सबसे आखिर में।"
+      },
+      "interviewTip": {
+        "en": "Used to delete a tree or compute heights bottom-up.",
+        "hi": "ट्री मिटाने या नीचे से ऊपर ऊँचाई निकालने में उपयोगी।"
+      },
+      "pseudocode": [
+        "postorder(node): if null return",
+        "  postorder(node.left)",
+        "  postorder(node.right)",
+        "  visit node",
+        "done"
+      ]
+    },
+    {
+      "id": "levelorder",
+      "slug": "level-order-bfs",
+      "name": "Level-order (BFS)",
+      "category": "tree",
+      "view": "tree",
+      "input": {
+        "type": "arr",
+        "a": [
+          50,
+          30,
+          70,
+          20,
+          40,
+          60,
+          80,
+          35,
+          65
+        ]
+      },
+      "complexity": {
+        "best": "O(n)",
+        "average": "O(n)",
+        "worst": "O(n)",
+        "space": "O(w)"
+      },
+      "description": {
+        "en": "Visit nodes row by row using a queue.",
+        "hi": "कतार (queue) से नोड को पंक्ति दर पंक्ति देखें।"
+      },
+      "interviewTip": {
+        "en": "Right side view, zigzag order and minimum depth all build on this.",
+        "hi": "दाईं ओर का दृश्य, ज़िगज़ैग क्रम और न्यूनतम गहराई सब इसी पर बनते हैं।"
+      },
+      "pseudocode": [
+        "queue ← [root]",
+        "while queue not empty",
+        "  node ← dequeue; visit node",
+        "  enqueue node.left, node.right if present",
+        "done"
+      ]
+    },
+    {
+      "id": "heapinsert",
+      "slug": "min-heap-insert",
+      "name": "Min-heap insert",
+      "category": "heap",
+      "view": "heap",
+      "input": {
+        "type": "arr",
+        "a": [
+          9,
+          4,
+          7,
+          1,
+          8,
+          2,
+          6
+        ]
+      },
+      "complexity": {
+        "best": "O(1)",
+        "average": "O(log n)",
+        "worst": "O(log n)",
+        "space": "O(n)"
+      },
+      "description": {
+        "en": "Add the new value at the bottom, then swap it up while it is smaller than its parent.",
+        "hi": "नया मान नीचे जोड़ें, फिर पैरेंट से छोटा होने तक ऊपर बदलते रहें।"
+      },
+      "interviewTip": {
+        "en": "Priority queues power Dijkstra, top-k problems and task schedulers.",
+        "hi": "प्रायोरिटी क्यू Dijkstra, top-k सवालों और टास्क शेड्यूलर में काम आती है।"
+      },
+      "pseudocode": [
+        "append value at index n",
+        "i ← n",
+        "while i > 0",
+        "  if a[i] < a[parent]: swap, i ← parent",
+        "  else stop",
+        "done"
+      ]
+    },
+    {
+      "id": "bfs",
+      "slug": "breadth-first-search",
+      "name": "Breadth-first search",
+      "category": "graph",
+      "view": "graph",
+      "input": {
+        "type": "node",
+        "s": "A"
+      },
+      "complexity": {
+        "best": "O(V+E)",
+        "average": "O(V+E)",
+        "worst": "O(V+E)",
+        "space": "O(V)"
+      },
+      "description": {
+        "en": "Explore all neighbours first, then their neighbours, using a queue.",
+        "hi": "पहले सभी पड़ोसी, फिर उनके पड़ोसी देखें, कतार की मदद से।"
+      },
+      "interviewTip": {
+        "en": "Finds the shortest path when every edge has the same cost.",
+        "hi": "जब हर किनारे की कीमत बराबर हो तो सबसे छोटा रास्ता ढूँढता है।"
+      },
+      "pseudocode": [
+        "queue ← [start]; mark start",
+        "while queue not empty",
+        "  u ← dequeue; visit u",
+        "  for each neighbour v of u",
+        "    if v unmarked: mark v, enqueue v",
+        "done"
+      ]
+    },
+    {
+      "id": "dfs",
+      "slug": "depth-first-search",
+      "name": "Depth-first search",
+      "category": "graph",
+      "view": "graph",
+      "input": {
+        "type": "node",
+        "s": "A"
+      },
+      "complexity": {
+        "best": "O(V+E)",
+        "average": "O(V+E)",
+        "worst": "O(V+E)",
+        "space": "O(V)"
+      },
+      "description": {
+        "en": "Go as deep as you can along one path, then backtrack and try the next branch.",
+        "hi": "एक रास्ते पर जितना गहरा जा सकें जाएँ, फिर पीछे लौटकर अगली शाखा आज़माएँ।"
+      },
+      "interviewTip": {
+        "en": "Used for connected components, cycle detection and path finding in mazes.",
+        "hi": "जुड़े हिस्से, लूप पकड़ने और भूलभुलैया में रास्ता खोजने में उपयोगी।"
+      },
+      "pseudocode": [
+        "dfs(u):",
+        "  mark and visit u",
+        "  for each neighbour v of u",
+        "    if v unmarked: dfs(v)",
+        "  backtrack",
+        "done"
+      ]
+    },
+    {
+      "id": "dijkstra",
+      "slug": "dijkstras-shortest-path",
+      "name": "Dijkstra's shortest path",
+      "category": "graph",
+      "view": "graph",
+      "input": {
+        "type": "node",
+        "s": "A"
+      },
+      "complexity": {
+        "best": "O(E log V)",
+        "average": "O(E log V)",
+        "worst": "O(E log V)",
+        "space": "O(V)"
+      },
+      "description": {
+        "en": "Always finalise the closest unfinished node, then relax its edges to see if they offer shorter routes.",
+        "hi": "हमेशा सबसे पास के अधूरे नोड को पक्का करें, फिर उसके किनारों से छोटे रास्ते जाँचें।"
+      },
+      "interviewTip": {
+        "en": "Does not work with negative edge weights. Use Bellman-Ford for those.",
+        "hi": "ऋणात्मक भार वाले किनारों पर काम नहीं करता। उनके लिए Bellman-Ford लें।"
+      },
+      "pseudocode": [
+        "dist[start] ← 0, others ← ∞",
+        "repeat for every node",
+        "  u ← closest unfinished node",
+        "  mark u finished",
+        "  for each edge u→v with weight w",
+        "    if dist[u] + w < dist[v]: dist[v] ← dist[u] + w",
+        "done"
+      ]
+    },
+    {
+      "id": "topo",
+      "slug": "topological-sort-kahn",
+      "name": "Topological sort (Kahn)",
+      "category": "graph",
+      "view": "graph",
+      "input": {
+        "type": "none"
+      },
+      "complexity": {
+        "best": "O(V+E)",
+        "average": "O(V+E)",
+        "worst": "O(V+E)",
+        "space": "O(V)"
+      },
+      "description": {
+        "en": "Repeatedly take a node with no incoming arrows and remove its outgoing arrows.",
+        "hi": "बार-बार ऐसा नोड लें जिसमें कोई तीर न आता हो, और उसके जाने वाले तीर हटा दें।"
+      },
+      "interviewTip": {
+        "en": "Course schedule, build order and dependency problems. If nodes remain, there is a cycle.",
+        "hi": "कोर्स शेड्यूल, बिल्ड ऑर्डर और निर्भरता वाले सवाल। अगर नोड बच जाएँ तो लूप है।"
+      },
+      "pseudocode": [
+        "count incoming arrows for each node",
+        "queue ← nodes with 0 incoming",
+        "while queue not empty",
+        "  u ← dequeue; add to order",
+        "  for each u→v: remove it; if v has 0 left, enqueue v",
+        "return order"
+      ]
+    },
+    {
+      "id": "gridbfs",
+      "slug": "bfs-shortest-path",
+      "name": "BFS shortest path",
+      "category": "grid",
+      "view": "grid",
+      "input": {
+        "type": "grid"
+      },
+      "complexity": {
+        "best": "O(R·C)",
+        "average": "O(R·C)",
+        "worst": "O(R·C)",
+        "space": "O(R·C)"
+      },
+      "description": {
+        "en": "Spreads out from the start like a ripple. The first time it reaches the goal is the shortest path.",
+        "hi": "शुरुआत से लहर की तरह फैलता है। पहली बार लक्ष्य तक पहुँचना ही सबसे छोटा रास्ता है।"
+      },
+      "interviewTip": {
+        "en": "Click cells to draw walls. Grid problems are graph problems in disguise.",
+        "hi": "दीवारें बनाने के लिए खानों पर क्लिक करें। ग्रिड वाले सवाल असल में ग्राफ़ के सवाल हैं।"
+      },
+      "pseudocode": [
+        "queue ← [start]",
+        "while queue not empty",
+        "  cell ← dequeue; explore it",
+        "  add unvisited open neighbours",
+        "  (stop when cell is the goal)",
+        "goal reached: trace path back",
+        "no path"
+      ]
+    },
+    {
+      "id": "astar",
+      "slug": "a-star-search",
+      "name": "A* search",
+      "category": "grid",
+      "view": "grid",
+      "input": {
+        "type": "grid"
+      },
+      "complexity": {
+        "best": "O(E)",
+        "average": "O(E log V)",
+        "worst": "O(E log V)",
+        "space": "O(R·C)"
+      },
+      "description": {
+        "en": "Like Dijkstra, but adds a guess of the remaining distance (Manhattan) so it explores toward the goal first.",
+        "hi": "Dijkstra जैसा, पर बची हुई दूरी का अनुमान (Manhattan) जोड़ता है ताकि पहले लक्ष्य की ओर खोजे।"
+      },
+      "interviewTip": {
+        "en": "Compare the explored-cell count with BFS on the same grid.",
+        "hi": "उसी ग्रिड पर BFS से देखे गए खानों की संख्या की तुलना करें।"
+      },
+      "pseudocode": [
+        "open ← [start]",
+        "while open not empty",
+        "  cell ← lowest (steps + distance-to-goal)",
+        "  explore it; update neighbours",
+        "  (stop when cell is the goal)",
+        "goal reached: trace path back",
+        "no path"
+      ]
+    },
+    {
+      "id": "fib",
+      "slug": "fibonacci-bottom-up",
+      "name": "Fibonacci (bottom-up)",
+      "category": "dp",
+      "view": "dp1",
+      "input": {
+        "type": "n",
+        "n": 12,
+        "lo": 2,
+        "hi": 20
+      },
+      "complexity": {
+        "best": "O(n)",
+        "average": "O(n)",
+        "worst": "O(n)",
+        "space": "O(n)"
+      },
+      "description": {
+        "en": "Build answers from the smallest up, reusing stored results instead of recomputing them.",
+        "hi": "सबसे छोटे से ऊपर तक उत्तर बनाएँ, सहेजे हुए नतीजे दोबारा इस्तेमाल करें।"
+      },
+      "interviewTip": {
+        "en": "Plain recursion is O(2ⁿ). A table makes it O(n).",
+        "hi": "सीधा रिकर्शन O(2ⁿ) है। टेबल से यह O(n) बनता है।"
+      },
+      "pseudocode": [
+        "F[0] ← 0, F[1] ← 1",
+        "for i ← 2 to n",
+        "  F[i] ← F[i−1] + F[i−2]",
+        "return F[n]"
+      ]
+    },
+    {
+      "id": "coins",
+      "slug": "coin-change-fewest-coins",
+      "name": "Coin change (fewest coins)",
+      "category": "dp",
+      "view": "dp1",
+      "input": {
+        "type": "coins",
+        "amt": 11,
+        "coins": [
+          1,
+          2,
+          5
+        ]
+      },
+      "complexity": {
+        "best": "O(A·k)",
+        "average": "O(A·k)",
+        "worst": "O(A·k)",
+        "space": "O(A)"
+      },
+      "description": {
+        "en": "For every amount, try each coin and reuse the best answer for the remaining amount.",
+        "hi": "हर रकम के लिए हर सिक्का आज़माएँ और बची रकम का सबसे अच्छा उत्तर दोबारा इस्तेमाल करें।"
+      },
+      "interviewTip": {
+        "en": "Greedy (biggest coin first) fails for coins like [1, 3, 4] and amount 6. DP never fails.",
+        "hi": "लालची तरीका (सबसे बड़ा सिक्का पहले) [1, 3, 4] और रकम 6 पर फ़ेल होता है। DP कभी नहीं।"
+      },
+      "pseudocode": [
+        "dp[0] ← 0, others ← ∞",
+        "for x ← 1 to amount",
+        "  for each coin c ≤ x",
+        "    dp[x] ← min(dp[x], dp[x−c] + 1)",
+        "return dp[amount]"
+      ]
+    },
+    {
+      "id": "lcs",
+      "slug": "longest-common-subsequence",
+      "name": "Longest common subsequence",
+      "category": "dp",
+      "view": "dp2",
+      "input": {
+        "type": "two",
+        "s1": "ABCBDAB",
+        "s2": "BDCABA"
+      },
+      "complexity": {
+        "best": "O(m·n)",
+        "average": "O(m·n)",
+        "worst": "O(m·n)",
+        "space": "O(m·n)"
+      },
+      "description": {
+        "en": "Fill a table: if letters match take diagonal + 1, otherwise the better of top and left.",
+        "hi": "टेबल भरें: अक्षर मिलें तो तिरछा + 1, नहीं तो ऊपर और बाएँ में से बड़ा।"
+      },
+      "interviewTip": {
+        "en": "Same table shape as edit distance and diff tools.",
+        "hi": "edit distance और diff टूल जैसी ही टेबल।"
+      },
+      "pseudocode": [
+        "dp[0][*] ← 0, dp[*][0] ← 0",
+        "for each i, j",
+        "  if a[i] = b[j]: dp[i][j] ← dp[i−1][j−1] + 1",
+        "  else: dp[i][j] ← max(dp[i−1][j], dp[i][j−1])",
+        "trace back from the corner"
+      ]
+    },
+    {
+      "id": "knap",
+      "slug": "0-1-knapsack",
+      "name": "0/1 knapsack",
+      "category": "dp",
+      "view": "dp2",
+      "input": {
+        "type": "knap",
+        "items": [
+          [
+            1,
+            1
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            7
+          ]
+        ],
+        "cap": 7
+      },
+      "complexity": {
+        "best": "O(n·W)",
+        "average": "O(n·W)",
+        "worst": "O(n·W)",
+        "space": "O(n·W)"
+      },
+      "description": {
+        "en": "For each item and each weight limit, choose the better of skipping the item or taking it.",
+        "hi": "हर चीज़ और हर वज़न सीमा के लिए, चीज़ छोड़ने या लेने में से बेहतर चुनें।"
+      },
+      "interviewTip": {
+        "en": "Subset sum and partition problems are knapsack in disguise.",
+        "hi": "subset sum और partition वाले सवाल असल में नैपसैक ही हैं।"
+      },
+      "pseudocode": [
+        "dp[0][*] ← 0",
+        "for each item i (weight w, value v)",
+        "  for each limit c: if w > c: dp[i][c] ← dp[i−1][c]",
+        "  else dp[i][c] ← max(skip, dp[i−1][c−w] + v)",
+        "return dp[n][W]"
+      ]
+    },
+    {
+      "id": "nqueens",
+      "slug": "n-queens",
+      "name": "N-Queens",
+      "category": "back",
+      "view": "board",
+      "input": {
+        "type": "n",
+        "n": 5,
+        "lo": 4,
+        "hi": 8
+      },
+      "complexity": {
+        "best": "O(n!)",
+        "average": "O(n!)",
+        "worst": "O(n!)",
+        "space": "O(n)"
+      },
+      "description": {
+        "en": "Place one queen per row. If a row has no safe column, undo the previous choice and try the next one.",
+        "hi": "हर पंक्ति में एक रानी रखें। किसी पंक्ति में सुरक्षित स्तंभ न मिले तो पिछला फ़ैसला वापस लें और अगला आज़माएँ।"
+      },
+      "interviewTip": {
+        "en": "The template for Sudoku, word search and every \"try, check, undo\" problem.",
+        "hi": "सुडोकू, वर्ड सर्च और हर \"आज़माओ, जाँचो, वापस लो\" सवाल का ढाँचा।"
+      },
+      "pseudocode": [
+        "solve(row): if row = n: solution!",
+        "  for each column c",
+        "    if (row, c) is attacked: skip",
+        "    place queen; solve(row + 1)",
+        "    remove queen (backtrack)",
+        "  ",
+        "no solution"
+      ]
+    },
+    {
+      "id": "subsets",
+      "slug": "all-subsets",
+      "name": "All subsets",
+      "category": "back",
+      "view": "sets",
+      "input": {
+        "type": "arr",
+        "a": [
+          1,
+          2,
+          3
+        ]
+      },
+      "complexity": {
+        "best": "O(2ⁿ)",
+        "average": "O(2ⁿ)",
+        "worst": "O(2ⁿ)",
+        "space": "O(n)"
+      },
+      "description": {
+        "en": "Each item is either in or out. Exploring both choices for every item lists all 2ⁿ subsets.",
+        "hi": "हर चीज़ या तो अंदर है या बाहर। हर चीज़ के दोनों विकल्प आज़माने से सभी 2ⁿ उपसमुच्चय मिलते हैं।"
+      },
+      "interviewTip": {
+        "en": "Keep inputs small: 5 items already give 32 subsets.",
+        "hi": "इनपुट छोटा रखें: 5 चीज़ों से ही 32 उपसमुच्चय बनते हैं।"
+      },
+      "pseudocode": [
+        "go(i): if i = n",
+        "  record current subset",
+        "  include a[i]; go(i + 1)",
+        "  exclude a[i]; go(i + 1)",
+        "",
+        "done"
+      ]
+    },
+    {
+      "id": "hanoi",
+      "slug": "tower-of-hanoi",
+      "name": "Tower of Hanoi",
+      "category": "back",
+      "view": "hanoi",
+      "input": {
+        "type": "n",
+        "n": 3,
+        "lo": 2,
+        "hi": 6
+      },
+      "complexity": {
+        "best": "O(2ⁿ)",
+        "average": "O(2ⁿ)",
+        "worst": "O(2ⁿ)",
+        "space": "O(n)"
+      },
+      "description": {
+        "en": "To move n disks: move n−1 out of the way, move the biggest, then move the n−1 back on top.",
+        "hi": "n डिस्क ले जाने के लिए: n−1 को रास्ते से हटाएँ, सबसे बड़ी ले जाएँ, फिर n−1 को उसके ऊपर रखें।"
+      },
+      "interviewTip": {
+        "en": "The cleanest example of trusting recursion to solve the smaller problem.",
+        "hi": "छोटे सवाल को हल करने के लिए रिकर्शन पर भरोसा करने का सबसे साफ़ उदाहरण।"
+      },
+      "pseudocode": [
+        "hanoi(n, from, to, via):",
+        "  hanoi(n−1, from, via, to)",
+        "  move disk n from → to",
+        "  hanoi(n−1, via, to, from)",
+        "done"
+      ]
+    }
+  ]
+}

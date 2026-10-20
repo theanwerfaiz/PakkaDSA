@@ -27,7 +27,11 @@ for (const { pkg, subsets, weights } of FONTS) {
       if (start < 0) throw new Error(`No @font-face for ${file}`);
       const face = all
         .slice(all.indexOf('@font-face', start), all.indexOf('}', start) + 1)
-        .replace(/src: [^;]+;/, `src: url(/fonts/${file}) format('woff2');`);
+        .replace(/src: [^;]+;/, `src: url(/fonts/${file}) format('woff2');`)
+        // "optional": a font that is not ready almost at once is skipped for this page view instead of
+        // swapped in later, so text never reflows (no layout shift). The service worker caches the fonts,
+        // so later pages have them immediately.
+        .replace('font-display: swap', 'font-display: optional');
       css += face.trim() + '\n';
     }
   }

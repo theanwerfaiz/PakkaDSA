@@ -17,6 +17,7 @@ export default defineConfig(
       'no-eval': 'error',
       'no-new-func': 'error',
       'no-implied-eval': 'error',
+      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     },
   },
   {

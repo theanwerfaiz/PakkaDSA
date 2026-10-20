@@ -1,0 +1,201 @@
+---
+import Icon from './Icon.astro';
+import { categoryOf, type Algorithm, type Lang } from '../content/catalog';
+import { t } from '../app/i18n';
+import {
+  codeHtml,
+  codeTabsHtml,
+  legendHtml,
+  nextLink,
+  noteHtml,
+  watchHtml,
+} from '../app/views/viewer-html';
+import { pseudoLines } from '../content/code';
+import { GENERATORS } from '../engine/algorithms';
+import { assignIds } from '../engine/ids';
+import { defaultInput } from '../engine/inputs';
+import { NARROW, render, stageHeight, WIDE } from '../render';
+interface Props {
+  lang: Lang;
+  algo: Algorithm;
+}
+const { lang, algo } = Astro.props;
+
+// The first step of the default run is drawn at build time at both widths (a container query
+// shows the right one), so the stage has its final size before any script runs: no layout shift,
+// a fast first paint, and a picture even without JavaScript.
+const steps = GENERATORS[algo.id](defaultInput(algo.id));
+assignIds(steps);
+const label = t(lang, 'stageLabel', { name: algo.name, step: 1, total: steps.length });
+const firstSvg = (W: number, cls: string) =>
+  render(algo.view, steps[0].st, steps[0].hl, W).replace(
+    /^<svg viewBox="0 0 (\d+) [\d.]+" role="img" aria-label="[^"]*"/,
+    (_m, w: string) =>
+      `<svg class="ssr ${cls}" viewBox="0 0 ${w} ${stageHeight(algo.view, steps, W)}" role="img" aria-label="${label}"`,
+  );
+const ssr = firstSvg(WIDE, 'wide') + firstSvg(NARROW, 'narrow');
+const next = nextLink(lang, algo);
+---
+
+<div class="wrap" id="viewViz">
+  <section aria-labelledby="algoTitle">
+    <div class="title">
+      <h1 id="algoTitle">{algo.name}</h1>
+      <span class="catname">{categoryOf(algo).name[lang]}</span>
+      <div class="chips">
+        <span class="chip">
+          {t(lang, 'avg')} {algo.complexity.average}
+        </span>
+        <span class="chip">
+          {t(lang, 'space')} {algo.complexity.space}
+        </span>
+      </div>
+    </div>
+    <div class="stage" id="stage" data-view={algo.view} set:html={ssr} />
+    <noscript>
+      <p class="loading">{t(lang, 'noscript')}</p>
+    </noscript>
+    <div class="legend" id="legend" set:html={legendHtml(lang, algo.view)} />
+    <p
+      class="note"
+      id="note"
+      aria-live="polite"
+      data-step="1."
+      set:html={noteHtml(lang, steps[0])}
+    />
+    <div class="watch" id="watch" set:html={watchHtml(lang, algo, steps[0])} />
+    <div class="ctrls" role="group" aria-label={t(lang, 'playback')}>
+      <button class="cbtn" id="bStart" aria-label={t(lang, 'first')}>
+        <Icon name="first" />
+      </button>
+      <button class="cbtn" id="bPrev" aria-label={t(lang, 'prev')}>
+        <Icon name="prev" />
+      </button>
+      <button class="cbtn play" id="bPlay" aria-label={t(lang, 'play')}>
+        <svg id="playIco" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M8 5.5v13l11-6.5z"></path>
+        </svg>
+      </button>
+      <button class="cbtn" id="bNext" aria-label={t(lang, 'next')}>
+        <Icon name="next" />
+      </button>
+      <button class="cbtn" id="bEnd" aria-label={t(lang, 'last')}>
+        <Icon name="last" />
+      </button>
+      <div class="scrub">
+        <input
+          type="range"
+          id="scrub"
+          min="0"
+          max={steps.length - 1}
+          value="0"
+          aria-label={t(lang, 'step')}
+        />
+        <div class="lbl">
+          <span id="stepLbl">
+            {t(lang, 'step')} 1 {t(lang, 'of')} {steps.length}
+          </span>
+          <span id="score" class="score"></span>
+        </div>
+      </div>
+      <label class="speed">
+        <span>{t(lang, 'speed')}</span>
+        <input type="range" id="speed" min="0" max="6" value="3" aria-label={t(lang, 'speed')} />
+        <span id="speedLbl">1×</span>
+      </label>
+    </div>
+  </section>
+  <div class="panel">
+    <div class="card">
+      <div class="tabs" role="tablist">
+        <button class="tab" role="tab" id="tCode" aria-selected="true" aria-controls="pCode">
+          {t(lang, 'code')}
+        </button>
+        <button
+          class="tab"
+          role="tab"
+          id="tInput"
+          aria-selected="false"
+          aria-controls="pInput"
+          tabindex="-1"
+        >
+          {t(lang, 'input')}
+        </button>
+        <button
+          class="tab"
+          role="tab"
+          id="tAbout"
+          aria-selected="false"
+          aria-controls="pAbout"
+          tabindex="-1"
+        >
+          {t(lang, 'about')}
+        </button>
+      </div>
+      <div class="tabp" id="pCode" role="tabpanel" aria-labelledby="tCode">
+        <div class="codebar">
+          <div
+            class="seg"
+            id="langSeg"
+            role="group"
+            aria-label={t(lang, 'codeLang')}
+            set:html={codeTabsHtml('pseudo')}
+          />
+          <button class="btn sm" id="copyCode">
+            {t(lang, 'copy')}
+          </button>
+        </div>
+        <div
+          class="code pseudo"
+          id="code"
+          set:html={codeHtml(pseudoLines(algo.pseudocode), steps[0].ln)}
+        />
+      </div>
+      <div class="tabp" id="pInput" role="tabpanel" aria-labelledby="tInput" hidden></div>
+      <div class="tabp about" id="pAbout" role="tabpanel" aria-labelledby="tAbout" hidden>
+        <p>{algo.description[lang]}</p>
+        <div class="cx">
+          <div>
+            <small>{t(lang, 'best')}</small>
+            <b>{algo.complexity.best}</b>
+          </div>
+          <div>
+            <small>{t(lang, 'avg')}</small>
+            <b>{algo.complexity.average}</b>
+          </div>
+          <div>
+            <small>{t(lang, 'worst')}</small>
+            <b>{algo.complexity.worst}</b>
+          </div>
+          <div>
+            <small>{t(lang, 'space')}</small>
+            <b>{algo.complexity.space}</b>
+          </div>
+        </div>
+        <p class="tip">
+          <b>{t(lang, 'tipH')}:</b> {algo.interviewTip[lang]}
+        </p>
+        <p class="keys">
+          {t(lang, 'keys')}: <kbd>Space</kbd>
+          {t(lang, 'keyPlay')}, <kbd>←</kbd> <kbd>→</kbd>
+          {t(lang, 'keyStep')}, <kbd>Home</kbd> <kbd>End</kbd>
+          {t(lang, 'keyJump')}, <kbd>Q</kbd>
+          {t(lang, 'keyQuiz')}, <kbd>C</kbd>
+          {t(lang, 'keyClass')}
+        </p>
+      </div>
+    </div>
+    <button class="learn" id="learnBtn" aria-pressed="false">
+      {t(lang, 'markL')}
+    </button>
+    <button class="btn nextbtn" id="nextAlgo" data-go={next.href} set:html={next.html} />
+    <div class="card share-box" id="shareBox">
+      <div class="tabp">
+        <div class="field">
+          <label for="shareInp">{t(lang, 'shareLbl')}</label>
+          <input id="shareInp" readonly />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

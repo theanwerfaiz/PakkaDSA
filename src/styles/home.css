@@ -1,0 +1,155 @@
+/* Welcome screen: hero and learning-path cards. */
+.home {
+  padding: 30px 26px 64px;
+  max-width: 1180px;
+}
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: 34px;
+  align-items: center;
+  margin-bottom: 52px;
+}
+.hero h1 {
+  font-family: var(--hand);
+  font-size: clamp(38px, 5vw, 62px);
+  line-height: 1.08;
+  margin: 0 0 14px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.hero p {
+  font-size: 17px;
+  max-width: 46ch;
+  color: var(--ink-2);
+  margin: 0 0 22px;
+}
+.hero .row {
+  gap: 10px;
+}
+.btn.big {
+  height: 46px;
+  padding: 0 20px;
+  font-size: 15.5px;
+  border-radius: 11px;
+}
+.hero-stage {
+  padding: 10px;
+}
+.hero-stage svg {
+  max-height: none;
+}
+.path h2 {
+  font-size: 24px;
+  margin: 0 0 4px;
+  letter-spacing: -0.01em;
+}
+.path .sub {
+  margin: 0 0 18px;
+  color: var(--muted);
+}
+.tracks {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+.track {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.track header {
+  display: flex;
+  gap: 12px;
+}
+.tno {
+  flex: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--hl);
+  color: #3b2f00;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+  font-size: 14px;
+}
+.track h3 {
+  margin: 0;
+  font-size: 17px;
+}
+.track header p {
+  margin: 2px 0 0;
+  font-size: 14px;
+  color: var(--muted);
+}
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.pill {
+  border: 1px solid var(--line);
+  background: var(--paper);
+  border-radius: 999px;
+  padding: 5px 11px;
+  font-size: 13.5px;
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+}
+.pill:hover {
+  border-color: var(--ink-2);
+}
+.pill.done {
+  background: var(--done-fill);
+  border-color: var(--done-line);
+  color: var(--done-ink);
+}
+.track footer {
+  margin-top: auto;
+  font-size: 13px;
+  color: var(--muted);
+}
+.track .bar {
+  height: 6px;
+  background: var(--paper-2);
+  border-radius: 4px;
+  margin-top: 6px;
+  overflow: hidden;
+}
+.track .bar i {
+  display: block;
+  height: 100%;
+  background: var(--done-line);
+}
+a.btn {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+a.btn.pri {
+  color: var(--paper);
+}
+a.pill {
+  text-decoration: none;
+  color: var(--ink);
+}
+.pill.done {
+  color: var(--done-ink);
+}
+.track h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+.track h3 a:hover {
+  text-decoration: underline;
+}

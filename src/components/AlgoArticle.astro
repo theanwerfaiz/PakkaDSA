@@ -1,0 +1,116 @@
+---
+/* Static text under the viewer: useful and indexable without JavaScript. */
+import { t } from '../app/i18n';
+import {
+  ALGORITHMS,
+  algoPath,
+  byId,
+  categoryOf,
+  trackOf,
+  trackPath,
+  type Algorithm,
+  type Lang,
+  type Track,
+} from '../content/catalog';
+import { CODE_TABS, loadSnippet, plain, type SnippetLang } from '../content/code';
+import { faq, intro } from '../content/seo';
+
+interface Props {
+  lang: Lang;
+  algo: Algorithm;
+}
+const { lang, algo } = Astro.props;
+const LANGS = CODE_TABS.filter((c) => c.id !== 'pseudo') as { id: SnippetLang; full: string }[];
+const listings = await Promise.all(
+  LANGS.map(async (c) => ({ ...c, code: plain(await loadSnippet(algo.id, c.id)) })),
+);
+const track = trackOf(algo.id) as Track;
+const pos = track.algorithms.indexOf(algo.id);
+const prev = pos > 0 ? byId(track.algorithms[pos - 1]) : undefined;
+const next = pos < track.algorithms.length - 1 ? byId(track.algorithms[pos + 1]) : undefined;
+const cat = categoryOf(algo);
+const sameCat = ALGORITHMS.filter((a) => a.category === algo.category && a.id !== algo.id);
+const rows = [
+  [t(lang, 'best'), algo.complexity.best],
+  [t(lang, 'avg'), algo.complexity.average],
+  [t(lang, 'worst'), algo.complexity.worst],
+  [t(lang, 'space'), algo.complexity.space],
+];
+---
+
+<article class="article" aria-labelledby="aboutH">
+  <h2 id="aboutH">{t(lang, 'h.about', { name: algo.name })}</h2>
+  <p class="intro">{intro(lang, algo)}</p>
+
+  <h2>{t(lang, 'h.complexity')}</h2>
+  <table class="cxt">
+    <thead>
+      <tr>
+        <th scope="col">{t(lang, 'h.case')}</th>
+        <th scope="col">{t(lang, 'h.cost')}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {rows.map(([k, v]) => (
+        <tr>
+          <th scope="row">{k}</th>
+          <td>
+            <code>{v}</code>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+
+  <h2>{t(lang, 'h.how')}</h2>
+  <pre class="listing"><code>{algo.pseudocode.join('\n')}</code></pre>
+
+  <h2>{t(lang, 'h.code')}</h2>
+  {listings.map((l, i) => (
+    <details class="listing-box" open={i === 0}>
+      <summary>{l.full}</summary>
+      <pre class="listing"><code>{l.code}</code></pre>
+    </details>
+  ))}
+
+  <h2>{t(lang, 'h.faq')}</h2>
+  <dl class="faq">
+    {faq(lang, algo).map((f) => (
+      <>
+        <dt>{f.q}</dt>
+        <dd>{f.a}</dd>
+      </>
+    ))}
+  </dl>
+
+  <h2>{t(lang, 'h.related')}</h2>
+  <ul class="related">
+    {prev && (
+      <li>
+        <a href={algoPath(lang, prev)}>{t(lang, 'rel.prev', { name: prev.name })}</a>
+      </li>
+    )}
+    {next && (
+      <li>
+        <a href={algoPath(lang, next)}>{t(lang, 'rel.next', { name: next.name })}</a>
+      </li>
+    )}
+    <li>
+      <a href={trackPath(lang, track)}>{t(lang, 'rel.track', { track: track.name[lang] })}</a>
+    </li>
+    {sameCat.length > 0 && (
+      <li>
+        {t(lang, 'rel.cat', { cat: cat.name[lang] })}:{' '}
+        {sameCat.map((a, i) => (
+          <>
+            {i > 0 && ', '}
+            <a href={algoPath(lang, a)}>{a.name}</a>
+          </>
+        ))}
+      </li>
+    )}
+    <li>
+      <a href={lang === 'hi' ? '/hi/algorithms/' : '/algorithms/'}>{t(lang, 'nav.algorithms')}</a>
+    </li>
+  </ul>
+</article>

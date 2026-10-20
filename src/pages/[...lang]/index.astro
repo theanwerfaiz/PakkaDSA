@@ -1,0 +1,23 @@
+---
+import Base from '../../layouts/Base.astro';
+import Home from '../../components/Home.astro';
+import { t } from '../../app/i18n';
+import type { Lang } from '../../content/catalog';
+import { langPaths } from '../../content/routes';
+import { webApplication } from '../../content/seo';
+
+export const getStaticPaths = langPaths;
+const { lang } = Astro.props as { lang: Lang };
+---
+
+<Base
+  lang={lang}
+  view="home"
+  path="/"
+  title={t(lang, 'seo.homeTitle')}
+  description={t(lang, 'seo.homeDesc')}
+  jsonld={[webApplication((Astro.site as URL).href, lang)]}
+  preload={lang === 'hi' ? [] : ['kalam-latin-700-normal.woff2']}
+>
+  <Home lang={lang} />
+</Base>
